@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 638" width="800" height="638" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">商品名から USD アセットができるまでの処理の流れ</title>
+<desc id="d">商品名を入力すると、Claude の検索で寸法・色・画像 URL を取得し、画像をダウンロードし、Claude の画像認識で側面画像と各部の位置を判定し、OpenCV で輪郭を抽出し、Blender で回転体を作って USD に書き出し、pxr で後処理・検証・プレビューを行う。</desc>
+<rect x="0.5" y="0.5" width="799" height="637" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+<line x1="74" y1="58" x2="74" y2="586" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="22" y="22" width="104" height="36" rx="18" fill="#24292F"/>
+<text x="74" y="45.5" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">商品名</text>
+<text x="142" y="45" font-size="13" fill="#6B6F76">例: 「緑茶 600ml」のような商品の名前を 1 つ渡す</text>
+<path d="M69 80 L74 87 L79 80" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="122" r="15" fill="#B4530A"/>
+<text x="74" y="127" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">1</text>
+<line x1="89" y1="122" x2="112" y2="122" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="112" y="92" width="664" height="60" rx="10" fill="#FFFFFF" stroke="#DEDED9"/>
+<rect x="112" y="92" width="6" height="60" rx="3" fill="#B4530A"/>
+<text x="134" y="117" font-size="15" font-weight="700" fill="#1F2328">Claude</text>
+<text x="760" y="117" text-anchor="end" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#B4530A">web_search / web_fetch</text>
+<text x="134" y="138" font-size="13.5" fill="#484F58">寸法・色・画像 URL を取得</text>
+<path d="M69 158 L74 165 L79 158" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="200" r="15" fill="#1D5FA8"/>
+<text x="74" y="205" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">2</text>
+<line x1="89" y1="200" x2="112" y2="200" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="112" y="170" width="664" height="60" rx="10" fill="#FFFFFF" stroke="#DEDED9"/>
+<rect x="112" y="170" width="6" height="60" rx="3" fill="#1D5FA8"/>
+<text x="134" y="195" font-size="15" font-weight="700" fill="#1F2328">ダウンロード</text>
+<text x="760" y="195" text-anchor="end" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#1D5FA8">HTTP</text>
+<text x="134" y="216" font-size="13.5" fill="#484F58">商品の画像を取ってくる</text>
+<path d="M69 236 L74 243 L79 236" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="278" r="15" fill="#B4530A"/>
+<text x="74" y="283" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">3</text>
+<line x1="89" y1="278" x2="112" y2="278" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="112" y="248" width="664" height="60" rx="10" fill="#FFFFFF" stroke="#DEDED9"/>
+<rect x="112" y="248" width="6" height="60" rx="3" fill="#B4530A"/>
+<text x="134" y="273" font-size="15" font-weight="700" fill="#1F2328">Claude の画像認識</text>
+<text x="760" y="273" text-anchor="end" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#B4530A">vision</text>
+<text x="134" y="294" font-size="13.5" fill="#484F58">最適な側面画像と、キャップ・ラベル・液面の位置を判定</text>
+<path d="M69 314 L74 321 L79 314" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="356" r="15" fill="#2F7D4F"/>
+<text x="74" y="361" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">4</text>
+<line x1="89" y1="356" x2="112" y2="356" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="112" y="326" width="664" height="60" rx="10" fill="#FFFFFF" stroke="#DEDED9"/>
+<rect x="112" y="326" width="6" height="60" rx="3" fill="#2F7D4F"/>
+<text x="134" y="351" font-size="15" font-weight="700" fill="#1F2328">OpenCV</text>
+<text x="760" y="351" text-anchor="end" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#2F7D4F">輪郭の抽出</text>
+<text x="134" y="372" font-size="13.5" fill="#484F58">輪郭から半径プロファイルを作り、寸法に合わせて拡大縮小</text>
+<path d="M69 392 L74 399 L79 392" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="434" r="15" fill="#C2410C"/>
+<text x="74" y="439" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">5</text>
+<line x1="89" y1="434" x2="112" y2="434" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="112" y="404" width="664" height="60" rx="10" fill="#FFFFFF" stroke="#DEDED9"/>
+<rect x="112" y="404" width="6" height="60" rx="3" fill="#C2410C"/>
+<text x="134" y="429" font-size="15" font-weight="700" fill="#1F2328">Blender</text>
+<text x="760" y="429" text-anchor="end" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#C2410C">形状の作成</text>
+<text x="134" y="450" font-size="13.5" fill="#484F58">回転体（本体・キャップ・液体・ラベル）を作り、USD に書き出し</text>
+<path d="M69 470 L74 477 L79 470" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="74" cy="512" r="15" fill="#6B3FA0"/>
+<text x="74" y="517" text-anchor="middle" font-size="14" font-weight="700" fill="#FFFFFF">6</text>
+<line x1="89" y1="512" x2="112" y2="512" stroke="#C9C9C3" stroke-width="2"/>
+<rect x="112" y="482" width="664" height="60" rx="10" fill="#FFFFFF" stroke="#DEDED9"/>
+<rect x="112" y="482" width="6" height="60" rx="3" fill="#6B3FA0"/>
+<text x="134" y="507" font-size="15" font-weight="700" fill="#1F2328">pxr（OpenUSD）</text>
+<text x="760" y="507" text-anchor="end" font-size="12" font-family="ui-monospace, SFMono-Regular, Menlo, Consolas, monospace" fill="#6B3FA0">後処理</text>
+<text x="134" y="528" font-size="13.5" fill="#484F58">物理・MDL マテリアルを付け、検証してプレビューを描画</text>
+<path d="M69 548 L74 555 L79 548" fill="none" stroke="#9A9A94" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="22" y="566" width="130" height="36" rx="18" fill="#1A7F37"/>
+<text x="87" y="589.5" text-anchor="middle" font-size="15" font-weight="700" fill="#FFFFFF">USD アセット</text>
+<text x="168" y="589" font-size="13" fill="#6B6F76">形状・テクスチャ・物理の入った USD と、検証の結果、プレビュー画像</text>
+</svg>

@@ -1,0 +1,51 @@
+[project]
+name = "agentic-usd-gen"
+version = "0.1.0"
+description = "商品名から画像・寸法を検索し、Blender で3Dモデル化して Isaac Sim 向け USD を書き出す"
+readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [
+    { name = "atinfinity", email = "dandelion1124@gmail.com" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "anthropic>=1.15.0",
+    "materialx>=1.39.5",
+    "numpy>=2.5.4",
+    "opencv-python-headless>=5.0.0.93",
+    "pillow>=12.3.0",
+    "python-dotenv>=1.2.4",
+    "requests>=2.34.2",
+    "usd-core>=26.8",
+]
+
+[project.urls]
+Repository = "https://github.com/atinfinity/agentic-usd-gen"
+Issues = "https://github.com/atinfinity/agentic-usd-gen/issues"
+
+[project.optional-dependencies]
+# SimReady Foundation の検証（agentic-usd-gen-simready）
+simready = [
+    "simready-validate>=2026.8.0",
+    "simready-foundation-tier-core>=2026.8.0",
+]
+
+[project.scripts]
+agentic-usd-gen = "agentic_usd_gen.cli:main"
+agentic-usd-gen-export = "agentic_usd_gen.catalog:main"
+agentic-usd-gen-dedupe-textures = "agentic_usd_gen.texdedupe:main"
+agentic-usd-gen-fictional = "agentic_usd_gen.fictional:main"
+agentic-usd-gen-simready = "agentic_usd_gen.simready:main"
+agentic-usd-gen-visual = "agentic_usd_gen.visual_check:main"
+agentic-usd-gen-droptest = "agentic_usd_gen.drop_test:main"
+agentic-usd-gen-jointtest = "agentic_usd_gen.joint_test:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

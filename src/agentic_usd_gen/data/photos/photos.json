@@ -1,0 +1,542 @@
+{
+ "ramen": {
+  "file": "ramen.jpg",
+  "subject": "みそラーメン",
+  "title": "File:Bowl of miso ramen.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Bowl_of_miso_ramen.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/d/d5/Bowl_of_miso_ramen.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Douglas Perkins"
+ },
+ "udon": {
+  "file": "udon.jpg",
+  "subject": "うどん",
+  "title": "File:Shabu shabu udon in Tokyo.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Shabu_shabu_udon_in_Tokyo.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c3/Shabu_shabu_udon_in_Tokyo.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Syced"
+ },
+ "potato_chips": {
+  "file": "potato_chips.jpg",
+  "subject": "ポテトチップス",
+  "title": "File:Potato-Chips.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Potato-Chips.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Potato-Chips.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Evan-Amos"
+ },
+ "potato_sticks": {
+  "file": "potato_sticks.jpg",
+  "subject": "スティック状のポテトスナック",
+  "title": "File:Puffed potato chips.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Puffed_potato_chips.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Puffed_potato_chips.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Fumikas Sagisavas"
+ },
+ "coffee_beans": {
+  "file": "coffee_beans.jpg",
+  "subject": "焙煎したコーヒー豆",
+  "title": "File:Roasted coffee beans.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Roasted_coffee_beans.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Roasted_coffee_beans.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "MarkSweep"
+ },
+ "coffee_cup": {
+  "file": "coffee_cup.jpg",
+  "subject": "コーヒー豆とカップ",
+  "title": "File:Cup of coffee surrounded by beans.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Cup_of_coffee_surrounded_by_beans.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/2/21/Cup_of_coffee_surrounded_by_beans.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Zacharias Korsalka from Vienna, Austria"
+ },
+ "lemon": {
+  "file": "lemon.jpg",
+  "subject": "輪切りのレモン",
+  "title": "File:Slice of Lemon.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Slice_of_Lemon.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Slice_of_Lemon.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Garitzko"
+ },
+ "tea_leaves": {
+  "file": "tea_leaves.jpg",
+  "subject": "急須の茶葉",
+  "title": "File:Gyokuro-after-steeping.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Gyokuro-after-steeping.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Gyokuro-after-steeping.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Washing Machine"
+ },
+ "tea_field": {
+  "file": "tea_field.jpg",
+  "subject": "茶畑",
+  "title": "File:Tea gardens ooty.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:Tea_gardens_ooty.JPG",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/61/Tea_gardens_ooty.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Challiyan at Malayalam Wikipedia"
+ },
+ "lake": {
+  "file": "lake.jpg",
+  "subject": "山と湖",
+  "title": "File:Moraine Lake 17092005.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Moraine_Lake_17092005.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c5/Moraine_Lake_17092005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Gorgo"
+ },
+ "cheese_sticks": {
+  "file": "cheese_sticks.jpg",
+  "subject": "スティック菓子",
+  "title": "File:Cheese crispy sticks.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Cheese_crispy_sticks.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Cheese_crispy_sticks.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Fumikas Sagisavas"
+ },
+ "lavender": {
+  "file": "lavender.jpg",
+  "subject": "ラベンダー",
+  "title": "File:Lavender flowers in bloom, Oregon (35764444215).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Lavender_flowers_in_bloom,_Oregon_(35764444215).jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Lavender_flowers_in_bloom%2C_Oregon_%2835764444215%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "icetsarina from United States"
+ },
+ "mint": {
+  "file": "mint.jpg",
+  "subject": "ミントの葉",
+  "title": "File:Mint leaves raster.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Mint_leaves_raster.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/fc/Mint_leaves_raster.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Aviavlad"
+ },
+ "latte": {
+  "file": "latte.jpg",
+  "subject": "ラテアート",
+  "title": "File:Cappuchino latte art.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Cappuchino_latte_art.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/1/1d/Cappuchino_latte_art.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Blanka Novotná"
+ },
+ "berries": {
+  "file": "berries.jpg",
+  "subject": "ベリーの盛り合わせ",
+  "title": "File:Fruit Platter (Unsplash).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Fruit_Platter_(Unsplash).jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/f9/Fruit_Platter_%28Unsplash%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Cecilia Par famla_fint"
+ },
+ "onigiri": {
+  "file": "onigiri.jpg",
+  "subject": "おにぎり",
+  "title": "File:Onigiri 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Onigiri_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/Onigiri_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "chocolate": {
+  "file": "chocolate.jpg",
+  "subject": "製菓用チョコレート",
+  "title": "File:Chocolate pistoles.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Chocolate_pistoles.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/3/3f/Chocolate_pistoles.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "RudolfSchreier"
+ },
+ "milk": {
+  "file": "milk.jpg",
+  "subject": "グラスに注ぐ牛乳",
+  "title": "File:Milk (24299977096).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Milk_(24299977096).jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/f8/Milk_%2824299977096%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "www.Pixel.la Free Stock Photos"
+ },
+ "butter_cookies": {
+  "file": "butter_cookies.jpg",
+  "subject": "バタークッキー",
+  "title": "File:Danish-butter-cookies-1032894.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Danish-butter-cookies-1032894.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/1/13/Danish-butter-cookies-1032894.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "sdnet01"
+ },
+ "curry": {
+  "file": "curry.jpg",
+  "subject": "カレーライス",
+  "title": "File:Beef curry rice 003.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Beef_curry_rice_003.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/3/3b/Beef_curry_rice_003.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "cooked_rice": {
+  "file": "cooked_rice.jpg",
+  "subject": "茶碗に盛ったごはん",
+  "title": "File:Bowl of white rice 01.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Bowl_of_white_rice_01.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/69/Bowl_of_white_rice_01.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Douglas Perkins"
+ },
+ "rice_field": {
+  "file": "rice_field.jpg",
+  "subject": "実った稲穂の田んぼ",
+  "title": "File:RicePaddyInAutumnJapan2005-9Japan.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:RicePaddyInAutumnJapan2005-9Japan.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/d/df/RicePaddyInAutumnJapan2005-9Japan.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Kinori"
+ },
+ "tuna": {
+  "file": "tuna.jpg",
+  "subject": "ツナのサラダ",
+  "title": "File:Tuna salad with mixed greens, garlic vinaigrette dressing, and black pepper - Massachusetts.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Tuna_salad_with_mixed_greens,_garlic_vinaigrette_dressing,_and_black_pepper_-_Massachusetts.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/58/Tuna_salad_with_mixed_greens%2C_garlic_vinaigrette_dressing%2C_and_black_pepper_-_Massachusetts.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Daderot"
+ },
+ "mackerel": {
+  "file": "mackerel.jpg",
+  "subject": "焼きさば",
+  "title": "File:Saba, grilled - Boston, MA.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Saba,_grilled_-_Boston,_MA.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/8/8b/Saba%2C_grilled_-_Boston%2C_MA.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Daderot"
+ },
+ "peach": {
+  "file": "peach.jpg",
+  "subject": "白桃",
+  "title": "File:White-Peaches-Bunch.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:White-Peaches-Bunch.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/c2/White-Peaches-Bunch.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Evan-Amos"
+ },
+ "sesame": {
+  "file": "sesame.jpg",
+  "subject": "白ごま",
+  "title": "File:Sesam Seed White.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:Sesam_Seed_White.JPG",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/a/af/Sesam_Seed_White.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Miansari66"
+ },
+ "salad": {
+  "file": "salad.jpg",
+  "subject": "グリーンサラダ",
+  "title": "File:Garden salad - San Francisco.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Garden_salad_-_San_Francisco.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Garden_salad_-_San_Francisco.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Daderot"
+ },
+ "strawberry": {
+  "file": "strawberry.jpg",
+  "subject": "いちご",
+  "title": "File:Strawberries-1.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Strawberries-1.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/07/Strawberries-1.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "MartinThoma"
+ },
+ "natto": {
+  "file": "natto.jpg",
+  "subject": "納豆",
+  "title": "File:Natto.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:Natto.JPG",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/5/52/Natto.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Brücke-Osteuropa"
+ },
+ "tofu": {
+  "file": "tofu.jpg",
+  "subject": "豆腐",
+  "title": "File:Japanese tofu 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Japanese_tofu_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/6/64/Japanese_tofu_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "yogurt": {
+  "file": "yogurt.jpg",
+  "subject": "プレーンヨーグルト",
+  "title": "File:Plain Yogurt.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Plain_Yogurt.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/1/1b/Plain_Yogurt.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Alabama Extension"
+ },
+ "pudding": {
+  "file": "pudding.jpg",
+  "subject": "カスタードプリン",
+  "title": "File:Putchin Pudding 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Putchin_Pudding_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/02/Putchin_Pudding_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "bread": {
+  "file": "bread.jpg",
+  "subject": "食パン",
+  "title": "File:Bread slices.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Bread_slices.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Bread_slices.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Saral Shots"
+ },
+ "senbei": {
+  "file": "senbei.jpg",
+  "subject": "せんべい",
+  "title": "File:Senbei 005.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Senbei_005.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/2/22/Senbei_005.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "gummy": {
+  "file": "gummy.jpg",
+  "subject": "グミ",
+  "title": "File:Oursons gélatine marché Rouffignac.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Oursons_g%C3%A9latine_march%C3%A9_Rouffignac.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/a/a6/Oursons_g%C3%A9latine_march%C3%A9_Rouffignac.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Jebulon"
+ },
+ "spaghetti": {
+  "file": "spaghetti.jpg",
+  "subject": "ナポリタンスパゲッティ",
+  "title": "File:Spaghetti Naporitan 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Spaghetti_Naporitan_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/e/e4/Spaghetti_Naporitan_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "granola": {
+  "file": "granola.jpg",
+  "subject": "フルーツグラノーラ",
+  "title": "File:Hamburg, Germany (Unsplash mmsQUgMLqUo).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Hamburg,_Germany_(Unsplash_mmsQUgMLqUo).jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/7e/Hamburg%2C_Germany_%28Unsplash_mmsQUgMLqUo%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Jannis Brandt _jannis"
+ },
+ "miso_soup": {
+  "file": "miso_soup.jpg",
+  "subject": "豆腐とわかめのみそ汁",
+  "title": "File:Miso Soup 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Miso_Soup_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/e/e8/Miso_Soup_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "curry_spices": {
+  "file": "curry_spices.jpg",
+  "subject": "カレーのスパイス",
+  "title": "File:Curry Powder.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:Curry_Powder.JPG",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/49/Curry_Powder.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Miansari66"
+ },
+ "karaage": {
+  "file": "karaage.jpg",
+  "subject": "鶏のからあげ",
+  "title": "File:Chicken karaage 003.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Chicken_karaage_003.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/e/e6/Chicken_karaage_003.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "yakisoba": {
+  "file": "yakisoba.jpg",
+  "subject": "カップ焼きそば",
+  "title": "File:Instant yakisoba 002.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Instant_yakisoba_002.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/a/ad/Instant_yakisoba_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "melon_pan": {
+  "file": "melon_pan.jpg",
+  "subject": "メロンパン",
+  "title": "File:Melon-pan 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Melon-pan_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/05/Melon-pan_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "deli_oden": {
+  "file": "deli_oden.jpg",
+  "subject": "おでん（大根・卵・ちくわなど）",
+  "title": "File:Oden 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Oden_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/73/Oden_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "deli_soba": {
+  "file": "deli_soba.jpg",
+  "subject": "もりそば",
+  "title": "File:Mori-soba 002.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Mori-soba_002.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/8/8f/Mori-soba_002.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "deli_gyoza": {
+  "file": "deli_gyoza.jpg",
+  "subject": "焼き餃子",
+  "title": "File:Hamamatsu Gyōza 001.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Hamamatsu_Gy%C5%8Dza_001.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/2/28/Hamamatsu_Gy%C5%8Dza_001.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Ocdp"
+ },
+ "snk_fried_rice": {
+  "file": "snk_fried_rice.jpg",
+  "subject": "チャーハン",
+  "title": "File:Yakimeshi Houhi.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Yakimeshi_Houhi.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/0/06/Yakimeshi_Houhi.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Kykk wiki"
+ },
+ "snk_dried_squid": {
+  "file": "snk_dried_squid.jpg",
+  "subject": "さきいか（裂いた干しいか）",
+  "title": "File:HK Sai Kung District 將軍澳 TKO 康城路1號 Lohas Park Road Montara LOHAS Park 日出康城商場 The Lohas Shopping Mall shop FRESH 新鮮生活 Supermarket 尤魚絲 snack February 2024 R12S 03.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:HK_Sai_Kung_District_%E5%B0%87%E8%BB%8D%E6%BE%B3_TKO_%E5%BA%B7%E5%9F%8E%E8%B7%AF1%E8%99%9F_Lohas_Park_Road_Montara_LOHAS_Park_%E6%97%A5%E5%87%BA%E5%BA%B7%E5%9F%8E%E5%95%86%E5%A0%B4_The_Lohas_Shopping_Mall_shop_FRESH_%E6%96%B0%E9%AE%AE%E7%94%9F%E6%B4%BB_Supermarket_%E5%B0%A4%E9%AD%9A%E7%B5%B2_snack_February_2024_R12S_03.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/7/70/HK_Sai_Kung_District_%E5%B0%87%E8%BB%8D%E6%BE%B3_TKO_%E5%BA%B7%E5%9F%8E%E8%B7%AF1%E8%99%9F_Lohas_Park_Road_Montara_LOHAS_Park_%E6%97%A5%E5%87%BA%E5%BA%B7%E5%9F%8E%E5%95%86%E5%A0%B4_The_Lohas_Shopping_Mall_shop_FRESH_%E6%96%B0%E9%AE%AE%E7%94%9F%E6%B4%BB_Supermarket_%E5%B0%A4%E9%AD%9A%E7%B5%B2_snack_February_2024_R12S_03.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "BODTUWON eROWMN"
+ },
+ "snk_cashews": {
+  "file": "snk_cashews.jpg",
+  "subject": "カシューナッツ",
+  "title": "File:Charcoal roasted cashews.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Charcoal_roasted_cashews.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/c/cb/Charcoal_roasted_cashews.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Fumikas Sagisavas"
+ },
+ "snk_almonds": {
+  "file": "snk_almonds.jpg",
+  "subject": "アーモンド",
+  "title": "File:Almonds02.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Almonds02.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/4d/Almonds02.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "Danielle Keller (Danielle_dk)"
+ },
+ "snk_corn_puff": {
+  "file": "snk_corn_puff.jpg",
+  "subject": "コーンスナック",
+  "title": "File:Кукурузные палочки.JPG",
+  "page": "https://commons.wikimedia.org/wiki/File:%D0%9A%D1%83%D0%BA%D1%83%D1%80%D1%83%D0%B7%D0%BD%D1%8B%D0%B5_%D0%BF%D0%B0%D0%BB%D0%BE%D1%87%D0%BA%D0%B8.JPG",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/a/a8/%D0%9A%D1%83%D0%BA%D1%83%D1%80%D1%83%D0%B7%D0%BD%D1%8B%D0%B5_%D0%BF%D0%B0%D0%BB%D0%BE%D1%87%D0%BA%D0%B8.JPG?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "Public domain",
+  "license_url": null,
+  "author": "А. Кабанов"
+ },
+ "drk_corn": {
+  "file": "drk_corn.jpg",
+  "subject": "コーン（とうもろこしの粒）",
+  "title": "File:Corn kernels in bowl - Massachusetts.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Corn_kernels_in_bowl_-_Massachusetts.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/2/27/Corn_kernels_in_bowl_-_Massachusetts.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Daderot"
+ },
+ "drk_grapes": {
+  "file": "drk_grapes.jpg",
+  "subject": "黒ぶどう",
+  "title": "File:Red grapes with the leaves.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Red_grapes_with_the_leaves.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/d/d1/Red_grapes_with_the_leaves.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Tom Szustek"
+ },
+ "drk_ice": {
+  "file": "drk_ice.jpg",
+  "subject": "氷の入ったグラス",
+  "title": "File:Ice cubes on water.jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Ice_cubes_on_water.jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/f/f0/Ice_cubes_on_water.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "Cleiton Andrade Andrade from Alfenas, Brasil"
+ },
+ "drk_coffee_milk": {
+  "file": "drk_coffee_milk.jpg",
+  "subject": "ミルクを注ぐコーヒー",
+  "title": "File:Coffee with milk (563800) (cropped).jpg",
+  "page": "https://commons.wikimedia.org/wiki/File:Coffee_with_milk_(563800)_(cropped).jpg",
+  "url": "https://upload.wikimedia.org/wikipedia/commons/4/47/Coffee_with_milk_%28563800%29_%28cropped%29.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=original",
+  "license": "CC0",
+  "license_url": "http://creativecommons.org/publicdomain/zero/1.0/deed.en",
+  "author": "shixugang"
+ }
+}

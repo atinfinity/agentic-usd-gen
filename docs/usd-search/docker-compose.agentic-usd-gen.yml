@@ -1,0 +1,12 @@
+# usd-search の docker compose に重ねる agentic-usd-gen 用の設定。
+# usd-search のリポジトリで、local-fs の構成の後ろに -f で足す（使い方は docs/usd-search.md）。
+services:
+  graph-builder:
+    environment:
+      # semantic:（旧形式のラベル）と semantics:（UsdSemantics.LabelsAPI）の両方を索引に入れる
+      INDEXED_PROPERTY_PREFIXES: "semantic:,semantics:,isaac:,physics:"
+      # 旧形式のラベルを class / tag / name の名前でまとめる（False だと属性名のまま入る）
+      USE_SEMANTICS_API: "True"
+      SIDECAR_METADATA_CONFIG_PATH: /app/sidecar_metadata.agentic-usd-gen.yaml
+    volumes:
+      - ${AGENTIC_USD_GEN_DOCS_DIR:?Set AGENTIC_USD_GEN_DOCS_DIR to <agentic-usd-gen>/docs/usd-search}/sidecar_metadata.agentic-usd-gen.yaml:/app/sidecar_metadata.agentic-usd-gen.yaml:ro

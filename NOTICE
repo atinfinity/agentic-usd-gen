@@ -1,0 +1,26 @@
+agentic-usd-gen
+Copyright 2026 atinfinity
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+It bundles the following third-party materials, which keep their own licenses.
+
+1. Noto Sans JP (font)
+   File:    src/agentic_usd_gen/data/fonts/NotoSansJP[wght].ttf
+   License: SIL Open Font License, Version 1.1
+            (src/agentic_usd_gen/data/fonts/OFL.txt)
+   Used to draw the text on the textures of fictional products.
+
+2. Photographs from Wikimedia Commons
+   Files:   src/agentic_usd_gen/data/photos/*.jpg (54 files)
+   License: CC0 1.0 (42 files) or public domain (12 files)
+   The source page, author and license of each file are listed in
+   src/agentic_usd_gen/data/photos/photos.json.
+   Used as picture material on the textures of fictional products.
+
+The scripts in src/agentic_usd_gen/blender/ run inside Blender and use its
+Python API (bpy). Blender itself is not included; it is licensed under the
+GNU General Public License.
+
+This project is not affiliated with or endorsed by NVIDIA. Isaac Sim,
+Omniverse and SimReady are trademarks of NVIDIA Corporation.

@@ -1,0 +1,74 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: test (without Blender)
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - run: uv sync --extra simready
+      - run: uv run pytest
+
+  test-blender:
+    name: test-blender (build, export, SimReady)
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      BLENDER_VERSION: "4.4.0"
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+      - name: Install the libraries Blender needs
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends \
+            libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libice6 libgl1 libegl1
+      - name: Cache Blender
+        id: blender-cache
+        uses: actions/cache@v4
+        with:
+          path: ~/blender
+          key: blender-${{ env.BLENDER_VERSION }}-linux-x64
+      - name: Download Blender
+        if: steps.blender-cache.outputs.cache-hit != 'true'
+        run: |
+          mkdir -p ~/blender
+          curl -fsSL "https://download.blender.org/release/Blender${BLENDER_VERSION%.*}/blender-${BLENDER_VERSION}-linux-x64.tar.xz" \
+            | tar -xJ --strip-components=1 -C ~/blender
+      - name: Point BLENDER at the binary
+        run: |
+          echo "BLENDER=$HOME/blender/blender" >> "$GITHUB_ENV"
+          "$HOME/blender/blender" --version | head -1
+      - run: uv sync --extra simready
+      - name: Tests (the ones that need Blender run too)
+        run: uv run pytest
+      - name: Build, export and validate seven fictional assets
+        run: |
+          uv run agentic-usd-gen-fictional soda_pet_500ml potato_chips_bag stick_snack_box self_checkout \
+            reach_in_cooler_3door chest_freezer_showcase digital_signage_stand_43 --cache ci/cache --out ci/out
+          uv run agentic-usd-gen-export --out ci/out --assets ci/assets --license CC0-1.0
+          uv run agentic-usd-gen-simready ci/assets --output ci/simready.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: simready-report
+          path: ci/simready.json
+          if-no-files-found: ignore

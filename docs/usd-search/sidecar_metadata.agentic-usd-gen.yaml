@@ -1,0 +1,13 @@
+# USD Search のサイドカー設定: 各 USD と同じディレクトリの asset.json（agentic-usd-gen-export が書く）を読み、
+# agentic_usd_gen_ を付けた名前でルート Prim のプロパティとして索引に入れる。
+# 例: agentic_usd_gen_category = food、agentic_usd_gen_tags_0 = food、agentic_usd_gen_version = 1.1.0、agentic_usd_gen_mass_kg = 0.08
+# graph-builder の SIDECAR_METADATA_CONFIG_PATH にこのファイルのパスを渡すと有効になる。
+package_root_max_depth: 6
+
+sources:
+  - name: agentic_usd_gen_asset
+    location: sibling
+    filename: "asset.json"   # {stem}.json ではなく固定名（assets/<category>/<slug>/asset.json）
+    prefix: "agentic_usd_gen_"
+    extract:
+      kind: flatten

@@ -31,7 +31,7 @@ Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. C
 ## 準備
 
 - [uv](https://docs.astral.sh/uv/)
-- Blender 4.x（macOS は `/Applications/Blender.app` に置くか、`--blender` / 環境変数 `BLENDER` で場所を指定）
+- Blender 4.x（macOS は `/Applications/Blender.app` に置くか、`--blender` / 環境変数 `BLENDER` で場所を指定。Windows・Ubuntu は [docs/preview.md](docs/preview.md)）
 - Anthropic API キー（実在の商品を検索して新しく作るときだけ。下記）
 
 ```sh
@@ -85,7 +85,7 @@ uv run agentic-usd-gen "緑茶 600ml PET" --usdz --preview
 | [docs/output.md](docs/output.md) | 出力（`out/<slug>/`）、テクスチャの解像度、USD の内容、透明・半透明の部品（深度センサー向け） |
 | [docs/export.md](docs/export.md) | リポジトリ管理用の書き出し（`agentic-usd-gen-export`）、バージョン、レイヤー構成、検索用のメタデータ、マテリアル、把持の線、物理マテリアル、コリジョン |
 | [docs/fictional.md](docs/fictional.md) | 架空の商品（公開できるアセット、`agentic-usd-gen-fictional`）の一覧と作り方 |
-| [docs/macos-preview.md](docs/macos-preview.md) | macOS でのプレビューと、MDL・MaterialX の想定内のエラー |
+| [docs/preview.md](docs/preview.md) | macOS・Windows・Ubuntu でのプレビューと、MDL・MaterialX の想定内のエラー |
 | [docs/validation.md](docs/validation.md) | 検証（SimReady・落下テスト・関節の開閉テスト・見た目の検証） |
 | [docs/structure.md](docs/structure.md) | ソースの構成（ファイルごとの役割） |
 | [docs/usd-search.md](docs/usd-search.md) | NVIDIA USD Search で `assets/` を検索する設定例 |

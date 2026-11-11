@@ -43,7 +43,7 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 | [出力](output.md) | `out/<slug>/` の中身、USD の内容、透明・半透明の部品（深度センサー向け） |
 | [書き出し](export.md) | `agentic-usd-gen-export`、レイヤー構成、バージョン、メタデータ・マテリアル・物理マテリアル |
 | [検証](validation.md) | SimReady・落下テスト・関節の開閉テスト・見た目の検証 |
-| [macOS でのプレビュー](macos-preview.md) | Quick Look などでの確認と、MDL・MaterialX の想定内のエラー |
+| [プレビュー](preview.md) | macOS・Windows・Ubuntu での確認のしかたと、MDL・MaterialX の想定内のエラー |
 | [USD Search](usd-search.md) | NVIDIA USD Search で `assets/` を検索する設定例 |
 | [ソースの構成](structure.md) | ファイルごとの役割 |
 

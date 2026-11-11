@@ -19,7 +19,7 @@ nav = [
   { "書き出す・確かめる" = [
     { "リポジトリ管理用の書き出し" = "export.md" },
     { "検証" = "validation.md" },
-    { "macOS でのプレビュー" = "macos-preview.md" },
+    { "プレビュー" = "preview.md" },
     { "USD Search" = "usd-search.md" },
   ] },
   { "開発" = [

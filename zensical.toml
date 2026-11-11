@@ -1,0 +1,77 @@
+[project]
+site_name = "agentic-usd-gen"
+site_url = "https://atinfinity.github.io/agentic-usd-gen/"
+site_description = "商品名から Isaac Sim 向けの USD アセットを作るツール"
+copyright = "Apache License 2.0"
+repo_url = "https://github.com/atinfinity/agentic-usd-gen"
+repo_name = "atinfinity/agentic-usd-gen"
+edit_uri = "edit/main/docs/"
+docs_dir = "docs"
+site_dir = "site"
+
+nav = [
+  { "はじめに" = "index.md" },
+  { "作る" = [
+    { "形状と spec.json" = "shapes.md" },
+    { "架空の商品" = "fictional.md" },
+    { "出力" = "output.md" },
+  ] },
+  { "書き出す・確かめる" = [
+    { "リポジトリ管理用の書き出し" = "export.md" },
+    { "検証" = "validation.md" },
+    { "macOS でのプレビュー" = "macos-preview.md" },
+    { "USD Search" = "usd-search.md" },
+  ] },
+  { "開発" = [
+    { "ソースの構成" = "structure.md" },
+  ] },
+]
+
+[project.theme]
+language = "ja"
+features = [
+  "content.action.edit",
+  "content.code.copy",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.instant",
+  "navigation.path",
+  "navigation.sections",
+  "navigation.top",
+  "navigation.tracking",
+  "search.highlight",
+]
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme)"
+toggle.icon = "lucide/sun-moon"
+toggle.name = "ライトモードにする"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "ダークモードにする"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "OS の設定に合わせる"
+
+[project.markdown_extensions]
+admonition = {}
+attr_list = {}
+md_in_html = {}
+tables = {}
+# 見出しのアンカーを GitHub と同じ形（日本語を残す）にして、ページ間のリンクを両方で通す
+toc.permalink = true
+toc.slugify.object = "pymdownx.slugs.slugify"
+toc.slugify.kwds.case = "lower"
+# GitHub の > [!NOTE] の記法をそのまま注意書きにする（markdown-callouts）
+github-callouts = {}
+pymdownx.highlight.anchor_linenums = true
+pymdownx.highlight.pygments_lang_class = true
+pymdownx.inlinehilite = {}
+pymdownx.magiclink = {}
+pymdownx.superfences = {}

@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 490" width="800" height="490" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">コマンドとフォルダの関係</title>
+<desc id="d">agentic-usd-gen か agentic-usd-gen-fictional で out/ に作り、agentic-usd-gen-export で assets/ に書き出す。out/ は agentic-usd-gen-visual で、assets/ は agentic-usd-gen-simready・droptest・jointtest で確かめる。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:13px;fill:#484F58}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dir{fill:#F0F0EC;stroke:#D0D0CA}
+.ln{fill:none;stroke:#9A9A94;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<rect x="0.5" y="0.5" width="799" height="489" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+
+<rect x="24" y="24" width="368" height="70" rx="10" class="box"/>
+<rect x="24" y="24" width="6" height="70" rx="3" fill="#B4530A"/>
+<text x="44" y="52" class="m h">agentic-usd-gen "商品名"</text>
+<text x="376" y="52" text-anchor="end" font-size="12" fill="#B4530A">API キーが要る</text>
+<text x="44" y="76" class="b">実在の商品を検索して作る</text>
+
+<rect x="408" y="24" width="368" height="70" rx="10" class="box"/>
+<rect x="408" y="24" width="6" height="70" rx="3" fill="#2F7D4F"/>
+<text x="428" y="52" class="m h">agentic-usd-gen-fictional</text>
+<text x="760" y="52" text-anchor="end" font-size="12" fill="#2F7D4F">API キー不要</text>
+<text x="428" y="76" class="b">架空の商品 565 点を描いて作る</text>
+
+<path d="M208 94 V110" class="ln"/><path d="M203 110 L208 117 L213 110" class="ln"/>
+<path d="M592 94 V110" class="ln"/><path d="M587 110 L592 117 L597 110" class="ln"/>
+
+<rect x="24" y="122" width="752" height="66" rx="10" class="dir"/>
+<rect x="24" y="122" width="6" height="66" rx="3" fill="#24292F"/>
+<text x="44" y="149" class="m h">out/&lt;slug&gt;/</text>
+<text x="44" y="172" class="b">作業用の出力。USD・テクスチャ・プレビューと、作るたびの検証の結果（meta.json）</text>
+
+<path d="M208 188 V204" class="ln"/><path d="M203 204 L208 211 L213 204" class="ln"/>
+<path d="M592 188 V204" class="ln"/><path d="M587 204 L592 211 L597 204" class="ln"/>
+
+<rect x="24" y="216" width="368" height="70" rx="10" class="box"/>
+<rect x="24" y="216" width="6" height="70" rx="3" fill="#6B3FA0"/>
+<text x="44" y="244" class="m h">agentic-usd-gen-export</text>
+<text x="44" y="268" class="b">検証 OK のものを書き出し、版を付ける</text>
+
+<rect x="408" y="216" width="368" height="70" rx="10" class="box"/>
+<rect x="408" y="216" width="6" height="70" rx="3" fill="#1D5FA8"/>
+<text x="428" y="244" class="m h">agentic-usd-gen-visual</text>
+<text x="760" y="244" text-anchor="end" font-size="12" fill="#1D5FA8">確かめる</text>
+<text x="428" y="268" class="b">プレビューと元画像を比べて採点する</text>
+
+<path d="M208 286 V302" class="ln"/><path d="M203 302 L208 309 L213 302" class="ln"/>
+
+<rect x="24" y="314" width="752" height="66" rx="10" class="dir"/>
+<rect x="24" y="314" width="6" height="66" rx="3" fill="#24292F"/>
+<text x="44" y="341" class="m h">assets/&lt;category&gt;/&lt;slug&gt;/simready_usd/</text>
+<text x="44" y="364" class="b">リポジトリで管理する形。レイヤーに分けた USD・モデルカード・サムネイル・asset.json</text>
+
+<path d="M144 380 V396" class="ln"/><path d="M139 396 L144 403 L149 396" class="ln"/>
+<path d="M400 380 V396" class="ln"/><path d="M395 396 L400 403 L405 396" class="ln"/>
+<path d="M656 380 V396" class="ln"/><path d="M651 396 L656 403 L661 396" class="ln"/>
+
+<rect x="24" y="408" width="240" height="58" rx="10" class="box"/>
+<rect x="24" y="408" width="6" height="58" rx="3" fill="#1D5FA8"/>
+<text x="44" y="432" class="m h" font-size="12.5">agentic-usd-gen-simready</text>
+<text x="44" y="453" class="b">SimReady の規約に合うか</text>
+
+<rect x="280" y="408" width="240" height="58" rx="10" class="box"/>
+<rect x="280" y="408" width="6" height="58" rx="3" fill="#1D5FA8"/>
+<text x="300" y="432" class="m h">agentic-usd-gen-droptest</text>
+<text x="300" y="453" class="b">Isaac Sim で落として静止するか</text>
+
+<rect x="536" y="408" width="240" height="58" rx="10" class="box"/>
+<rect x="536" y="408" width="6" height="58" rx="3" fill="#1D5FA8"/>
+<text x="556" y="432" class="m h">agentic-usd-gen-jointtest</text>
+<text x="556" y="453" class="b">Isaac Sim で扉・ふたが開閉するか</text>
+</svg>

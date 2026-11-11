@@ -14,6 +14,18 @@ uv run pytest
 - Blender 4.x があると、USD を実際に書き出すテストも動きます（なければ飛ばします）。場所は環境変数 `BLENDER` で指定できます。
 - テストは Anthropic API を呼びません。API キーは要りません。
 
+## ドキュメント
+
+`docs/` は [Zensical](https://zensical.org/) でサイトにします（設定は `zensical.toml`）。
+
+```sh
+uv run --group docs zensical serve    # http://localhost:8000 で確かめる
+uv run --group docs zensical build    # site/ に書き出す
+```
+
+- GitHub でもサイトでも同じに見えるよう、箇条書きの中の箇条書き・表・コードは 4 つの空白で字下げし、箇条書きの前は 1 行空けてください。
+- 図は Markdown の画像（`![説明](図.svg)`）で入れてください。
+
 ## pull request を出す前に
 
 - `uv run pytest` が通ることを確かめてください。

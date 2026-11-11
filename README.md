@@ -40,7 +40,7 @@ cp .env.example .env   # 検索して作るときは ANTHROPIC_API_KEY=... を�
 ```
 
 > [!IMPORTANT]
-> Blender 4.x が要ります。`src/agentic_usd_gen/blender/` のスクリプトは Blender の中で動き、Blender の Python API（`bpy`）を使います。Blender 本体は含みません。
+> `src/agentic_usd_gen/blender/` のスクリプトは Blender の中で動き、Blender の Python API（`bpy`）を使います。Blender 本体は含みません。
 
 > [!WARNING]
 > 商品名から検索して作ると、Anthropic API の料金がかかります（既定のモデルは `claude-opus-5-5`。検索・画像認識・`--visual-check` で呼びます）。下の「キーがなくても動く」場合は、料金はかかりません。
@@ -71,9 +71,11 @@ uv run agentic-usd-gen "緑茶 600ml PET" --usdz --preview
 | `--visual-check` | プレビューと元画像を画像認識で比べ、見た目の点数を `meta.json` に書く（`--preview` と API キーが要る。[見た目の検証](docs/validation.md#見た目の検証)） |
 | `--no-physics` | 剛体・質量・コリジョンを付けない |
 
-API キーがなくても、`--dims` と `--image` を指定すれば検索を省略して生成できます。
-
 形状ごとの寸法の決め方と、`spec.json` に書ける項目（部品・関節・照明・バリアントなど）は [docs/shapes.md](docs/shapes.md) にあります。
+
+作ったあとは、`agentic-usd-gen-export` でリポジトリ管理用の形に書き出し、検証のコマンドで確かめます。
+
+<img src="docs/commands.svg" width="640" alt="コマンドとフォルダの関係: agentic-usd-gen か agentic-usd-gen-fictional で out/ に作り、agentic-usd-gen-export で assets/ に書き出す。out/ は agentic-usd-gen-visual で、assets/ は agentic-usd-gen-simready・agentic-usd-gen-droptest・agentic-usd-gen-jointtest で確かめる">
 
 ## ドキュメント
 
@@ -81,7 +83,7 @@ API キーがなくても、`--dims` と `--image` を指定すれば検索を�
 |---|---|
 | [docs/shapes.md](docs/shapes.md) | 形状と `spec.json`（回転体の透け方、回転体・袋・箱・部品の組み合わせ、関節・照明・バリアント、検索キャッシュ） |
 | [docs/output.md](docs/output.md) | 出力（`out/<slug>/`）、テクスチャの解像度、USD の内容、透明・半透明の部品（深度センサー向け） |
-| [docs/export.md](docs/export.md) | リポジトリ管理用の書き出し（`agentic-usd-gen-export`）、バージョン、検索用のメタデータ・マテリアル・物理マテリアル・コリジョン |
+| [docs/export.md](docs/export.md) | リポジトリ管理用の書き出し（`agentic-usd-gen-export`）、バージョン、レイヤー構成、検索用のメタデータ、マテリアル、把持の線、物理マテリアル、コリジョン |
 | [docs/fictional.md](docs/fictional.md) | 架空の商品（公開できるアセット、`agentic-usd-gen-fictional`）の一覧と作り方 |
 | [docs/macos-preview.md](docs/macos-preview.md) | macOS でのプレビューと、MDL・MaterialX の想定内のエラー |
 | [docs/validation.md](docs/validation.md) | 検証（SimReady・落下テスト・関節の開閉テスト・見た目の検証） |

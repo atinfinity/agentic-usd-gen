@@ -5,7 +5,7 @@
 - ステージの規約
 - バウンディングボックスと寸法の一致（許容 5%。袋は膨らむと縮むので、平らな寸法ではなく膨らんだ形の計算値と比べる。箱と部品の組み合わせは幅・奥行き・高さと比べる）
 - 物理 API が付いていること（`static` ならキネマティックな剛体、それ以外は動く剛体で、どちらも質量があること）。
-  可動部の剛体は質量があり、関節で本体につながっていること
+    可動部の剛体は質量があり、関節で本体につながっていること
 - マテリアルの出力とテクスチャのパス
 - OpenUSD の UsdValidation
 - `.usdz` は `usdchecker --arkit`
@@ -25,18 +25,18 @@ uv run agentic-usd-gen-simready --output report.json  # 結果を JSON でも書
 ```
 
 > [!NOTE]
-> Isaac Sim の入っていない環境（Mac など）では、MDL の参照先が見つからず `NP.008` が出ます。これは想定内として数え、合否に含めません。Isaac Sim の環境では `--strict-mdl` を付けて確かめます。
+> Isaac Sim の入っていない環境（Mac など）では、Isaac Sim に組み込まれている MDL（OmniPBR / OmniGlass / OmniSurface）の参照先が見つからず `NP.008` が出ます。これは想定内として数え、合否に含めません。Isaac Sim の環境では `--strict-mdl` を付けて確かめます。
 
 - 不適合は要件 ID（`NP.005` など）ごとにまとめて表示します。1 点でも不合格なら終了コードは 1 です。
-- MDL（OmniPBR / OmniGlass / OmniSurface）は Isaac Sim に組み込まれているので、Mac では参照先が見つからず `NP.008` で落ちます。これは想定内として数え、合否に含めません。Isaac Sim の環境では `--strict-mdl` を付けて確かめます。
 - `simready-validate` は MDL の検索パスではなく USD の resolver で参照を解決するので、Isaac Sim の環境でも `--strict-mdl` を付けるだけでは `NP.008` で落ちます。Isaac Sim の MDL のフォルダを resolver の検索パスに入れて動かします。Isaac Sim（Kit）自身は環境変数なしでこれらの MDL を解決します。
 
-  ```sh
-  export PXR_AR_DEFAULT_SEARCH_PATH=<Isaac Sim の venv>/lib/python3.12/site-packages/isaacsim/kit/mdl/core/Base
-  uv run agentic-usd-gen-simready --strict-mdl
-  ```
+    ```sh
+    export PXR_AR_DEFAULT_SEARCH_PATH=<Isaac Sim の venv>/lib/python3.12/site-packages/isaacsim/kit/mdl/core/Base
+    uv run agentic-usd-gen-simready --strict-mdl
+    ```
 
-  Isaac Sim 6.1.0（pip 版、Linux）で、このツールで作った架空のアセット 139 点がこの方法で合格することを確認しました。RTX で描画しても、OmniGlass の透け方とラベルのテクスチャは崩れません。
+    Isaac Sim 6.1.0（pip 版、Linux）で、このツールで作った架空のアセット 139 点がこの方法で合格することを確認しました。RTX で描画しても、OmniGlass の透け方とラベルのテクスチャは崩れません。
+
 - 任意の機能（把持・OpenPBR など）は満たさなくても合格です。`-v` では満たしていない理由（要件 ID と最初のメッセージ）も出します。
 
 ## 落下テスト

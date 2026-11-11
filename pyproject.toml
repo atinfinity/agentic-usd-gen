@@ -49,3 +49,7 @@ build-backend = "uv_build"
 dev = [
     "pytest>=9.1.1",
 ]
+docs = [
+    "zensical>=0.1.1",
+    "markdown-callouts>=0.4",
+]

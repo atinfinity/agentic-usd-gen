@@ -37,10 +37,18 @@ jobs:
         with:
           enable-cache: true
       - name: Install the libraries Blender needs
+        # The runner's DNS sometimes fails to resolve the Ubuntu mirrors, so retry.
         run: |
-          sudo apt-get update
-          sudo apt-get install -y --no-install-recommends \
-            libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libice6 libgl1 libegl1
+          for attempt in 1 2 3 4 5; do
+            sudo apt-get update -o Acquire::Retries=3 || true
+            if sudo apt-get install -y --no-install-recommends -o Acquire::Retries=3 \
+              libxi6 libxxf86vm1 libxfixes3 libxrender1 libxkbcommon0 libsm6 libice6 libgl1 libegl1; then
+              exit 0
+            fi
+            echo "apt-get failed (attempt $attempt); retrying in 30 s"
+            sleep 30
+          done
+          exit 1
       - name: Cache Blender
         id: blender-cache
         uses: actions/cache@v4

@@ -30,12 +30,15 @@ assets/
 recipes/<キャッシュ名>/      spec.json・vision.json・images/
 ```
 
+USD は 4 つのレイヤーに分かれます。入口の `<slug>.usd` を開けば、分ける前と同じ内容になります。
+
+![レイヤー構成: 入口の slug.usd が payloads/slug_base.usd を reference で読み、base は physics（強い）と meshes（弱い）をサブレイヤーで重ねる。physics は剛体・質量・コリジョン・物理マテリアル・関節を meshes に over で重ね、meshes は形状とマテリアルを持ち textures/ を相対パスで参照する](layers.svg)
+
 - カテゴリ（`beverage` / `food` / `household` / `fixture` / `environment`）は `cache/<商品名>/spec.json` の `category` から取ります。未設定なら容量があれば `beverage`、なければ `uncategorized` です。
-- 書き出す USD は、Isaac Sim のプロップのレイヤー構成（`<slug>_base`・`_meshes`・`_physics`）に分けます（`src/agentic_usd_gen/isaac_layout.py`）。
-  入口の `<slug>.usd` を開けば、分ける前と同じ内容になります。`out/` の生成結果は 1 ファイルのままで、版の判定もこちらの中身で行います。
+- レイヤーに分けるのは書き出し先だけです（`src/agentic_usd_gen/isaac_layout.py`）。`out/` の生成結果は 1 ファイルのままで、版の判定もこちらの中身で行います。
   物理を外して見た目だけ使うときは `payloads/<slug>_meshes.usd` を参照してください。
 - サムネイルは `--preview` のときに `debug/thumbnail.png` として描画されます。なければ書き出し時に描画します。
-- 書き出し先の `<slug>/` は毎回作り直します（下の注意）。旧構成（`<category>/<slug>/` の直下に USD）の書き出しも消して、版を引き継ぎます。
+- 旧構成（`<category>/<slug>/` の直下に USD）の書き出しがあれば消して、版を引き継ぎます。
 - `recipes/` は `uv run agentic-usd-gen "<商品名>" --cache recipes` でそのまま再生成に使えます。
 
 > [!WARNING]
@@ -66,10 +69,32 @@ recipes/<キャッシュ名>/      spec.json・vision.json・images/
   `qcode` は商品の種類を表す Wikidata の Q コードで、slug から引きます（`src/agentic_usd_gen/qcode.py`。どれにも当たらなければカテゴリの既定値）。
   `spec.json` に `qcode` を書けばそれを使います。`author` は `--author` で指定でき、省略時は前回の値か `pyproject.toml` の authors の名前です。
 
+### 正面の向き
+
 `asset.json` の `front` は商品・什器の正面の向きです（USD には正面の決まりがないため、配置するツール向けに書きます）。
 agentic-usd-gen の形はどれも正面（箱の正面・袋の表・回転体のラベルの正面、什器のお客さま側）が `-Y` なので、既定は `"-Y"` です。
 寝かせた袋も、上から見て `-Y` 側から表の画像が読める向きです。`spec.json` に `front`（`"+X"`・`"-X"`・`"+Y"`・`"-Y"` か、+X から反時計回りの度数）を書けばそれを使います。
 置き方に影響するので、`front` が変わったときは版の minor が上がります。
+
+### タグ
+
+タグはカテゴリ・形状・容器の材質（英語と日本語）に、`spec.json` の `tags`（ブランド・種類・味など）を足したものです。
+飲料・食品には「中身 + 容器」の英語の句も足します（`green tea bottle`・`bottled green tea`・`canned coffee`・`strawberry jam jar` など）。
+"green tea bottle" のような自然な英語の検索は、主名詞の容器がタグにないと当たらないためです。
+
+中身は `tags` の最初の英語の語です。容器は次の順で決め、決まらないもの（袋のお菓子など）には付けません。
+
+| 見るもの | 容器 |
+|---|---|
+| `tags` の容器の語 | `PET bottle` → bottle、`juice box` → box |
+| 回転体の材質 | PET・ガラス → bottle（slug が `_jar` なら jar）、アルミ・スチール → can |
+| slug の `bottle`・`pump` | 樹脂の回転体はカップやケースも多いので、この語があるときだけボトルとみなす（`mayonnaise bottle`）。日用品にも付ける（`shampoo_pump` → `shampoo bottle`） |
+| slug の `bag`・`pouch`・`box`（最後のもの） | 袋・箱の食品（`potato_chips_bag` → `potato chips bag`、`curry_roux_box` → `curry roux box`） |
+
+足りなければ `cache/<商品名>/spec.json` の `tags` に書き足して `agentic-usd-gen-export` し直します。作り直さずに反映されます（版は minor が上がります）。
+[NVIDIA USD Search](https://github.com/NVIDIA-Omniverse/usd-search) で `assets/` だけを検索対象にする設定例は [usd-search.md](usd-search.md) にあります。
+
+## マテリアル
 
 マテリアルには素材の意味ラベル（`semantics:labels:material`。SimReady の SL.MAT.001）を付けます。容器の材質や部品の `finish`・`material` から決まり、
 物理マテリアルにはそのマテリアルを使う部品の素材が付きます。
@@ -77,6 +102,8 @@ agentic-usd-gen の形はどれも正面（箱の正面・袋の表・回転体�
 描画するメッシュには表示色（`primvars:displayColor`。SimReady の DISP.001〜003）も書きます。マテリアルを読まない簡易表示で使われる色で、
 割り当てたマテリアルのテクスチャの平均（なければマテリアルの色）を線形の値で入れます。面ごとにマテリアルを分けたメッシュ（キャップの天面など）は
 面ごとの色（`uniform`）、透明・半透明の部品は不透明度（`primvars:displayOpacity`）も書きます。
+
+### センサー向けの属性
 
 LiDAR・レーダーなどのセンサー用に、メッシュに割り当てた見た目のマテリアルへ光学以外の属性（SimReady の FET_007）も書きます（`src/agentic_usd_gen/nonvisual.py`）。
 
@@ -89,11 +116,7 @@ LiDAR・レーダーなどのセンサー用に、メッシュに割り当てた
 物理マテリアルと、面の組（GeomSubset）だけに割り当てたマテリアル（キャップの天面など）には書きません。SimReady の検査は
 GeomSubset への割り当てを数えないので、書くと「割り当てのないマテリアルに書いた」（NVM.004）になります。
 
-ロボットがつかむ向きの目安として、把持の線（SimReady の FET_005。GSP.001）も書きます（`src/agentic_usd_gen/grasp.py`）。
-ルート直下の `grasp_identifier_01`（2 点の `BasisCurves`）で、2 点はハンドの指が当たる所です。高さの中ほどの断面
-（メッシュの辺と水平面の交点）で幅の狭いほうの向き（x か y）に引くので、ボトル・缶・カップは直径、箱・袋・かごは短い辺を横切ります。
-描画しない `guide` なので、プレビューにも Quick Look 用の usdz にも出ません。床に固定する什器（`static`）には付けません。
-線の 2 点と指の開き（`width`）は `meta.json` の `grasp` に書きます。
+### OpenPBR
 
 MaterialX の OpenPBR Surface（SimReady の FET_006_OPENPBR）も、見た目のマテリアルごとに `OpenPBR`（`ND_open_pbr_surface_surfaceshader`）
 として書き、`outputs:mtlx:surface` に繋ぎます（`src/agentic_usd_gen/openpbr.py`）。値は MDL と同じものを OpenPBR の入力に置き換えます
@@ -101,6 +124,8 @@ MaterialX の OpenPBR Surface（SimReady の FET_006_OPENPBR）も、見た目�
 テクスチャは MaterialX の `image` ノードで読み、色（ラベルの画像）は `srgb_texture`、粗さ・金属度・法線は `none` を
 ファイルの属性の `colorSpace` に書きます（VM.TEX.004）。法線は `ND_normalmap_float` を通して `geometry_normal` に繋ぎます。
 UsdPreviewSurface と MDL はそのまま残すので、使う側が対応する出力を選びます。Quick Look 用の usdz には入れません。
+
+### 粗さと金属度
 
 容器・キャップ・ラベル（袋・箱の印刷面を含む）の粗さと金属度は、マテリアルの意味ラベルから素材を決めて表から引きます（`src/agentic_usd_gen/finish.py`）。
 
@@ -116,6 +141,16 @@ UsdPreviewSurface と MDL はそのまま残すので、使う側が対応する
 画像を貼る面では、この粗さを粗さマップの地の値にします（インクの部分はそこから少しずらします）。
 `spec.json` の `surfaces` で、マテリアル名か素材名ごとに上書きできます。例: `"surfaces": {"CapMat": {"roughness": 0.4}, "paper": {"roughness": 0.7}}`。
 透明・半透明・液体のマテリアルは対象外です。組み合わせの部品は `finish` で決まり、マテリアル名での上書きだけ受け付けます。
+
+## 把持の線
+
+ロボットがつかむ向きの目安として、把持の線（SimReady の FET_005。GSP.001）も書きます（`src/agentic_usd_gen/grasp.py`）。
+ルート直下の `grasp_identifier_01`（2 点の `BasisCurves`）で、2 点はハンドの指が当たる所です。高さの中ほどの断面
+（メッシュの辺と水平面の交点）で幅の狭いほうの向き（x か y）に引くので、ボトル・缶・カップは直径、箱・袋・かごは短い辺を横切ります。
+描画しない `guide` なので、プレビューにも Quick Look 用の usdz にも出ません。床に固定する什器（`static`）には付けません。
+線の 2 点と指の開き（`width`）は `meta.json` の `grasp` に書きます。
+
+## 物理マテリアル
 
 物理マテリアル（摩擦・反発係数）も、コリジョンの部品ごとに割り当てた見た目のマテリアルから素材を決めて表から引きます（`src/agentic_usd_gen/physics_material.py`）。
 素材が同じ部品は 1 つの物理マテリアルを共有し、主な部品のものを `PhysicsMaterial`、ほかを `PhysicsMaterial_<素材>` とします。
@@ -135,6 +170,8 @@ UsdPreviewSurface と MDL はそのまま残すので、使う側が対応する
 例: `"physics_materials": {"paper": {"static_friction": 0.6}, "Cap": {"restitution": 0.2}}`。
 使った値は `meta.json` の `physics_materials`、`asset.json` の `physics.materials`、モデルカードの「物理」に書きます。
 
+## コリジョンの近似
+
 コリジョンの近似方法（`physics:approximation`）は既定で `convexHull`（凸包）です。カップのような開いた形や、へこみに意味のある什器の部品は、
 `spec.json` の `collision_approximation`（コリジョンの部品名 → 方法）か、組み合わせの部品の `collision_approximation` で変えます。
 例: `"collision_approximation": {"Body": "convexDecomposition"}`。
@@ -150,6 +187,8 @@ PhysX は凸包の面の数を抑えるため、底の脚先が 1 点に潰れ�
 
 部品ごとの方法は `asset.json` の `physics.collision_approximations` とモデルカードの「物理」に書きます（すべて `convexHull` なら省きます）。
 
+## MuJoCo・Newton
+
 物理は UsdPhysics で書き（PhysX・Isaac Sim はそのまま読む）、MuJoCo・Newton 向けのスキーマも付けます（SimReady の FET_003。`src/agentic_usd_gen/physics_runtimes.py`）。
 
 | シミュレータ | 付けるスキーマ |
@@ -158,14 +197,3 @@ PhysX は凸包の面の数を抑えるため、底の脚先が 1 点に潰れ�
 | Newton | コリジョンに `NewtonCollisionAPI`、メッシュなら `NewtonMeshCollisionAPI`（SDF は使わない）。物理マテリアルに `NewtonMaterialAPI` |
 
 どれもスキーマを付けるだけで値は書かず、摩擦などは UsdPhysics の値、それ以外は各シミュレータの既定になります。
-
-タグはカテゴリ・形状・容器の材質（英語と日本語）に、`spec.json` の `tags`（ブランド・種類・味など）を足したものです。
-飲料・食品には「中身 + 容器」の英語の句も足します（`green tea bottle`・`bottled green tea`・`coffee can`・`canned coffee`・`strawberry jam jar` など）。
-"green tea bottle" のような自然な英語の検索で、主名詞の容器がタグにないと当たらないためです。中身は `tags` の最初の英語の語、
-容器は `tags` の容器の語（`PET bottle` → bottle、`juice box` → box）か、回転体の材質（PET・ガラス → bottle、slug が `_jar` なら jar、
-アルミ・スチール → can）で決め、決まらないもの（袋のお菓子など）には付けません。必要なら `tags` に直接書き足してください。
-樹脂の回転体はカップやケースも多いので、slug に `bottle`・`pump` があるときだけボトルとみなします（`mayonnaise bottle`）。
-日用品も、この slug でボトルと分かるものには付けます（`shampoo_pump` → `shampoo bottle`）。
-袋・箱の食品は、slug の `bag`・`pouch`・`box`（最後のもの）を容器にします（`potato_chips_bag` → `potato chips bag`、`curry_roux_box` → `curry roux box`）。
-`tags` を `cache/<商品名>/spec.json` に書き足して `agentic-usd-gen-export` し直せば、作り直さずに反映されます（版は minor が上がります）。
-[NVIDIA USD Search](https://github.com/NVIDIA-Omniverse/usd-search) で `assets/` だけを検索対象にする設定例は [usd-search.md](usd-search.md) にあります。

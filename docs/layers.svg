@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 424" width="800" height="424" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">書き出した USD のレイヤー構成</title>
+<desc id="d">入口の slug.usd が payloads/slug_base.usd を reference で読み、base は physics と meshes の 2 つをサブレイヤーで重ねる。physics のほうが強く、meshes の Prim に over で物理を足す。meshes は textures/ を相対パスで参照する。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:12.5px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.ln{fill:none;stroke:#9A9A94;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+</style>
+<rect x="0.5" y="0.5" width="799" height="423" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+
+<rect x="252" y="30" width="536" height="312" rx="12" fill="none" stroke="#C9C9C3" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="268" y="53" class="m n">payloads/</text>
+
+<rect x="24" y="142" width="160" height="100" rx="10" class="box"/>
+<rect x="24" y="142" width="6" height="100" rx="3" fill="#24292F"/>
+<text x="40" y="167" class="m h">&lt;slug&gt;.usd</text>
+<text x="40" y="188" class="b">入口（これを開く）</text>
+<text x="40" y="206" class="b">kind = component</text>
+<text x="40" y="224" class="b" style="font-size:12px">SimReady のメタデータ</text>
+
+<path d="M184 192 H262" class="ln"/>
+<path d="M262 187 L269 192 L262 197" class="ln"/>
+<text x="217" y="181" text-anchor="middle" class="m n">reference</text>
+
+<rect x="270" y="150" width="190" height="84" rx="10" class="box"/>
+<rect x="270" y="150" width="6" height="84" rx="3" fill="#6B3FA0"/>
+<text x="288" y="177" class="m h">&lt;slug&gt;_base.usd</text>
+<text x="288" y="198" class="b">physics と meshes を</text>
+<text x="288" y="216" class="b">サブレイヤーで重ねる</text>
+
+<path d="M460 180 H520 V116 H572" class="ln"/>
+<path d="M572 111 L579 116 L572 121" class="ln"/>
+<text x="520" y="102" text-anchor="middle" class="m n">subLayer（強）</text>
+<path d="M460 204 H520 V272 H572" class="ln"/>
+<path d="M572 267 L579 272 L572 277" class="ln"/>
+<text x="520" y="296" text-anchor="middle" class="m n">subLayer（弱）</text>
+
+<rect x="580" y="66" width="196" height="100" rx="10" class="box"/>
+<rect x="580" y="66" width="6" height="100" rx="3" fill="#C2410C"/>
+<text x="598" y="91" class="m h">&lt;slug&gt;_physics.usd</text>
+<text x="598" y="112" class="b">剛体・質量・コリジョン</text>
+<text x="598" y="130" class="b">物理マテリアル・関節</text>
+<text x="598" y="148" class="b">meshes に over で重ねる</text>
+
+<rect x="580" y="222" width="196" height="100" rx="10" class="box"/>
+<rect x="580" y="222" width="6" height="100" rx="3" fill="#1D5FA8"/>
+<text x="598" y="247" class="m h">&lt;slug&gt;_meshes.usd</text>
+<text x="598" y="268" class="b">形状・マテリアル</text>
+<text x="598" y="286" class="b">見た目だけ使うならこれ</text>
+
+<path d="M678 322 V362" class="ln"/>
+<path d="M673 362 L678 369 L683 362" class="ln"/>
+<rect x="580" y="372" width="196" height="34" rx="17" fill="#2F7D4F"/>
+<text x="678" y="394" text-anchor="middle" font-size="13" font-weight="700" fill="#FFFFFF" class="m">textures/</text>
+<text x="566" y="394" text-anchor="end" class="n">テクスチャは ../textures/ を相対パスで参照</text>
+</svg>

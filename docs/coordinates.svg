@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">座標の決まり</title>
+<desc id="d">単位はメートル、Z が上、正面は −Y。原点は底面の中心。箱の面の名前は、正面（−Y 側）が front、正面から見て右（+X 側）が right、上が top。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:13px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.ax{fill:none;stroke-width:2.5;stroke-linecap:round;stroke-linejoin:round}
+.hid{fill:none;stroke-width:1.5;stroke-dasharray:4 4}
+</style>
+<rect x="0.5" y="0.5" width="799" height="449" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+
+<!-- 箱（斜投影。正面 = −Y 側の面） -->
+<polygon points="90,120 270,120 350,74 170,74" fill="#F3F3EF" stroke="#B9B9B2" stroke-width="1.5" stroke-linejoin="round"/>
+<polygon points="270,120 350,74 350,294 270,340" fill="#E6E6E1" stroke="#B9B9B2" stroke-width="1.5" stroke-linejoin="round"/>
+<rect x="90" y="120" width="180" height="220" fill="#FFFFFF" stroke="#B9B9B2" stroke-width="1.5"/>
+
+<text x="152" y="226" text-anchor="middle" class="m h">front</text>
+<text x="152" y="245" text-anchor="middle" class="n">正面（−Y 側）</text>
+<text x="272" y="102" text-anchor="middle" class="m h">top</text>
+<text x="311" y="196" text-anchor="middle" class="m h">right</text>
+<text x="311" y="214" text-anchor="middle" class="n">+X 側</text>
+
+<!-- 軸（箱の中は破線） -->
+<path d="M220 317 V97" class="hid" stroke="#1D5FA8"/>
+<path d="M220 97 V40" class="ax" stroke="#1D5FA8"/>
+<path d="M215 47 L220 38 L225 47" class="ax" stroke="#1D5FA8"/>
+<text x="232" y="46" class="h" fill="#1D5FA8" style="fill:#1D5FA8">+Z（上）</text>
+
+<path d="M220 317 H310" class="hid" stroke="#C2410C"/>
+<path d="M310 317 H414" class="ax" stroke="#C2410C"/>
+<path d="M407 312 L416 317 L407 322" class="ax" stroke="#C2410C"/>
+<text x="424" y="322" class="h" style="fill:#C2410C">+X</text>
+
+<path d="M220 317 L350 242" class="hid" stroke="#2F7D4F"/>
+<path d="M350 242 L412 206" class="ax" stroke="#2F7D4F"/>
+<path d="M402.500 205.500 L414 205 L407.500 214.500" class="ax" stroke="#2F7D4F"/>
+<text x="420" y="204" class="h" style="fill:#2F7D4F">+Y（奥）</text>
+
+<circle cx="220" cy="317" r="5" fill="#24292F"/>
+<path d="M220 323 V360" fill="none" stroke="#9A9A94" stroke-width="1.5"/>
+<text x="220" y="378" text-anchor="middle" class="h">原点 = 底面の中心</text>
+
+<!-- 見る向き -->
+<path d="M34 392 L84 363" class="ax" stroke="#6B6F76"/>
+<path d="M73.500 363 L85.500 362 L79.500 372.500" class="ax" stroke="#6B6F76"/>
+<text x="24" y="414" class="n">正面はこちらから見た面</text>
+
+<!-- 決まり -->
+<line x1="480" y1="60" x2="480" y2="400" stroke="#DEDED9"/>
+<text x="500" y="84" class="h">単位</text>
+<text x="500" y="105" class="b">メートル（metersPerUnit = 1）</text>
+<text x="500" y="146" class="h">上</text>
+<text x="500" y="167" class="b">+Z</text>
+<text x="500" y="208" class="h">正面</text>
+<text x="500" y="229" class="b">−Y を向く面（箱の正面・袋の表・</text>
+<text x="500" y="247" class="b">ラベルの正面・什器のお客さま側）</text>
+<text x="500" y="288" class="h">原点</text>
+<text x="500" y="309" class="b">XY は外形の中心、底面が z = 0</text>
+<text x="500" y="350" class="h">面の名前（faces）</text>
+<text x="500" y="371" class="b">right は正面から見て右（+X）、</text>
+<text x="500" y="389" class="b">top は正面を手前にして上から見た向き</text>
+</svg>

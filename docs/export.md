@@ -9,7 +9,7 @@ uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --recipes reci
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional -m "フタの色を修正"  # 更新履歴に変更内容を書く
 ```
 
-書き出しでは、中身が同じテクスチャを 1 つのファイルにまとめ、USD の参照をそれに向けます（同じ商品を什器に並べると、部品ごとに同じ画像ができるため。有孔ボードは 559 MB → 51 MB）。asset.json が名前で参照する画面・掲示物の画像はまとめません。
+書き出しでは、中身が同じテクスチャを 1 つのファイルにまとめ、USD の参照をそれに向けます（同じ商品を什器に並べると、部品ごとに同じ画像ができるため。有孔ボードの電池・電球売場 `pegboard_batteries_bulbs` は、まとめる前の 559 MB が 51 MB になった）。asset.json が名前で参照する画面・掲示物の画像はまとめません。
 
 ```
 assets/

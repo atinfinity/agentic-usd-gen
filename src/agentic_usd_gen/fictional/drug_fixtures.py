@@ -431,7 +431,7 @@ def rotating_accessory_rack() -> Product:
              _cyl("Bearing", (0.08, 0.08, 0.03), (0, 0, 0.075), "#2B2E31")]
     spin = [_cyl("Pole", (0.03, 0.03, pole_top - 0.09), (0, 0, 0.09 + (pole_top - 0.09) / 2), chrome)]
     for k, z in enumerate(tiers):
-        # 板は支柱の十字の隙間を空けた 4 区画（1 枚の円板だと 商品を並べるツールが支柱の位置にも商品を並べる）
+        # 板は支柱の十字の隙間を空けた 4 区画（1 枚の円板だと商品を並べるツールが支柱の位置にも商品を並べる）
         for i, (sx, sy) in enumerate(((-1, -1), (1, -1), (-1, 1), (1, 1))):
             c = (sx * (gap / 2 + q / 2), sy * (gap / 2 + q / 2), z)
             spin.append(_box(f"Tray{k}_{i}", (q, q, 0.012), c, "#F4F4F4", "plastic"))

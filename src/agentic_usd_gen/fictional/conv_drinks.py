@@ -340,15 +340,16 @@ def sports_drink_pet_500ml() -> Product:
     c.text(fx, 32, "MINERAL CHARGE", 3.6, blue, 800, spacing=1.0)
     c.text(fx, 38, "汗で失われた水分・電解質を補給", 2.8, navy, 700)
     c.text(fx, H - 7, "清涼飲料水  500ml", 3.4, white, 900)
-    c.vtext(0.5 * W, 9, "すばやく補給", 4.2, blue, 900)
+    c.vtext(0.5 * W + 20, 9, "すばやく補給", 4.2, blue, 900)  # バーコード（0.5 W ± 12 mm）の右に離す
     _bottle_back(c, 0.25 * W, 8, 44, "清涼飲料水",
                  "砂糖、果糖ぶどう糖液糖、果汁、食塩／酸味料、香料、塩化K、乳酸Ca、調味料（アミノ酸）、塩化Mg", 1.5,
                  extra=[("内容量", "500ml"), ("賞味期限", "キャップに記載")],
                  nutrition=[("栄養成分表示 100ml当たり", ""), ("エネルギー", "25kcal"), ("炭水化物", "6.2g"),
                             ("食塩相当量", "0.12g"), ("カリウム", "20mg")])
-    c.barcode(0.5 * W - 12, 18, 24, 14)
-    c.recycle(0.5 * W - 6, 40, 7, "PET", INK, kind="triangle")
-    c.recycle(0.5 * W + 7, 40, 7, "プラ", INK, sub="ラベル")
+    # 識別表示が下の帯（H - 16 mm から）にかからないよう、バーコードごと上に寄せる
+    c.barcode(0.5 * W - 12, 9, 24, 14)
+    c.recycle(0.5 * W - 6, 32, 7, "PET", INK, kind="triangle")
+    c.recycle(0.5 * W + 7, 32, 7, "プラ", INK, sub="ラベル")
     label = finish(c.array(), "film", 2061, 0.8)
     return Product(slug="sports_drink_pet_500ml", name="スポーツドリンク 500ml", category="beverage", mass_kg=0.53,
                    capacity_ml=500, material="PET",

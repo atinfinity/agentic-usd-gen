@@ -137,12 +137,15 @@ def tv_remote() -> Product:
 
 # ================================================================ pet shop
 
-def _bars(prefix: str, x0, x1, y0, y1, z0, z1, step: float, d: float, color: str) -> list[Part]:
-    """Vertical wire bars along the line (x0, y0) - (x1, y1), every `step`, from z0 to z1 (no collision)."""
+def _bars(prefix: str, x0, x1, y0, y1, z0, z1, step: float, d: float, color: str, ends: bool = True) -> list[Part]:
+    """Vertical wire bars along the line (x0, y0) - (x1, y1), every `step`, from z0 to z1 (no collision).
+
+    `ends=False` leaves out the two end bars, for a side whose corners another side already fills.
+    """
     n = max(1, round(math.hypot(x1 - x0, y1 - y0) / step))
     return [_seg(f"{prefix}{k}", (x0 + (x1 - x0) * k / n, y0 + (y1 - y0) * k / n, z0),
                  (x0 + (x1 - x0) * k / n + 1e-6, y0 + (y1 - y0) * k / n, z1), d, color, "metal", collision=False,
-                 material="steel") for k in range(n + 1)]
+                 material="steel") for k in (range(n + 1) if ends else range(1, n))]
 
 
 def pet_wire_cage() -> Product:
@@ -164,8 +167,9 @@ def pet_wire_cage() -> Product:
     z0, z1 = tray_h, H - 0.012
     parts += _bars("BarF", -W / 2, W / 2, -D / 2, -D / 2, z0, z1, 0.035, 0.004, wire)
     parts += _bars("BarB", -W / 2, W / 2, D / 2, D / 2, z0, z1, 0.035, 0.004, wire)
-    parts += _bars("BarL", -W / 2, -W / 2, -D / 2, D / 2, z0, z1, 0.035, 0.004, wire)
-    parts += _bars("BarR", W / 2, W / 2, -D / 2, D / 2, z0, z1, 0.035, 0.004, wire)
+    # 角の棒は前後の面が持つ。左右の面にも置くと同じ位置に 2 本重なる（SimReady の VG.008）
+    parts += _bars("BarL", -W / 2, -W / 2, -D / 2, D / 2, z0, z1, 0.035, 0.004, wire, ends=False)
+    parts += _bars("BarR", W / 2, W / 2, -D / 2, D / 2, z0, z1, 0.035, 0.004, wire, ends=False)
     for k, z in enumerate((tray_h + 0.10, (z0 + z1) / 2, z1 - 0.08)):  # horizontal rails
         for nm, x, y, w, d in (("F", 0, -D / 2, W, 0.006), ("B", 0, D / 2, W, 0.006), ("L", -W / 2, 0, 0.006, D),
                                ("R", W / 2, 0, 0.006, D)):

@@ -45,7 +45,7 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 ```
 
 - `soda_pet_500ml` は作る商品の名前（slug）です。ほかの slug に替えたり、空白で区切っていくつも並べたりできます（例: `cup_noodle_tall potato_chips_bag`）。`--all` を付けると 565 点すべてを作ります。
-- 指定できる slug は `uv run agentic-usd-gen-fictional --help` で一覧できます。どんな物があるかは [架空の商品](fictional.md) にまとめています。
+- 指定できる slug は `uv run agentic-usd-gen-fictional --list` で、分類・形状・品名と一緒に一覧できます（何も作りません）。後ろに語を並べると絞り込めます（例: `--list pouch food`）。分野ごとのまとめは [架空の商品](fictional.md) にあります。
 - `--out` は出力先のフォルダ、`--preview` はプレビュー画像も描く指定です。できた USD は `out/fictional/soda_pet_500ml/` に入ります。
 
 準備とオプションの詳しい説明は、リポジトリの [README](https://github.com/atinfinity/agentic-usd-gen#readme) にあります。

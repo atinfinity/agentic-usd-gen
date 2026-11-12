@@ -36,7 +36,7 @@ features = [
   "navigation.footer",
   "navigation.instant",
   "navigation.path",
-  "navigation.sections",
+  "navigation.expand",
   "navigation.top",
   "navigation.tracking",
   "search.highlight",

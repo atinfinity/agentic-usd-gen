@@ -1,4 +1,6 @@
-# 構成
+# ソースの構成
+
+2 行目からのファイルは、どれも `src/agentic_usd_gen/` の下にあります。
 
 | ファイル | 役割 |
 |---|---|
@@ -10,6 +12,9 @@
 | `blender/` | Blender 内で動くスクリプト（回転体・任意メッシュのモデリング、プレビュー描画、共通処理） |
 | `usd_post.py` / `validate.py` | USD の後処理と検証 |
 | `joints.py` / `physics_runtimes.py` | 可動部の剛体と関節、MuJoCo・Newton のスキーマ |
+| `finish.py` / `physics_material.py` | 素材ごとの粗さ・金属度と、物理マテリアル（摩擦・反発） |
+| `openpbr.py` / `nonvisual.py` | MaterialX の OpenPBR と、センサー向けの属性 |
+| `grasp.py` / `qcode.py` | 把持の線と、商品の種類を表す Wikidata の Q コード |
 | `lighting.py` | 什器に内蔵する照明（UsdLux）と `Lighting` バリアント |
 | `screen.py` | 光る画面の `Screen` バリアント（On = 画像を映す / Off = 消えた画面） |
 | `picture.py` | 店向けの絵柄の `Picture` バリアント（Default = 絵柄 / Blank = 無地） |
@@ -19,4 +24,4 @@
 | `drop_test.py` / `isaac/drop_sim.py` | `agentic-usd-gen-droptest`（Isaac Sim での落下テスト。`drop_sim.py` は Isaac Sim の Python で動く） |
 | `joint_test.py` / `isaac/joint_sim.py` | `agentic-usd-gen-jointtest`（Isaac Sim での関節の開閉テスト。`joint_sim.py` は Isaac Sim の Python で動く） |
 | `visual_check.py` | `agentic-usd-gen-visual`（プレビューと元画像を画像認識で比べる見た目の検証） |
-| `fictional/` | `agentic-usd-gen-fictional`（架空のパッケージの商品。`products.py` デザイン・`forms.py` 形・`paint.py` 描画） |
+| `fictional/` | `agentic-usd-gen-fictional`（架空の商品。`products.py` デザイン・`forms.py` 形・`paint.py` 描画） |

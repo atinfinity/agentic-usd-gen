@@ -1,4 +1,4 @@
-# 架空のパッケージ（公開用）
+# 架空の商品
 
 実在の商品名・ブランド名・ロゴ・商品写真を使わないアセットを作ります。公開リポジトリに置く用途を想定しています。
 565 点を定義しています（`src/agentic_usd_gen/fictional/` の下。slug の一覧は `agentic-usd-gen-fictional --help`）。
@@ -33,7 +33,7 @@
 
 ```bash
 uv run agentic-usd-gen-fictional --all --out out/fictional --preview        # 全点
-uv run agentic-usd-gen-fictional cup_noodle_tall soda_pet_500ml --no-build  # キャッシュだけ書く
+uv run agentic-usd-gen-fictional cup_noodle_tall soda_pet_500ml --no-build  # 画像と spec.json だけを cache/fictional/ に書き、USD は作らない（絵柄だけ確かめるとき）
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --assets <公開用リポジトリ>/assets -m "初版"
 ```
 

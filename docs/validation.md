@@ -1,6 +1,6 @@
 # 検証
 
-書き出しのたびに次を確認し、結果を `meta.json` に記録します。
+アセットを作るたび（`agentic-usd-gen`・`agentic-usd-gen-fictional`）に次を確認し、結果を `out/<slug>/meta.json` に記録します。
 
 - ステージの規約
 - バウンディングボックスと寸法の一致（許容 5%。袋は膨らむと縮むので、平らな寸法ではなく膨らんだ形の計算値と比べる。箱と部品の組み合わせは幅・奥行き・高さと比べる）
@@ -10,7 +10,14 @@
 - OpenUSD の UsdValidation
 - `.usdz` は `usdchecker --arkit`
 
-Isaac Sim での落下・静止の確認は下の「落下テスト」で、扉・ふたの開閉の確認は「関節の開閉テスト」で行います（Isaac Sim のある環境で）。
+そのほかに、次の確認を別のコマンドで行えます。どれも任意で、Isaac Sim が要るのは下の 2 つだけです。
+
+| 確認 | コマンド | Isaac Sim | API キー |
+|---|---|---|---|
+| [SimReady の検証](#simready-の検証) | `agentic-usd-gen-simready` | 要らない | 要らない |
+| [見た目の検証](#見た目の検証) | `agentic-usd-gen-visual` | 要らない | 要る（採点に使う） |
+| [落下テスト](#落下テスト) | `agentic-usd-gen-droptest` | 要る | 要らない |
+| [関節の開閉テスト](#関節の開閉テスト) | `agentic-usd-gen-jointtest` | 要る | 要らない |
 
 ## SimReady の検証
 
@@ -35,14 +42,14 @@ uv run agentic-usd-gen-simready --output report.json  # 結果を JSON でも書
     uv run agentic-usd-gen-simready --strict-mdl
     ```
 
-    Isaac Sim 6.1.0（pip 版、Linux）で、このツールで作った架空のアセット 139 点がこの方法で合格することを確認しました。RTX で描画しても、OmniGlass の透け方とラベルのテクスチャは崩れません。
+    Isaac Sim 6.1.0（pip 版、Linux）で、このツールで作った架空のアセットのうち 139 点（確認した時点の全点。いまは 565 点）がこの方法で合格することを確認しました。RTX で描画しても、OmniGlass の透け方とラベルのテクスチャは崩れません。
 
 - 任意の機能（把持・OpenPBR など）は満たさなくても合格です。`-v` では満たしていない理由（要件 ID と最初のメッセージ）も出します。
 
 ## 落下テスト
 
 書き出したアセットを Isaac Sim（headless）で床に落とし、倒れ・跳ね・床の突き抜け・静止までの時間を確かめます。重心や質量の誤りを見つけるためのものです。
-Isaac Sim の Python（上の SimReady の検証と同じ環境）で `src/agentic_usd_gen/isaac/drop_sim.py` を 1 回起動し、全点を順に落とします（描画なしで PhysX を直接進めるので、139 点で 1 分ほど）。
+Isaac Sim の Python（下の `ISAACSIM_PYTHON`。Isaac Sim の入れ方は [Isaac Sim のドキュメント](https://docs.isaacsim.omniverse.nvidia.com/)）で `src/agentic_usd_gen/isaac/drop_sim.py` を 1 回起動し、全点を順に落とします（描画なしで PhysX を直接進めるので、139 点で 1 分ほど）。
 判定は usd-core の環境の `agentic-usd-gen-droptest` が行います。
 
 ```sh

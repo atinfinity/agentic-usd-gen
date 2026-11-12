@@ -10,6 +10,8 @@
 | `usdview` | △ | ○ | ○ | UsdPreviewSurface |
 | Quick Look・Reality Composer Pro | ○ | × | × | UsdPreviewSurface |
 
+○ は使える、× は使えない、△ は自分で OpenUSD をビルドすれば使える、です。
+
 > [!NOTE]
 > 動作を確かめているのは macOS と、GitHub Actions の Ubuntu（USD の書き出しと検証まで）です。Windows では確かめていません。
 

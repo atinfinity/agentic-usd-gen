@@ -1,11 +1,12 @@
 # リポジトリ管理用の書き出し
 
-`out/` は作業用の出力です。リポジトリで管理するときは `agentic-usd-gen-export` で必要なものだけを書き出します。
+`out/` は作業用の出力です。リポジトリで管理するときは `agentic-usd-gen-export` で必要なものだけを書き出します。読むフォルダは `--out`（既定 `out/`）、書き出し先は `--assets`（既定 `assets/`）です。
 
 ```bash
-uv run agentic-usd-gen-export                          # out/ の検証 OK のアセットをすべて assets/ へ
-uv run agentic-usd-gen-export cup_noodle --recipes recipes   # slug を指定。検索キャッシュも recipes/ へ
-uv run agentic-usd-gen-export cup_noodle -m "フタの色を修正"    # 更新履歴に変更内容を書く
+uv run agentic-usd-gen-export                          # out/ にある、作ったときの検証が OK のアセットをすべて assets/ へ
+uv run agentic-usd-gen-export --out out/fictional      # 架空の商品を out/fictional に作ったとき（--out は作ったときと同じフォルダ）
+uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --recipes recipes   # slug を指定。検索キャッシュも recipes/ へ
+uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional -m "フタの色を修正"  # 更新履歴に変更内容を書く
 uv run agentic-usd-gen-dedupe-textures assets          # 書き出し済みのアセットの重複テクスチャをまとめる（古い書き出し用）
 ```
 
@@ -45,7 +46,7 @@ USD は 4 つのレイヤーに分かれます。入口の `<slug>.usd` を開�
 > 書き出し先の `<slug>/` は毎回作り直します。手で編集したファイルは消えるので、置かないでください。
 
 > [!CAUTION]
-> `agentic-usd-gen "商品名"` で作ったアセットは、実在の商品の画像をテクスチャに含みます。画像の権利は元の権利者にあるので、書き出した `assets/`・`recipes/` を公開・再配布しないでください（置くリポジトリは非公開にします）。公開するアセットは `agentic-usd-gen-fictional` で作ります（[fictional.md](fictional.md)）。
+> `agentic-usd-gen <商品名>` で作ったアセットは、実在の商品の画像をテクスチャに含みます。画像の権利は元の権利者にあるので、書き出した `assets/`・`recipes/` を公開・再配布しないでください（置くリポジトリは非公開にします）。公開するアセットは `agentic-usd-gen-fictional` で作ります（[fictional.md](fictional.md)）。
 
 ## バージョン
 

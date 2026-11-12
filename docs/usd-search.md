@@ -3,6 +3,9 @@
 [NVIDIA USD Search](https://github.com/NVIDIA-Omniverse/usd-search) を手元で動かし、`agentic-usd-gen-export` で書き出した `assets/` だけを検索対象にする設定例です。
 USD Search は Linux＋Docker Compose（画像検索・サムネイル描画には NVIDIA GPU）で動きます。Mac では動かないので、Linux 機に `assets/` を置いて使います。
 
+> [!WARNING]
+> この設定とコマンドは usd-search のソースを読んで組み立てたもので、Linux＋GPU の実機では動かしていません（[確認していないこと](#確認していないこと)）。
+
 ## agentic-usd-gen が書き込む検索用の情報
 
 `agentic-usd-gen-export` は書き出し先の USD のルート Prim に次を書きます。

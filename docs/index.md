@@ -48,7 +48,7 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 - 指定できる slug は `uv run agentic-usd-gen-fictional --list` で、分類・形状・品名と一緒に一覧できます（何も作りません）。後ろに語を並べると絞り込めます（例: `--list pouch food`）。分野ごとのまとめは [架空の商品](fictional.md) にあります。
 - `--out` は出力先のフォルダ、`--preview` はプレビュー画像も描く指定です。できた USD は `out/fictional/soda_pet_500ml/` に入ります。
 
-準備とオプションの詳しい説明は、リポジトリの [README](https://github.com/atinfinity/agentic-usd-gen#readme) にあります。
+準備（Blender の場所、API キー）とオプションの説明は [準備と使い方](usage.md) に、言葉の意味は [用語](glossary.md) にあります。
 
 ## 作ってから確かめるまで
 
@@ -58,6 +58,7 @@ Isaac Sim は、作る・書き出す・SimReady の検証には要りません�
 
 | ページ | 内容 |
 |---|---|
+| [準備と使い方](usage.md) | 入れ方、API キーが要る場合、コマンドのオプション |
 | [形状と spec.json](shapes.md) | 回転体・袋・箱・部品の組み合わせの作り方と、`spec.json` に書ける項目（関節・照明・バリアントなど） |
 | [架空の商品](fictional.md) | 公開できるアセットの一覧と作り方 |
 | [出力](output.md) | `out/<slug>/` の中身、USD の内容、透明・半透明の部品（深度センサー向け） |
@@ -66,6 +67,7 @@ Isaac Sim は、作る・書き出す・SimReady の検証には要りません�
 | [プレビュー](preview.md) | macOS・Windows・Ubuntu での確認のしかたと、MDL・MaterialX の想定内のエラー |
 | [USD Search](usd-search.md) | NVIDIA USD Search で `assets/` を検索する設定例 |
 | [ソースの構成](structure.md) | ファイルごとの役割 |
+| [用語](glossary.md) | slug・`spec.json`・キャッシュ・SimReady などの言葉の意味 |
 
 ## ライセンス
 

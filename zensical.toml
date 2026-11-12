@@ -11,6 +11,7 @@ site_dir = "site"
 
 nav = [
   { "はじめに" = "index.md" },
+  { "準備と使い方" = "usage.md" },
   { "作る" = [
     { "形状と spec.json" = "shapes.md" },
     { "架空の商品" = "fictional.md" },
@@ -24,6 +25,7 @@ nav = [
   ] },
   { "開発" = [
     { "ソースの構成" = "structure.md" },
+    { "用語" = "glossary.md" },
   ] },
 ]
 

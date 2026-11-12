@@ -113,7 +113,7 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 
 | ファイル | 内容 |
 |---|---|
-| [docs/shapes.md](docs/shapes.md) | 形状と `spec.json`（回転体の透け方、回転体・袋・箱・部品の組み合わせ、関節・照明・バリアント、検索キャッシュ） |
+| [docs/shapes.md](docs/shapes.md) | 形状と `spec.json`（`spec.json` の項目と検索キャッシュ、回転体・袋・箱・部品の組み合わせ、関節・照明・バリアント） |
 | [docs/output.md](docs/output.md) | 出力（`out/<slug>/`）、テクスチャの解像度、USD の内容、透明・半透明の部品（深度センサー向け） |
 | [docs/export.md](docs/export.md) | リポジトリ管理用の書き出し（`agentic-usd-gen-export`）、バージョン、レイヤー構成、検索用のメタデータ、マテリアル、把持の線、物理マテリアル、コリジョン |
 | [docs/fictional.md](docs/fictional.md) | 架空の商品（公開できるアセット、`agentic-usd-gen-fictional`）の一覧と作り方 |
@@ -121,6 +121,7 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 | [docs/validation.md](docs/validation.md) | 検証（SimReady・落下テスト・関節の開閉テスト・見た目の検証） |
 | [docs/structure.md](docs/structure.md) | ソースの構成（ファイルごとの役割） |
 | [docs/usd-search.md](docs/usd-search.md) | NVIDIA USD Search で `assets/` を検索する設定例 |
+| [docs/glossary.md](docs/glossary.md) | 用語（slug・`spec.json`・キャッシュ・SimReady など） |
 
 ## テスト
 

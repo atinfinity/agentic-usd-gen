@@ -100,6 +100,8 @@ uv run pytest
 
 GitHub Actions では、Blender なしのテスト（`test`）と、Blender を入れて架空の商品を書き出し SimReady の検証にかける通しの確認（`test-blender`）を動かしています。
 
+アクションの版は `.github/workflows/actions.lock` でコミット単位に固定しています。ワークフローの `uses:` を変えたときは、`gh actions-lock`（[gh-actions-lock](https://github.com/github/gh-actions-lock)）をかけ直して、ロックファイルも一緒にコミットしてください（確かめるだけなら `gh actions-lock --verify`）。
+
 ## 貢献
 
 issue・pull request を歓迎します（日本語でも英語でも）。出す前に [CONTRIBUTING.md](CONTRIBUTING.md) を読んでください。脆弱性の報告は [SECURITY.md](SECURITY.md) の方法でお願いします。

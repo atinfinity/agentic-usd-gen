@@ -18,7 +18,7 @@ jobs:
     name: build (Zensical)
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v7
+      - uses: actions/checkout@v7.0.1
       - uses: astral-sh/setup-uv@v10.3.3
         with:
           enable-cache: true
@@ -27,7 +27,7 @@ jobs:
       # GitHub Pages is only available while the repository is public.
       - name: Upload the site
         if: github.event_name != 'pull_request' && github.event.repository.visibility == 'public'
-        uses: actions/upload-pages-artifact@v5
+        uses: actions/upload-pages-artifact@v5.0.0
         with:
           path: site
 
@@ -44,4 +44,4 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - id: deployment
-        uses: actions/deploy-pages@v5
+        uses: actions/deploy-pages@v5.0.1

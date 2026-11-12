@@ -52,6 +52,8 @@ USD は 4 つのレイヤーに分かれます。入口の `<slug>.usd` を開�
 
 各アセットは `1.0.0` から始まる版を持ち、`asset.json` の `version`、USD の `assetInfo.version`、モデルカードに書かれます。
 
+![版の上げ方: agentic-usd-gen-export は書き出すたびに USD とテクスチャの SHA-256 を前回と比べる。同じなら版はそのまま。違っていて、外形が 1 mm 以上変わっていれば major、そうでなければ minor を上げ、history に記録する](versioning.svg)
+
 - 書き出すたびに `out/` の USD とテクスチャの SHA-256（`content_hash`）を前回の `asset.json` と比べ、変わったときだけ版を上げます。
   同じ入力からの再生成はバイト単位で同じ USD になるので、作り直しただけでは版は上がりません。
 - 外形が 1 mm 以上変わったら major（シーン上の配置に影響する変更）、それ以外は minor を上げます。`--bump major|minor|patch` で指定もできます。

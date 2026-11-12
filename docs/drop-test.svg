@@ -1,0 +1,46 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 314" width="800" height="314" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">落下テストの 2 回の動かし方</title>
+<desc id="d">1 回目は書き出したままの向きで 0.2 m の高さからまっすぐ落とす。2 回目は 2 度傾けて床すれすれに置き、立っていられるかを見る。倒れた・跳ねすぎ・床を突き抜けた・静止しない・転がった、滑った、のどれかで不合格になる。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:13px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dir{fill:#F0F0EC;stroke:#D0D0CA}
+.ln{fill:none;stroke:#9A9A94;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dim{fill:none;stroke:#9A9A94;stroke-width:1.2}
+.sh{fill:#EDEDE8;stroke:#6B6F76;stroke-width:1.5;stroke-linejoin:round}
+</style>
+<rect x="0.5" y="0.5" width="799" height="313" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+<rect x="24" y="24" width="368" height="226" rx="10" class="box"/><rect x="24" y="24" width="6" height="226" rx="3" fill="#C2410C"/>
+<text x="46" y="52" class="h">1. 落下</text>
+<text x="46" y="74" class="b">書き出したままの向きで、まっすぐ落とす</text>
+<path d="M64 220 H352" stroke="#6B6F76" stroke-width="2"/>
+<path d="M64 220 l-8 10 M100 220 l-8 10 M136 220 l-8 10 M172 220 l-8 10 M208 220 l-8 10 M244 220 l-8 10 M280 220 l-8 10 M316 220 l-8 10 M352 220 l-8 10" stroke="#C9C9C3" stroke-width="1.5"/>
+<text x="358" y="224" class="n">床</text>
+<rect x="174" y="98" width="40" height="76" rx="6" class="sh"/>
+<path d="M238 174 V220 M234 174 H242 M234 220 H242" class="dim"/>
+<text x="248" y="201" class="m n">--height 0.2 m</text>
+<path d="M150 120 V160" class="ln"/><path d="M145 153 L150 160 L155 153" class="ln"/>
+<rect x="408" y="24" width="368" height="226" rx="10" class="box"/><rect x="408" y="24" width="6" height="226" rx="3" fill="#1D5FA8"/>
+<text x="430" y="52" class="h">2. 傾け置き</text>
+<text x="430" y="74" class="b">少し傾けて床すれすれに置き、立っていられるかを見る</text>
+<path d="M448 220 H736" stroke="#6B6F76" stroke-width="2"/>
+<path d="M448 220 l-8 10 M484 220 l-8 10 M520 220 l-8 10 M556 220 l-8 10 M592 220 l-8 10 M628 220 l-8 10 M664 220 l-8 10 M700 220 l-8 10 M736 220 l-8 10" stroke="#C9C9C3" stroke-width="1.5"/>
+<text x="742" y="224" class="n">床</text>
+<rect x="558" y="142" width="40" height="76" rx="6" class="sh" transform="rotate(8 598 218)"/>
+<path d="M598 218 V120" stroke="#9A9A94" stroke-width="1.2" stroke-dasharray="4 4"/>
+<text x="618" y="140" class="m n">--tilt 2°（図は大きめ）</text>
+<text x="24" y="284" class="h">不合格になるもの</text>
+<rect x="150" y="266" width="63" height="28" rx="14" fill="#FFFFFF" stroke="#DEDED9"/>
+<text x="181.5" y="285" class="b" text-anchor="middle">倒れた</text>
+<rect x="223" y="266" width="76" height="28" rx="14" fill="#FFFFFF" stroke="#DEDED9"/>
+<text x="261.0" y="285" class="b" text-anchor="middle">跳ねすぎ</text>
+<rect x="309" y="266" width="115" height="28" rx="14" fill="#FFFFFF" stroke="#DEDED9"/>
+<text x="366.5" y="285" class="b" text-anchor="middle">床を突き抜けた</text>
+<rect x="434" y="266" width="89" height="28" rx="14" fill="#FFFFFF" stroke="#DEDED9"/>
+<text x="478.5" y="285" class="b" text-anchor="middle">静止しない</text>
+<rect x="533" y="266" width="128" height="28" rx="14" fill="#FFFFFF" stroke="#DEDED9"/>
+<text x="597.0" y="285" class="b" text-anchor="middle">転がった・滑った</text>
+</svg>

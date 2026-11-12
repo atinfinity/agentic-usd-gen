@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">版の上げ方</title>
+<desc id="d">agentic-usd-gen-export は書き出すたびに USD とテクスチャの SHA-256 を前回と比べる。同じなら版はそのまま。違っていて、外形が 1 mm 以上変わっていれば major、そうでなければ minor を上げ、history に日付と変更内容を記録する。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:13px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dir{fill:#F0F0EC;stroke:#D0D0CA}
+.ln{fill:none;stroke:#9A9A94;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dim{fill:none;stroke:#9A9A94;stroke-width:1.2}
+.sh{fill:#EDEDE8;stroke:#6B6F76;stroke-width:1.5;stroke-linejoin:round}
+</style>
+<rect x="0.5" y="0.5" width="799" height="319" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+<rect x="24" y="40" width="190" height="70" rx="10" class="box"/><rect x="24" y="40" width="6" height="70" rx="3" fill="#6B3FA0"/>
+<text x="42" y="68" class="m h" style="font-size:12px">agentic-usd-gen-export</text>
+<text x="42" y="90" class="b">書き出すたびに比べる</text>
+<path d="M214 75 H243" class="ln"/><path d="M243 70 L250 75 L243 80" class="ln"/>
+<rect x="250" y="40" width="226" height="70" rx="10" class="dir"/><rect x="250" y="40" width="6" height="70" rx="3" fill="#24292F"/>
+<text x="268" y="68" class="h">中身が前回と違う？</text>
+<text x="268" y="90" class="n">USD とテクスチャの SHA-256</text>
+<path d="M363 110 V143" class="ln"/><path d="M358 143 L363 150 L368 143" class="ln"/>
+<text x="371" y="134" class="n">いいえ</text>
+<rect x="250" y="150" width="226" height="56" rx="10" class="box"/><rect x="250" y="150" width="6" height="56" rx="3" fill="#9A9A94"/>
+<text x="268" y="183" class="h">版はそのまま</text>
+<path d="M476 75 H513" class="ln"/><path d="M513 70 L520 75 L513 80" class="ln"/>
+<text x="498" y="66" class="n" text-anchor="middle">はい</text>
+<rect x="520" y="40" width="256" height="70" rx="10" class="dir"/><rect x="520" y="40" width="6" height="70" rx="3" fill="#24292F"/>
+<text x="538" y="68" class="h">外形が 1 mm 以上変わった？</text>
+<text x="538" y="90" class="n">シーン上の配置に影響する変更</text>
+<path d="M584 110 V143" class="ln"/><path d="M579 143 L584 150 L589 143" class="ln"/>
+<text x="592" y="134" class="n">はい</text>
+<path d="M712 110 V143" class="ln"/><path d="M707 143 L712 150 L717 143" class="ln"/>
+<text x="720" y="134" class="n">いいえ</text>
+<rect x="520" y="150" width="122" height="56" rx="10" class="box"/><rect x="520" y="150" width="6" height="56" rx="3" fill="#C2410C"/>
+<text x="538" y="173" class="h">major を上げる</text>
+<text x="538" y="193" class="m n">1.2.0 → 2.0.0</text>
+<rect x="654" y="150" width="122" height="56" rx="10" class="box"/><rect x="654" y="150" width="6" height="56" rx="3" fill="#2F7D4F"/>
+<text x="672" y="173" class="h">minor を上げる</text>
+<text x="672" y="193" class="m n">1.2.0 → 1.3.0</text>
+<path d="M584 206 V233" class="ln"/><path d="M579 233 L584 240 L589 233" class="ln"/>
+<path d="M712 206 V233" class="ln"/><path d="M707 233 L712 240 L717 233" class="ln"/>
+<rect x="520" y="240" width="256" height="56" rx="10" class="box"/><rect x="520" y="240" width="6" height="56" rx="3" fill="#1D5FA8"/>
+<text x="538" y="263" class="h">history に記録</text>
+<text x="538" y="283" class="n">日付・-m の文・変わった項目</text>
+<text x="24" y="263" class="n">同じ入力から作り直した USD はバイト単位で同じなので、</text>
+<text x="24" y="283" class="n">作り直しただけでは版は上がらない。--bump で指定もできる。</text>
+</svg>

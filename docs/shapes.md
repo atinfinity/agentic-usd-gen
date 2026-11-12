@@ -2,6 +2,10 @@
 
 形状（`shape_class`）ごとの作り方と、`cache/<商品名>/spec.json`・`vision.json` に書ける項目です。
 
+形状は次の 4 つです。寸法（`dimensions`）の意味は形状ごとに違います。
+
+![4 つの形状: revolve は回転体（ボトル・瓶・缶・カップ）で高さ（height）と直径（diameter）、pouch は袋でシール間の長さ（height）と幅（diameter）と厚さ、box は箱で高さ（height）と正面の横幅（diameter）と奥行き（depth）、assembly は部品の組み合わせ（什器・内装）で parts に部品を並べる](shape-classes.svg)
+
 座標の決まりは、どの形状も同じです。
 
 ![座標の決まり: 単位はメートル、Z が上、正面は −Y を向く面、原点は底面の中心。箱の面の名前は、正面が front、正面から見て右（+X 側）が right、上が top](coordinates.svg)

@@ -46,10 +46,43 @@ uv run agentic-usd-gen-simready --output report.json  # 結果を JSON でも書
 
 - 任意の機能（把持・OpenPBR など）は満たさなくても合格です。`-v` では満たしていない理由（要件 ID と最初のメッセージ）も出します。
 
+## SimReady の要件 ID
+
+このドキュメントに出てくる `NP.005`・`SR.004`・`FET_005` などは、SimReady Foundation が決めている番号です。`simready-validate` の結果にもこの番号で出ます。
+
+- `NP.005` のような「英字.数字」は、1 つひとつの要件（requirement）の番号です。
+- `FET_` で始まるものは機能（feature）の番号で、いくつかの要件をまとめたものです。必須のものと任意のものがあります。
+- どの機能を満たせばよいかは、プロファイル（既定は `Robotics-Prop`）が決めます。
+
+それぞれの正確な定義は [SimReady Foundation](https://github.com/NVIDIA/simready-foundation) のリポジトリにあります。このドキュメントでは次の所に出てきます。
+
+| 番号 | このツールでの対応 | 説明のある所 |
+|---|---|---|
+| `NP.005` | 書き出し先のフォルダとファイルの名前 | [書き出し](export.md) |
+| `NP.008` | 参照先のファイルがあること（Isaac Sim のない環境では MDL が見つからない） | [SimReady の検証](#simready-の検証) |
+| `SR.004` | ルートレイヤーの `SimReady_Metadata` | [検索用のメタデータ](export.md#検索用のメタデータ) |
+| `FET_003` | MuJoCo・Newton 向けの物理のスキーマ | [MuJoCo・Newton](export.md#mujoconewton) |
+| `FET_004` | 関節 | [関節](shapes.md#関節) |
+| `FET_005`（`GSP.001`） | 把持の線 | [把持の線](export.md#把持の線) |
+| `FET_006_OPENPBR` | MaterialX の OpenPBR | [OpenPBR](export.md#openpbr) |
+| `FET_007` | センサー向けの属性 | [センサー向けの属性](export.md#センサー向けの属性) |
+| `FET_100_ISAAC` | Isaac Sim のレイヤー構成 | [書き出し](export.md) |
+
+## Isaac Sim の環境
+
+落下テスト・関節の開閉テストと、`--strict-mdl` を付けた SimReady の検証は、Isaac Sim の入った環境で動かします。確かめたのは Isaac Sim 6.1.0（pip 版、Linux）です。入れ方は [Isaac Sim のドキュメント](https://docs.isaacsim.omniverse.nvidia.com/)を見てください。
+
+| 設定 | 使う所 | 値 |
+|---|---|---|
+| `--isaac-python` | 落下テスト・関節の開閉テスト | Isaac Sim の Python の場所。指定すると下の 2 つより優先 |
+| 環境変数 `ISAACSIM_PYTHON` | 同上 | pip 版の Isaac Sim の venv の `python`（例: `~/isaacsim-venv/bin/python`） |
+| 環境変数 `ISAACSIM_PATH` | 同上（`ISAACSIM_PYTHON` がないとき） | `python.sh` のあるフォルダ（既定 `~/isaacsim`） |
+| 環境変数 `PXR_AR_DEFAULT_SEARCH_PATH` | SimReady の検証の `--strict-mdl` | `<Isaac Sim の venv>/lib/python3.12/site-packages/isaacsim/kit/mdl/core/Base` |
+
 ## 落下テスト
 
 書き出したアセットを Isaac Sim（headless）で床に落とし、倒れ・跳ね・床の突き抜け・静止までの時間を確かめます。重心や質量の誤りを見つけるためのものです。
-Isaac Sim の Python（下の `ISAACSIM_PYTHON`。Isaac Sim の入れ方は [Isaac Sim のドキュメント](https://docs.isaacsim.omniverse.nvidia.com/)）で `src/agentic_usd_gen/isaac/drop_sim.py` を 1 回起動し、全点を順に落とします（描画なしで PhysX を直接進めるので、139 点で 1 分ほど）。
+Isaac Sim の Python（[Isaac Sim の環境](#isaac-sim-の環境)）で `src/agentic_usd_gen/isaac/drop_sim.py` を 1 回起動し、全点を順に落とします（描画なしで PhysX を直接進めるので、139 点で 1 分ほど）。
 判定は usd-core の環境の `agentic-usd-gen-droptest` が行います。
 
 ```sh

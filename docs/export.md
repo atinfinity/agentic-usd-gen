@@ -7,10 +7,9 @@ uv run agentic-usd-gen-export                          # out/ にある、作っ
 uv run agentic-usd-gen-export --out out/fictional      # 架空の商品を out/fictional に作ったとき（--out は作ったときと同じフォルダ）
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --recipes recipes   # slug を指定。検索キャッシュも recipes/ へ
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional -m "フタの色を修正"  # 更新履歴に変更内容を書く
-uv run agentic-usd-gen-dedupe-textures assets          # 書き出し済みのアセットの重複テクスチャをまとめる（古い書き出し用）
 ```
 
-書き出しでは、中身が同じテクスチャを 1 つのファイルにまとめ、USD の参照をそれに向けます（同じ商品を什器に並べると、部品ごとに同じ画像ができるため。有孔ボードは 559 MB → 51 MB）。asset.json が名前で参照する画面・掲示物の画像はまとめません。
+書き出しでは、中身が同じテクスチャを 1 つのファイルにまとめ、USD の参照をそれに向けます（同じ商品を什器に並べると、部品ごとに同じ画像ができるため。有孔ボードの電池・電球売場 `pegboard_batteries_bulbs` は、まとめる前の 559 MB が 51 MB になった）。asset.json が名前で参照する画面・掲示物の画像はまとめません。
 
 ```
 assets/
@@ -39,7 +38,6 @@ USD は 4 つのレイヤーに分かれます。入口の `<slug>.usd` を開�
 - レイヤーに分けるのは書き出し先だけです（`src/agentic_usd_gen/isaac_layout.py`）。`out/` の生成結果は 1 ファイルのままで、版の判定もこちらの中身で行います。
   物理を外して見た目だけ使うときは `payloads/<slug>_meshes.usd` を参照してください。
 - サムネイルは `--preview` のときに `debug/thumbnail.png` として描画されます。なければ書き出し時に描画します。
-- 旧構成（`<category>/<slug>/` の直下に USD）の書き出しがあれば消して、版を引き継ぎます。
 - `recipes/` は `uv run agentic-usd-gen "<商品名>" --cache recipes` でそのまま再生成に使えます。
 
 > [!WARNING]
@@ -47,6 +45,17 @@ USD は 4 つのレイヤーに分かれます。入口の `<slug>.usd` を開�
 
 > [!CAUTION]
 > `agentic-usd-gen <商品名>` で作ったアセットは、実在の商品の画像をテクスチャに含みます。画像の権利は元の権利者にあるので、書き出した `assets/`・`recipes/` を公開・再配布しないでください（置くリポジトリは非公開にします）。公開するアセットは `agentic-usd-gen-fictional` で作ります（[fictional.md](fictional.md)）。
+
+## 以前の書き出しから移るとき
+
+新しく書き出すだけなら、この節は要りません。
+
+- 旧構成（`<category>/<slug>/` の直下に USD）の書き出しがあれば、書き出すときに消して、版を引き継ぎます。
+- 重複したテクスチャをまとめる前に書き出したアセットは、次のコマンドでまとめ直せます（いまの書き出しは、はじめからまとめます）。
+
+    ```bash
+    uv run agentic-usd-gen-dedupe-textures assets
+    ```
 
 ## バージョン
 

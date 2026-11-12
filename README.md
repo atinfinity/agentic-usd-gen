@@ -4,18 +4,22 @@ Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. C
 
 商品名から寸法と画像を検索し、Blender で 3D モデルを作って Isaac Sim 向けの USD を書き出すツールです。
 
+<img src="docs/images/fictional-preview.webp" width="800" alt="架空の商品のプレビュー 8 点。上段は回転体の緑茶のペットボトル・カップ麺・いちごジャムの瓶と、袋のポテトチップス。下段は箱のバタークッキー・牛乳の紙パックと、什器のセルフレジ・買い物カート">
+
+`agentic-usd-gen-fictional` で作った架空の商品の例です（大きさはそろえて並べています）。
+
 > [!IMPORTANT]
 > NVIDIA の公式のものではありません。Isaac Sim・Omniverse・SimReady は NVIDIA Corporation の商標です。
 
-入口は 2 つあります。
+作り方は 2 つあり、それぞれ別のコマンドです。
 
-| 入口 | 何をするか | API キー | 作ったアセットの公開 |
+| コマンド | 何をするか | API キー | 作ったアセットの公開 |
 |---|---|---|---|
-| `agentic-usd-gen "商品名"` | 実在の商品を検索し、商品ページの画像をテクスチャにして作る | 要る | できない（下の注意） |
+| `agentic-usd-gen <商品名>` | 実在の商品を検索し、商品ページの画像をテクスチャにして作る | 要る | できない（下の注意） |
 | `agentic-usd-gen-fictional` | 架空の商品 565 点（商品・什器・内装）を、実在の商品名・ロゴ・商品写真を使わずに描いて作る（[docs/fictional.md](docs/fictional.md)） | 要らない | できる |
 
 > [!CAUTION]
-> `agentic-usd-gen "商品名"` で作ったアセットは、実在の商品の画像を含みます。画像の権利は元の権利者にあるので、そのアセット（テクスチャ・USD）を公開・再配布しないでください。検索や画像の取得が各サイトの利用規約に合っているかも、使う人の責任で確かめてください。公開するアセットは `agentic-usd-gen-fictional` で作ります。
+> `agentic-usd-gen <商品名>` で作ったアセットは、実在の商品の画像を含みます。画像の権利は元の権利者にあるので、そのアセット（テクスチャ・USD）を公開・再配布しないでください。検索や画像の取得が各サイトの利用規約に合っているかも、使う人の責任で確かめてください。公開するアセットは `agentic-usd-gen-fictional` で作ります。
 
 対応形状（`shape_class`）は次の 4 つです。
 
@@ -24,20 +28,25 @@ Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. C
 - `box`: 箱（菓子箱・ティッシュ箱・紙パックなど）
 - `assembly`: 直方体と円柱の部品の組み合わせ（セルフレジ・デジタルサイネージ・棚などの什器）
 
-`agentic-usd-gen "商品名"` の処理の流れ（回転体の場合）:
+`agentic-usd-gen <商品名>` の処理の流れ（回転体の場合）:
 
 <img src="docs/pipeline.svg" width="640" alt="処理の流れ: 商品名から、(1) Claude が検索で寸法・色・画像 URL を取得、(2) 画像をダウンロード、(3) Claude の画像認識で側面画像とキャップ・ラベル・液面の位置を判定、(4) OpenCV で輪郭から半径プロファイルを作成、(5) Blender で回転体を作って USD に書き出し、(6) pxr で物理・MDL マテリアルを付けて検証し、USD アセットができる">
 
 ## 準備
 
-- [uv](https://docs.astral.sh/uv/)
+- Python 3.12 以上と [uv](https://docs.astral.sh/uv/)
 - Blender 4.x（macOS は `/Applications/Blender.app` に置くか、`--blender` / 環境変数 `BLENDER` で場所を指定。Windows・Ubuntu は [docs/preview.md](docs/preview.md)）
 - Anthropic API キー（実在の商品を検索して新しく作るときだけ。下記）
 
+Isaac Sim は、作る・書き出す・SimReady の検証には要りません。要るのは、任意の確認である落下テストと関節の開閉テストだけです（[docs/validation.md](docs/validation.md)）。
+
 ```sh
+git clone https://github.com/atinfinity/agentic-usd-gen.git && cd agentic-usd-gen
 uv sync
-cp .env.example .env   # 検索して作るときは ANTHROPIC_API_KEY=... を記入
+cp .env.example .env   # 商品名から検索して作るときだけ。ANTHROPIC_API_KEY=... を記入
 ```
+
+架空の商品だけを作るなら、`.env` は要りません。
 
 > [!IMPORTANT]
 > `src/agentic_usd_gen/blender/` のスクリプトは Blender の中で動き、Blender の Python API（`bpy`）を使います。Blender 本体は含みません。
@@ -54,12 +63,31 @@ API キーを使うのは、商品名から寸法・形状・画像を検索す�
 
 ## 使い方
 
+実在の商品を検索して作る例です。
+
 ```sh
 uv run agentic-usd-gen "緑茶 600ml PET" --usdz --preview
 ```
 
+`<商品名>` には検索したい商品の名前を入れます。名前に空白があるときは、シェルが 1 つの引数として渡すように引用符で囲みます（例: `agentic-usd-gen "緑茶 600ml PET"`）。空白がなければ引用符は要りません。
+
+架空の商品を作る例です（API キーは要りません）。
+
+```sh
+uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
+```
+
+- `soda_pet_500ml` は作る商品の名前（slug）です。ほかの slug に替えたり、空白で区切っていくつも並べたりできます。`--all` を付けると 565 点すべてを作ります。
+- 指定できる slug は `uv run agentic-usd-gen-fictional --help` で一覧できます。どんな物があるかは [docs/fictional.md](docs/fictional.md) にまとめています。
+- 下の表のオプションは、`--dims`・`--image`・`--slug`・`--refresh` など検索して作るとき専用のものを除いて、`agentic-usd-gen-fictional` にもそのまま渡せます。
+
+`agentic-usd-gen` のオプション:
+
 | オプション | 説明 |
 |---|---|
+| `--out DIR` | 出力先（既定 `out/`）。アセットは `<出力先>/<slug>/` にできる（[docs/output.md](docs/output.md)） |
+| `--cache DIR` | 検索結果と画像を置くキャッシュ（既定 `cache/`） |
+| `--blender PATH` | Blender の実行ファイルの場所 |
 | `--dims H=0.205,D=0.065[,CAP_H=..,CAP_D=..,T=..]` | 寸法を上書き（メートル）。袋は H がシール間の長さ、D が幅、T が厚さ。箱は D が正面の横幅、T が奥行き |
 | `--image PATH` | 側面画像を直接指定する（複数指定可）。指定するとダウンロードしない |
 | `--slug NAME` | 出力名とルート Prim 名 |

@@ -59,8 +59,12 @@ def _back(c: Canvas, W: float, H: float, name: str, materials: str, vol: str, nu
                  extra=[("内容量", vol), ("賞味期限", "キャップに記載"), *extra], nutrition=nutrition)
     c.rect(0.5 * W - 18, 4, 0.5 * W + 18, H - 4, fill="#FFFFFF", radius=2)
     c.barcode(0.5 * W - 15, 8, 30, 18)
-    c.recycle(0.5 * W - 8, 40, 10, "PET", INK, kind="triangle")
-    c.recycle(0.5 * W + 8, 40, 10, "プラ", INK, sub="ラベル")
+    # 識別表示はバーコード（数字の下端 30 mm）と下の注意書き（上端 H - 14 mm）の間に収める。低いラベルでは小さくする
+    top, room = 30.0, H - 14 - 30.0
+    s = min(10.0, room / 1.3)
+    cy = top + (room - 1.3 * s) / 2 + 0.45 * s
+    c.recycle(0.5 * W - 0.8 * s, cy, s, "PET", INK, kind="triangle")
+    c.recycle(0.5 * W + 0.8 * s, cy, s, "プラ", INK, sub="ラベル")
     c.text(0.5 * W, H - 12, "開栓後は冷蔵し", 2.2, INK, 700)
     c.text(0.5 * W, H - 8, "お早めにお飲みください", 2.2, INK, 700)
 

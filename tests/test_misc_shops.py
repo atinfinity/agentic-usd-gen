@@ -47,6 +47,17 @@ def test_cage_wires_are_look_only():
     assert not any(n.startswith(("TopWire", "Bar")) for n in hit)
 
 
+def test_cage_bars_do_not_coincide():
+    """角の棒は 1 本だけ。同じ形を同じ位置に重ねると SimReady の VG.008 で落ちる。"""
+    spec = ALL["pet_wire_cage"]().spec()
+    seen = {}
+    for p in spec.parts:
+        key = (p.shape, tuple(round(v, 4) for v in p.size), tuple(round(v, 4) for v in p.center),
+               tuple(round(v, 2) for v in p.rotation))
+        assert key not in seen, f"{p.name} と {seen[key]} が同じ位置にある"
+        seen[key] = p.name
+
+
 def test_beer_bottle_is_one_body():
     """王冠は瓶と同じ 1 つの剛体（SimReady のボトルはキャップが別の剛体で外れて落ちる）。"""
     spec = ALL["beer_bottle_334ml"]().spec()

@@ -209,7 +209,7 @@ def battery(H: float, D: float, *, nub_h: float = 0.0015, nub_d: float = 0.0055)
 
 def draw_silhouette(form: RevolveForm, body_fill: str | None = "#8C8C8C", cap_fill: str = "#5A5A5A",
                     liquid: str | None = None, px: int = 1800, margin: int = 60) -> np.ndarray:
-    """形を取るための側面の絵。body_商品を並べるツールが None なら輪郭線だけ（無色透明の液体として扱われる）。
+    """形を取るための側面の絵。body_fill が None なら輪郭線だけ（無色透明の液体として扱われる）。
     liquid を渡すと、輪郭線の内側の液面より下をその色で塗る（色の付いた飲み物）。"""
     H, D = form.height, form.diameter
     s = min(px / H, px / D)

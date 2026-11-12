@@ -304,7 +304,7 @@ def island_freezer_double() -> Product:
     parts = [
         _box("Plinth", (W - 0.06, D - 0.06, 0.10), (0, 0, 0.05), "#2B2E31", "matte"),
         _box("CabinetLower", (W, D, deck_z - 0.12), (0, 0, 0.10 + (deck_z - 0.12) / 2), WHITE),
-        # 陳列面は仕切りの前後に 1 枚ずつ（1 枚だと 商品を並べるツールが仕切りの上にも商品を並べ、物理で押し出される）
+        # 陳列面は仕切りの前後に 1 枚ずつ（1 枚だと商品を並べるツールが仕切りの上にも商品を並べ、物理で押し出される）
         _box("DeckF", (W - 2 * wall, deck_d, 0.02), (0, -0.02 - deck_d / 2, deck_z - 0.01), "#DCE3E8", "matte"),
         _box("DeckB", (W - 2 * wall, deck_d, 0.02), (0, 0.02 + deck_d / 2, deck_z - 0.01), "#DCE3E8", "matte"),
         _box("Divider", (W - 2 * wall, 0.04, 0.24), (0, 0, deck_z + 0.10), "#C9D3DA", "plastic"),  # 陳列面の間を埋める

@@ -1,7 +1,7 @@
 # 架空の商品
 
 実在の商品名・ブランド名・ロゴ・商品写真を使わないアセットを作ります。公開リポジトリに置く用途を想定しています。
-565 点を定義しています（`src/agentic_usd_gen/fictional/` の下。slug の一覧は `agentic-usd-gen-fictional --help`）。
+565 点を定義しています（`src/agentic_usd_gen/fictional/` の下。slug の一覧は `agentic-usd-gen-fictional --list`）。
 
 ![架空の商品のプレビュー 8 点。上段は回転体の緑茶のペットボトル・カップ麺・いちごジャムの瓶と、袋のポテトチップス。下段は箱のバタークッキー・牛乳の紙パックと、什器のセルフレジ・買い物カート](images/fictional-preview.webp)
 
@@ -42,6 +42,17 @@ uv run agentic-usd-gen-fictional --all --out out/fictional --preview        # �
 uv run agentic-usd-gen-fictional cup_noodle_tall soda_pet_500ml --no-build  # 画像と spec.json だけを cache/fictional/ に書き、USD は作らない（絵柄だけ確かめるとき）
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --assets <公開用リポジトリ>/assets -m "初版"
 ```
+
+slug を調べるには `--list` を使います。slug・分類・形状・品名を 1 行ずつ出して終わります（何も作りません）。後ろに語を並べると、すべての語を含む行だけになります。
+
+```console
+$ uv run agentic-usd-gen-fictional --list pouch food
+potato_chips_bag       food       pouch  ポテトチップス うすしお味 60g
+chocolate_bar          food       pouch  チョコレートバー ココアクッキー
+...
+```
+
+一覧は `src/agentic_usd_gen/data/fictional_index.tsv` に置いています（品名は定義を呼ばないと分からず、呼ぶと絵柄まで描くため）。商品を足したり品名を変えたりしたら、`uv run python -m agentic_usd_gen.fictional.listing` で作り直します（数分かかります）。
 
 - **名前:** 一般的な名前（種類・味・容量）だけで、ブランド名は付けません（例:「カップめん みそ味」「緑茶 600ml」）。
 - **形と寸法:** 特定の商品ではなく、同じ種類の商品の一般的な代表値です。回転体は `fictional/forms.py` のプロファイル（PET ボトル・缶・紙カップ・エアゾール缶など）から側面のシルエットを描き、通常の生成で形にします。

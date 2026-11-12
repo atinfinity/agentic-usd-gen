@@ -82,7 +82,7 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 ```
 
 - `soda_pet_500ml` は作る商品の名前（slug）です。ほかの slug に替えたり、空白で区切っていくつも並べたりできます。`--all` を付けると 565 点すべてを作ります。
-- 指定できる slug は `uv run agentic-usd-gen-fictional --help` で一覧できます。どんな物があるかは [docs/fictional.md](docs/fictional.md) にまとめています。
+- 指定できる slug は `uv run agentic-usd-gen-fictional --list` で、分類・形状・品名と一緒に一覧できます（何も作りません）。後ろに語を並べると絞り込めます（例: `--list pouch food`）。分野ごとのまとめは [docs/fictional.md](docs/fictional.md) にあります。
 - 下の表のオプションは、`--dims`・`--image`・`--slug`・`--refresh` など検索して作るとき専用のものを除いて、`agentic-usd-gen-fictional` にもそのまま渡せます。
 
 `agentic-usd-gen` のオプション:

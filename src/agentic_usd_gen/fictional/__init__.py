@@ -2,6 +2,8 @@
 
     agentic-usd-gen-fictional --all --out out/fictional --preview
     agentic-usd-gen-fictional cup_noodle_tall potato_chips_bag --no-build
+    agentic-usd-gen-fictional --list            # slug・分類・形状・品名の一覧（何も作らない）
+    agentic-usd-gen-fictional --list pouch 茶   # 語で絞り込む
 
 商品ごとに検索キャッシュと同じ形（spec.json / vision.json / images/）を書き、通常の生成（agentic-usd-gen）に渡す。
 実在の商品名・ブランド名・ロゴ・商品写真は使わない。写真はパブリックドメイン（CC0 など）の素材を合成する。
@@ -23,9 +25,13 @@ log = logging.getLogger("agentic_usd_gen.fictional")
 
 
 def main(argv: list[str] | None = None) -> int:
+    from . import listing  # python -m ...listing で二重に読み込まないよう、ここで読む
+
     p = argparse.ArgumentParser(prog="agentic-usd-gen-fictional", description="架空のパッケージの商品を生成する（公開用）")
-    p.add_argument("products", nargs="*", metavar="slug", help=f"商品（{', '.join(PRODUCTS)}）")
+    p.add_argument("products", nargs="*", metavar="slug", help=f"作る商品の slug（{len(PRODUCTS)} 点。一覧は --list）")
     p.add_argument("--all", action="store_true", help="すべての商品")
+    p.add_argument("--list", action="store_true",
+                   help="slug・分類・形状・品名を 1 行ずつ出して終わる（何も作らない）。後ろに語を並べると、すべての語を含む行だけ")
     p.add_argument("--cache", type=Path, default=Path("cache/fictional"), help="キャッシュ（既定: cache/fictional）")
     p.add_argument("--no-build", action="store_true", help="キャッシュだけ書き、USD は作らない")
     # 値を取る agentic-usd-gen のオプションはここで受けて渡す（位置引数の商品と取り違えないように）
@@ -34,6 +40,12 @@ def main(argv: list[str] | None = None) -> int:
     args, rest = p.parse_known_args(argv)  # 残り（--preview・--usdz など）は agentic-usd-gen に渡す
     rest += [x for k in ("out", "blender") if getattr(args, k) for x in (f"--{k}", getattr(args, k))]
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+    if args.list:
+        found = listing.rows(args.products)
+        if found:
+            print(listing.format_rows(found))
+        print(f"{len(found)} 点", file=sys.stderr)
+        return 0
     names = list(PRODUCTS) if args.all else args.products
     unknown = [n for n in names if n not in PRODUCTS]
     if not names or unknown:
@@ -44,6 +56,8 @@ def main(argv: list[str] | None = None) -> int:
             product = PRODUCTS[n]()
         write(product, args.cache, canvases)
         log.info("架空の商品: %s（%s）", product.name, product.slug)
+        if listing.load().get(n) != listing.row_of(product):
+            log.warning("--list の一覧が定義と合っていません（%s）。作り直してください: %s", n, listing.REFRESH)
         if not args.no_build:
             status |= cli.main([product.name, "--cache", str(args.cache), *rest])
     return status

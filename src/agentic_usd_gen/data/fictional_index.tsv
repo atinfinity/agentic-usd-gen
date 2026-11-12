@@ -1,0 +1,565 @@
+soda_pet_500ml	beverage	revolve	レモンソーダ 500ml
+green_tea_pet_600ml	beverage	revolve	緑茶 600ml
+mineral_water_pet_550ml	beverage	revolve	天然水 550ml
+canned_coffee_185g	beverage	revolve	缶コーヒー 微糖 185g
+cup_noodle_tall	food	revolve	カップめん みそ味
+cup_noodle_bowl	food	revolve	カップうどん 豚しゃぶ
+snack_cup	food	revolve	じゃがいもスティック サラダ味
+potato_chips_bag	food	pouch	ポテトチップス うすしお味 60g
+chocolate_bar	food	pouch	チョコレートバー ココアクッキー
+stick_snack_box	food	box	チーズスティック 2袋入
+deodorant_spray_150g	household	revolve	パウダースプレー ラベンダーの香り 150g
+lip_balm_stick	household	revolve	薬用リップスティック ミント
+skin_cream_tin	household	revolve	スキンクリーム 缶 60g
+aa_battery	household	revolve	アルカリ乾電池 単3形
+pocket_tissue	household	pouch	ポケットティッシュ 20枚
+digital_signage_ceiling_3x	fixture	assembly	天井吊りデジタルサイネージ 3面
+digital_signage_stand_43	fixture	assembly	スタンド型デジタルサイネージ 43型
+coffee_machine	fixture	assembly	セルフ式コーヒーマシン
+chest_freezer_showcase	fixture	assembly	平型冷凍ショーケース
+self_checkout	fixture	assembly	セルフレジ
+milk_carton_1l	beverage	assembly	牛乳 1000ml
+sparkling_water_can_350ml	beverage	revolve	強炭酸水 350ml 缶
+hojicha_pet_hot_345ml	beverage	revolve	ほうじ茶 ホット 345ml
+ice_cream_cup	food	revolve	カップアイス ストロベリー 120ml
+butter_cookie_box	food	box	バタークッキー 12枚入
+bottle_gum	food	revolve	ボトルガム ミント 140g
+box_tissue	household	box	ボックスティッシュ 200組
+hand_soap_pump	household	revolve	薬用ハンドソープ シトラスの香り 250ml
+gondola_shelf	fixture	assembly	陳列棚 ゴンドラ 片面 900mm
+gondola_shelf_food	fixture	assembly	陳列棚 ゴンドラ 片面 900mm（カップ麺・食品）
+gondola_shelf_daily	fixture	assembly	陳列棚 ゴンドラ 片面 900mm（日用品）
+gondola_shelf_bakery	fixture	assembly	陳列棚 ゴンドラ 片面 900mm（パン・お菓子）
+shopping_basket	fixture	assembly	買い物かご
+open_showcase_multideck	fixture	assembly	多段オープン冷蔵ショーケース 1200mm
+checkout_counter	fixture	assembly	レジカウンター 1500mm
+magazine_rack	fixture	assembly	雑誌ラック 3段 900mm
+a_frame_sign	fixture	assembly	A型看板 黒板
+shopping_cart	fixture	assembly	ショッピングカート かご付き
+retort_curry_box	food	box	レトルトカレー 中辛
+curry_roux_box	food	box	カレールウ 中辛
+cooked_rice_pack	food	box	パックごはん 200g
+rice_bag_5kg	food	pouch	精米 5kg
+tuna_can	food	revolve	ツナ缶 油漬 70g
+mackerel_can	food	revolve	さば水煮缶 190g
+peach_can	food	revolve	白桃 缶詰 425g
+soy_sauce_pet	food	revolve	こいくちしょうゆ 1L
+sesame_dressing	food	revolve	ごまドレッシング 380ml
+mayonnaise_bottle	food	revolve	マヨネーズ 450g
+strawberry_jam_jar	food	revolve	いちごジャム 300g
+instant_coffee_jar	food	revolve	インスタントコーヒー 80g
+salt_pepper_shaker	food	revolve	塩こしょう 250g
+natto_3pack	food	assembly	納豆 3個パック たれ・からし付
+tofu_pack	food	box	絹ごし豆腐 300g
+yogurt_tub	food	revolve	プレーンヨーグルト 400g
+pudding_cup	food	revolve	カスタードプリン 85g
+sliced_bread	food	assembly	食パン 6枚切
+green_tea_bag_box	food	box	緑茶 ティーバッグ 50袋
+rice_cracker_bag	food	pouch	しょうゆせんべい 12枚
+gummy_candy_pouch	food	pouch	フルーツグミ 80g
+instant_ramen_5pack	food	pouch	袋めん しょうゆ味 5食パック
+spaghetti_pack	food	pouch	スパゲッティ 1.6mm 500g
+granola_bag	food	pouch	フルーツグラノーラ 380g
+cup_miso_soup	food	revolve	カップみそ汁 とうふとわかめ
+dish_soap_bottle	household	revolve	食器用洗剤 レモンの香り 240ml
+laundry_detergent_refill	household	pouch	液体洗濯洗剤 つめかえ用 720g
+kitchen_bleach_bottle	household	revolve	台所用漂白剤 600ml
+bathroom_cleaner_trigger	household	assembly	お風呂用洗剤 スプレー ミントの香り 380ml
+trash_bags_45l	household	pouch	ゴミ袋 45L 半透明 10枚入
+food_wrap_box	household	box	食品用ラップ 30cm×20m
+aluminum_foil_box	household	box	アルミホイル 25cm×8m
+kitchen_sponge_3pack	household	assembly	キッチンスポンジ 3個入
+rubber_gloves	household	pouch	ゴム手袋 Mサイズ 1双
+deodorizer_gel_jar	household	revolve	置き型消臭剤 せっけんの香り 400g
+wet_wipes_pack	household	pouch	ウェットティッシュ ノンアルコール 80枚
+paper_towel_2roll	household	assembly	キッチンペーパー 2ロール
+toilet_paper_12roll	household	assembly	トイレットペーパー ダブル 12ロール
+shampoo_pump	household	revolve	シャンプー ハーブミントの香り 480ml
+body_soap_refill	household	pouch	ボディソープ ラベンダーの香り 詰め替え 400ml
+toothpaste_box	household	box	薬用歯みがき クールミント 120g
+toothbrush_blister	household	assembly	歯ブラシ コンパクトヘッド ふつう
+mouthwash_bottle	household	revolve	洗口液 ノンアルコール 500ml
+cotton_swab_case	household	revolve	綿棒 200本入
+face_mask_box	household	box	不織布マスク ふつうサイズ 30枚入
+hand_sanitizer_pump	household	revolve	手指消毒ジェル 300ml
+bath_salts_box	household	box	炭酸入浴剤 4つの香り 12錠入
+adhesive_bandage_box	household	box	救急絆創膏 Mサイズ 30枚
+insect_repellent_spray	household	revolve	虫よけスプレー 200ml
+sunscreen_tube	household	assembly	日焼け止め ミルク SPF50+ 40g
+energy_drink_can_250ml	beverage	revolve	エナジードリンク 250ml 缶
+nutrition_drink_bottle_100ml	beverage	revolve	栄養ドリンク タウリン1000mg 100mL
+lactic_drink_5pack	beverage	assembly	乳酸菌飲料 65ml×5本
+milk_tea_pet_500ml	beverage	revolve	ミルクティー 500ml
+sports_drink_pet_500ml	beverage	revolve	スポーツドリンク 500ml
+vegetable_juice_pack_200ml	beverage	box	野菜ジュース 200ml 紙パック
+chilled_cup_coffee_200ml	beverage	revolve	カフェラテ チルドカップ 200ml
+beer_can_350ml	beverage	revolve	ビール 350ml 缶
+chuhai_can_500ml	beverage	revolve	レモンチューハイ 500ml 缶
+bottle_can_coffee_400ml	beverage	revolve	ボトル缶コーヒー ブラック 400g
+bento_makunouchi	food	box	幕の内弁当
+salad_cup	food	revolve	グリーンサラダ ごまドレッシング付
+cup_yakisoba	food	box	カップ焼そば ソース味 大盛
+fried_chicken_box	food	box	からあげ 5個入（ホットスナック）
+melon_pan_bag	food	pouch	メロンパン 1個入
+jelly_drink_pouch	food	pouch	ゼリー飲料 白桃味 180g
+ice_bar_bag	food	pouch	ソーダアイスバー
+candy_bag	food	pouch	はちみつレモンのど飴 80g
+processed_cheese_6p	food	revolve	6P チーズ 108g
+fish_sausage_4pack	food	assembly	魚肉ソーセージ 4本束
+vinyl_umbrella_65cm	household	assembly	ビニール傘 65cm
+weekly_magazine	household	box	週刊ミライ 10月24日号
+newspaper_folded	household	box	日刊ニュース 朝刊
+rock_ice_1kg	food	pouch	ロックアイス 1kg
+usb_cable_blister	household	assembly	USB 充電ケーブル Type-C 1.0m
+stockings_pack	household	box	ストッキング ナチュラルベージュ M〜L
+cooling_gel_sheet_box	household	box	冷却ジェルシート 12枚入
+ballpoint_pen	household	assembly	ノック式ボールペン 0.5mm 黒
+prepaid_gift_card	household	assembly	ギフトカード 3,000円
+mint_tablet_case	food	box	ミントタブレット ストロング 30g
+security_camera_dome	fixture	assembly	ドーム型 監視カメラ（天井付け）
+microwave_commercial	fixture	assembly	業務用 電子レンジ 1500W
+multifunction_copier	fixture	assembly	マルチコピー機（料金支払い機付き）
+atm_kiosk	fixture	assembly	ATM（コンビニ設置型）
+reach_in_cooler_3door	fixture	assembly	リーチイン冷蔵ケース ガラス扉 3枚
+trash_station_3	fixture	assembly	分別ゴミ箱 3口（飲み残し流し付き）
+eat_in_counter	fixture	assembly	イートインのカウンター 1800mm
+eat_in_stool	fixture	assembly	イートインの椅子（丸座面スツール）
+hot_snack_case	fixture	assembly	ホットスナック 保温ケース
+bun_steamer	fixture	assembly	中華まんスチーマー 3段
+oden_warmer	fixture	assembly	おでん什器 8区画
+hot_water_dispenser	fixture	assembly	給湯台 電気ポット付き（カップめん用）
+strawberry_shortcake_case	food	assembly	いちごのショートケーキ
+cream_puff_bag	food	pouch	カスタードシュークリーム
+roll_cake_pack	food	assembly	ふんわりロールケーキ 2切れ入
+mont_blanc_cup	food	revolve	栗のモンブラン
+dorayaki_bag	food	pouch	どら焼き つぶあん
+daifuku_2pack	food	assembly	豆大福 2個入
+tiramisu_cup	food	revolve	マスカルポーネのティラミス
+green_tea_pet_2l	beverage	revolve	緑茶 2L
+barley_tea_pet_2l	beverage	revolve	麦茶 2L
+mineral_water_pet_2l	beverage	revolve	天然水 2L
+cola_pet_1500ml	beverage	revolve	コーラ 1.5L
+orange_juice_pet_1l	beverage	revolve	オレンジ 100% 1L
+onigiri_salmon	food	assembly	手巻おにぎり 鮭
+sandwich_mixed_pack	food	assembly	ミックスサンド たまご・ハムレタス
+inari_sushi_pack	food	assembly	いなり寿司 4個入
+zaru_soba_tray	food	assembly	ざるそば つゆ・薬味付
+napolitan_pasta_tray	food	assembly	ナポリタン
+frankfurter_stick	food	assembly	フランクフルト（ホットスナック）
+nikuman_wrapped	food	assembly	肉まん（ホットスナック）
+oden_cup	food	revolve	おでん カップ入り
+seasoned_egg_2pack	food	pouch	半熟味付けたまご 2個入
+frozen_gyoza_bag	food	pouch	冷凍 焼き餃子 12個入
+frozen_fried_rice_bag	food	pouch	冷凍チャーハン 450g
+dried_squid_bag	food	pouch	さきいか 40g
+atarime_bag	food	pouch	あたりめ 25g
+beef_jerky_bag	food	pouch	ビーフジャーキー ブラックペッパー 40g
+mixed_nuts_bag	food	pouch	素焼きミックスナッツ 120g
+chocolate_stick_box	food	box	チョコがけスティック 2袋入
+potato_crisps_canister	food	revolve	成型ポテトチップス うすしお味 110g
+corn_puff_stick	food	pouch	コーンスナック チーズ味 1本
+trading_card_pack	household	pouch	トレーディングカード 拡張パック 5枚入
+cat_food_pouch	household	pouch	キャットフード パウチ まぐろ 70g
+disposable_chopsticks_bundle	household	box	割り箸 個包装 50膳
+shopping_bag_l	household	pouch	レジ袋 L サイズ
+sake_cup_180ml	beverage	revolve	カップ酒 本醸造 180ml
+red_wine_bottle_720ml	beverage	revolve	赤ワイン 辛口 720ml
+drink_yogurt_pet	beverage	revolve	のむヨーグルト プレーン 500g
+soy_milk_pack_200ml	beverage	box	調製豆乳 200ml 紙パック
+coffee_milk_pack_500ml	beverage	assembly	コーヒー牛乳 500ml
+corn_soup_can	beverage	revolve	コーンスープ 粒入り 185g 缶
+hot_coffee_cup_r	beverage	revolve	ホットコーヒー R サイズ
+highball_can_350ml	beverage	revolve	ハイボール 350ml 缶
+disposable_lighter	household	assembly	使い捨てライター
+comic_paperback	household	box	コミック 空のむこうの約束 第3巻
+mobile_battery_blister	household	assembly	モバイルバッテリー 5000mAh
+disposable_razor_pack	household	assembly	使い捨てカミソリ 2枚刃 3本入
+socks_pack	household	assembly	ビジネスソックス 黒 25〜27cm
+face_towel_pack	household	assembly	フェイスタオル 白
+envelope_pack	household	box	封筒 長形3号 白 10枚入
+cash_tray	fixture	assembly	カルトン（コイントレー）
+payment_terminal	fixture	assembly	決済端末
+register_partition	fixture	assembly	レジ用 飛沫防止パーティション
+coffee_condiment_station	fixture	assembly	セルフコーヒーの備品台
+step_stool	fixture	assembly	踏み台 2段
+hot_drink_warmer	fixture	assembly	ホットドリンク保温ケース（卓上・3段）
+cigarette_display_wall	fixture	assembly	たばこ陳列棚（レジ後ろ・番号札付き）
+hook_display_rack	fixture	assembly	吊り下げフック什器（自立式・網パネル）
+hook_display_rack_snacks	fixture	assembly	吊り下げフック什器（おつまみ・珍味の袋付き）
+newspaper_stand	fixture	assembly	新聞ラック（3段・ワイヤー）
+umbrella_stand	fixture	assembly	傘立て（ステンレス・16本・鍵なし）
+upright_freezer_1door	fixture	assembly	縦型冷凍リーチインケース ガラス扉1枚
+parcel_locker	fixture	assembly	宅配便受け取りロッカー（3列・操作パネル付き）
+battery_rental_stand	fixture	assembly	モバイルバッテリー レンタルスタンド（卓上・8本）
+basket_stand	fixture	assembly	買い物かご置き台（キャスター付き）
+counter_fryer	fixture	assembly	卓上フライヤー（2槽・電気式）
+floor_tile_panel	environment	assembly	床タイル 600角 4枚（1.2 m 角）
+entrance_mat	environment	assembly	入口の足ふきマット 1500×900
+wall_panel_baseboard	environment	assembly	壁パネル（幅木付き）1.2 × 2.7 m
+ceiling_panel	environment	assembly	システム天井 1.2 m 角（穴あきボード）
+ceiling_base_light	environment	assembly	LED ベースライト 40形（逆富士・天井付け）
+downlight	environment	assembly	LED ダウンライト 埋込穴φ125
+emergency_exit_sign	environment	assembly	避難口誘導灯（壁付け）
+aisle_sign_hanging	environment	assembly	売り場の吊り案内板（両面）
+wall_poster	environment	assembly	売り場のポスター（B2・アルミフレーム）
+window_poster	environment	assembly	アルバイト募集のポスター（A1・窓貼り）
+business_hours_sign	environment	assembly	営業時間の表示板（アクリル）
+security_camera_sign	environment	assembly	「防犯カメラ作動中」の表示板
+automatic_door	environment	assembly	自動ドア（両引き・はめ殺し付き）
+glass_facade	environment	assembly	店の正面のはめ殺し窓（欄間付き）
+toilet_door	environment	assembly	トイレのドア（絵記号・表示錠付き）
+backyard_swing_door	environment	assembly	バックヤードのスイングドア（窓付き）
+staff_office_door	environment	assembly	事務所のドア（STAFF ONLY・ドアクローザー付き）
+toilet_bowl	environment	assembly	洋式便器（手洗い付きタンク・温水洗浄便座）
+hand_wash_basin	environment	assembly	壁付けの手洗い器（自動水栓）
+produce_flat_table	fixture	assembly	青果の平台 1200mm
+produce_tiered_stand	fixture	assembly	青果のひな壇 3段
+banana_hanger	fixture	assembly	バナナハンガー スタンド
+serve_over_counter	fixture	assembly	対面ケース 精肉・鮮魚 1800mm
+deli_flat_case	fixture	assembly	惣菜の平台ケース 保温・冷蔵 1500mm
+island_freezer_double	fixture	assembly	平型冷凍ケース 両面アイランド 2000mm
+reach_in_freezer_5door	fixture	assembly	リーチイン冷凍庫 ガラス扉 5枚
+endcap_promo_table	fixture	assembly	エンドの特売の山積み台 900mm
+promo_wagon	fixture	assembly	特売ワゴン キャスター付き
+checkout_lane_belt	fixture	assembly	ベルト付きレジ台（チェックアウトレーン）
+sacker_table	fixture	assembly	サッカー台（両面・ロール袋付き）
+cart_corral	fixture	assembly	カート置き場（パイプの囲い）
+sample_table	fixture	assembly	試食台（クロス・前垂れ付き）
+produce_scale	fixture	assembly	計量器（ラベルプリンター付き）
+shelf_price_label_strip	fixture	assembly	棚のプライスレール（値札 4 枚・900mm）
+section_sign_produce	environment	assembly	売場の吊り看板「青果」
+section_sign_meat	environment	assembly	売場の吊り看板「精肉」
+section_sign_fish	environment	assembly	売場の吊り看板「鮮魚」
+section_sign_deli	environment	assembly	売場の吊り看板「惣菜」
+apple_single	food	assembly	りんご 大玉 1個
+mikan_net_bag	food	assembly	みかん ネット 6個入
+tomato_pack_4	food	assembly	トマト 4個入
+cucumber_bag_3	food	assembly	きゅうり 3本入
+cabbage_whole	food	assembly	キャベツ 1玉
+onion_bag_3	food	assembly	玉ねぎ 3個入
+banana_bunch	food	assembly	バナナ 1房 5本
+lettuce_whole	food	assembly	レタス 1玉
+carrot_bag_3	food	assembly	にんじん 3本入
+strawberry_pack	food	assembly	いちご 1パック
+pork_komagire_tray	food	assembly	豚こま切れ 300g パック
+chicken_thigh_tray	food	assembly	鶏もも肉 2枚 パック
+ground_meat_tray	food	assembly	合いびき肉 300g パック
+sashimi_assorted_tray	food	assembly	お刺身 4点盛り
+salmon_fillet_tray	food	assembly	生鮭 切り身 2切 パック
+egg_10pack	food	assembly	たまご Mサイズ 10個パック
+fried_food_pack	food	assembly	揚げ物盛り合わせ（からあげ・コロッケ）
+sushi_pack	food	assembly	にぎり寿司 12貫
+bento_large	food	assembly	からあげ弁当 ごはん大盛り
+rice_bag_10kg	food	pouch	精米 10kg
+water_2l_case_6	beverage	box	天然水 2L × 6本 ケース
+drink_cardboard_case_24	beverage	box	炭酸水 350ml × 24缶 ケース
+medicine_shelf_gondola	fixture	assembly	医薬品の浅型ゴンドラ 900mm
+locked_medicine_case	fixture	assembly	第1類医薬品の施錠ガラスケース 900mm
+dispensing_counter	fixture	assembly	調剤カウンター 処方せん受付 1800mm
+waiting_bench_3seat	fixture	assembly	待合いのベンチ 3人掛け
+prescription_sign_hanging	environment	assembly	吊り看板「処方せん受付」
+cosmetics_tester_stand	fixture	assembly	化粧品のテスター什器 鏡・照明付き 900mm
+rotating_accessory_rack	fixture	assembly	回転ラック ネイル・小物 4段
+baby_care_shelf	fixture	assembly	ベビー・介護用品の棚 1200mm
+diaper_stack_platform	fixture	assembly	紙おむつの山積み台 1200mm
+cold_medicine_box	household	box	総合かぜ薬 錠剤 60錠
+stomach_medicine_box	household	box	胃腸薬 細粒 32包
+headache_medicine_box	household	box	解熱鎮痛薬 24錠
+eye_drops_box	household	box	目薬 疲れ目・充血 12mL
+cold_compress_pack	household	box	冷感湿布 24枚入
+vitamin_bottle	household	revolve	ビタミンC 錠剤 120錠
+supplement_bottle	food	revolve	マルチビタミン サプリメント 180粒
+protein_bag	food	pouch	ホエイプロテイン チョコレート風味 1kg
+lotion_bottle	household	revolve	化粧水 しっとり 200mL
+milky_lotion_bottle	household	revolve	乳液 うるおい 150mL ポンプ
+foundation_compact	household	revolve	パウダーファンデーション ナチュラルオークル
+lipstick	household	revolve	口紅 ローズレッド
+mascara	household	revolve	マスカラ ロング ウォータープルーフ
+cotton_pads_pack	household	box	化粧用コットン 80枚入
+baby_diaper_pack	household	box	紙おむつ テープ Mサイズ 64枚
+formula_milk_can	food	revolve	育児用ミルク 大缶 800g
+baby_wipes_3pack	household	box	おしりふき 厚手 80枚×3個パック
+adult_diaper_pack	household	box	大人用紙パンツ うす型 Lサイズ 20枚
+claw_hammer	household	assembly	先割れげんのう 450g
+screwdriver_blister	household	assembly	ドライバー プラス +2×100mm
+pliers_blister	household	assembly	ペンチ 150mm
+tape_measure_blister	household	assembly	コンベックス 5.5m×25mm
+power_drill_box	household	box	充電式ドライバードリル 10.8V（箱）
+screw_blister	household	assembly	木ねじ 3.8×32mm 約60本入
+duct_tape	household	assembly	布粘着テープ シルバー 48mm×25m
+cable_ties_bag	household	box	結束バンド 200mm 100本入
+paint_can	household	revolve	水性多用途ペイント 0.7L ターコイズ
+paint_brush	household	assembly	刷毛 50mm 水性・油性用
+flower_pot	household	assembly	素焼き鉢 6号（18cm）
+soil_bag	household	pouch	花と野菜の培養土 14L
+watering_can	household	assembly	じょうろ 4L ハス口付き
+hose_reel	household	assembly	ホースリール 20m
+potted_plant	household	assembly	観葉植物 ポトス 6号鉢
+storage_case	household	assembly	収納ケース 深型 45L フタ付き
+bucket	household	assembly	バケツ 10L
+broom	household	assembly	室内ほうき 1.2m
+dustpan	household	assembly	ちりとり フチゴム付き
+extension_cord_box	household	box	延長コード 3個口 2m（箱）
+led_bulb_box	household	box	LED 電球 E26 60形 電球色（箱）
+lumber_2x4	household	assembly	ツーバイ材 2×4 6フィート（1820mm）
+pvc_pipe	household	assembly	塩ビ管 VP25 1m
+hc_tall_rack	fixture	assembly	ホームセンターの高層ラック 1800mm（上段ストック）
+wood_pallet	fixture	assembly	木製パレット 1100×1100（T11 型）
+plastic_pallet	fixture	assembly	プラスチックパレット 1100×1100
+pallet_soil_stack	fixture	assembly	培養土の袋のパレット積み（6 段）
+pallet_carton_stack	fixture	assembly	段ボールケースのパレット積み（3 段）
+pegboard_gondola	fixture	assembly	有孔ボードのフック陳列ゴンドラ 900mm（片面）
+pegboard_wall_tools	fixture	assembly	有孔ボードの工具売場 900mm（フックに商品付き）
+long_goods_rack	fixture	assembly	長尺物ラック 2000mm（木材・パイプ）
+garden_tiered_stand	fixture	assembly	園芸のひな壇 3段 1500mm
+garden_outdoor_shelf	fixture	assembly	屋外用の園芸棚 1800mm 4段
+platform_cart	fixture	assembly	平台車 900×600（店内用）
+hundred_yen_gondola	fixture	assembly	100 円ショップの低いゴンドラ 900mm（小分けのかご付き）
+section_sign_tools	environment	assembly	売場の吊り看板「工具」
+section_sign_garden	environment	assembly	売場の吊り看板「園芸」
+section_sign_hardware	environment	assembly	売場の吊り看板「金物・DIY」
+section_sign_storage	environment	assembly	売場の吊り看板「収納・日用品」
+hardcover_book	household	box	単行本 小説 四六判 ハードカバー
+bunko_paperback	household	box	文庫本 小説 文庫判
+shinsho_book	household	box	新書 教養 新書判
+large_photo_book	household	box	大型本 写真集 A4変型判
+bunko_stack	household	box	文庫本の平積み 5冊
+bookcase_wall	fixture	assembly	書店の壁面の本棚 900mm
+bookcase_island_double	fixture	assembly	書店の両面の島の本棚 1200mm
+book_flat_table	fixture	assembly	書店の平台 2段 1200mm
+book_checkout_counter	fixture	assembly	書店のレジカウンター 1800mm
+bookstore_section_sign	environment	assembly	書店の吊り看板「文芸・文庫／コミック」
+tv_carton_43	household	box	液晶テレビ 43V型の外箱
+microwave_carton	household	box	オーブンレンジの外箱
+rice_cooker_carton	household	box	IH炊飯器 5.5合の外箱
+stick_vacuum_carton	household	box	コードレススティック掃除機の外箱
+hair_dryer_box	household	box	ヘアドライヤーの箱
+headphones_box	household	box	ワイヤレスヘッドホンの箱
+usb_charger_box	household	box	USB充電器 30W の箱
+earphones_blister	household	assembly	完全ワイヤレスイヤホン（ブリスター）
+phone_case_blister	household	assembly	スマートフォンケース（ブリスター）
+aa_battery_blister	household	assembly	アルカリ乾電池 単3形 4本（吊り下げパック）
+led_bulb_blister	household	assembly	LED電球 E26 60形相当 電球色（吊り下げパック）
+appliance_display_platform	fixture	assembly	大型家電の展示台 1800mm
+tv_display_stand	fixture	assembly	テレビの展示台（デジタル価格表示付き）1800mm
+small_appliance_gondola	fixture	assembly	小型家電のゴンドラ 900mm
+glass_showcase	fixture	assembly	ガラスショーケース 1200mm
+pegboard_batteries_bulbs	fixture	assembly	有孔ボードの電池・電球売場 900mm（フックに商品付き）
+folded_tshirt	household	box	Tシャツ（たたみ）
+folded_tshirt_stack	household	box	Tシャツ（たたみ）5枚重ね
+folded_jeans_stack	household	box	ジーンズ（たたみ）3本重ね
+shoe_box	household	box	スニーカーの箱
+sneaker	household	assembly	スニーカー（片足）
+baseball_cap	household	assembly	キャップ（野球帽）
+garment_rack	fixture	assembly	ハンガーラック（シャツ掛け）1200mm
+garment_rack_pants	fixture	assembly	ハンガーラック（パンツ掛け）1200mm
+garment_rack_coats	fixture	assembly	ハンガーラック（コート掛け）1200mm
+folded_display_table	fixture	assembly	たたみの陳列台 2段 1500mm
+folded_wall_shelf	fixture	assembly	たたみの壁面棚（ボックス 3×5）1200mm
+shoe_wall_shelf	fixture	assembly	靴の壁面棚 900mm
+apparel_section_sign	environment	assembly	衣料品店の吊り看板「メンズ／レディース」
+mannequin_standing	fixture	assembly	マネキン（全身・立ち姿）
+fitting_room	fixture	assembly	試着室 1000mm 角
+full_length_mirror	fixture	assembly	姿見（スタンドミラー）
+roll_cage_cart	fixture	assembly	カゴ台車 800×600×1700（空）
+roll_cage_cart_loaded	fixture	assembly	カゴ台車（商品の段ボールを積んだもの）
+bread_tray	fixture	assembly	番重（パン・弁当の配送用トレー）
+bread_tray_stack	fixture	assembly	番重の 8 段積み（ドーリー付き）
+folding_container	fixture	assembly	折りたたみコンテナ（オリコン）50L
+folding_container_stack	fixture	assembly	折りたたみコンテナの 5 段積み
+carton_box_s	household	box	無地の段ボール箱 S（320×240×200mm）
+carton_box_m	household	box	無地の段ボール箱 M（400×300×300mm）
+carton_box_l	household	box	無地の段ボール箱 L（500×400×400mm）
+hand_truck	fixture	assembly	二輪台車
+pallet_jack	fixture	assembly	ハンドリフト（手動のパレットトラック）
+backyard_steel_rack	fixture	assembly	バックヤードのスチールラック 1800×600×1800（4 段）
+inspection_table	fixture	assembly	検品台（棚付きの作業台）1500×750
+cafe_order_counter	fixture	assembly	カフェの注文カウンター（ケーキのショーケース・レジ付き 2400 mm）
+espresso_machine	fixture	assembly	業務用エスプレッソマシン（2 グループ）
+cafe_menu_board	environment	assembly	カフェの壁掛けメニューボード（黒板）
+cafe_table_round	fixture	assembly	カフェの丸テーブル（2 人用）
+cafe_table_square	fixture	assembly	カフェの角テーブル（2 人用）
+cafe_chair	fixture	assembly	カフェの木の椅子
+cafe_sofa_bench	fixture	assembly	カフェの壁際ベンチソファ
+tray_return_station	fixture	assembly	カフェの返却台（トレー・食器の返却棚）
+paper_cup_lid	beverage	revolve	カフェの紙コップ M サイズ（フタ付き）
+bakery_display_shelf	fixture	assembly	パン屋の木の陳列棚（トレー付き 4 段）
+bakery_display_table	fixture	assembly	パン屋の木の平台（2 段のトレー付き）
+tray_tong_station	fixture	assembly	パン屋のトレー・トング置き台
+bread_tray_bakery	household	assembly	パンのトレーとトング
+croissant	food	assembly	クロワッサン
+anpan	food	assembly	あんパン
+curry_bread	food	assembly	カレーパン
+baguette	food	assembly	バゲット
+shokupan_loaf	food	assembly	山型食パン 1.5 斤
+frozen_udon_5pack	food	pouch	冷凍うどん 5食入 900g
+frozen_takoyaki_bag	food	pouch	冷凍たこ焼 20個入 400g
+frozen_pizza_box	food	box	冷凍ミックスピザ 2枚入 440g
+frozen_edamame_bag	food	pouch	冷凍えだまめ 塩ゆで 400g
+beer_can_6pack	beverage	box	ビール 350ml 6缶パック
+sake_isshobin_1800ml	beverage	revolve	日本酒 純米酒 辛口 一升瓶 1.8L
+shochu_pet_2700ml	beverage	revolve	焼酎甲類 25度 2.7L
+umeshu_720ml	beverage	revolve	梅酒 720ml
+cracker_box	food	box	クラッカー 3袋入 135g
+popcorn_bag	food	pouch	ポップコーン バター醤油味 60g
+bite_chocolate_bag	food	pouch	ひと口チョコレート 大袋 200g
+mirin_pet_1l	food	revolve	みりん風調味料 1L
+rice_vinegar_pet_500ml	food	revolve	米酢 500ml
+miso_cup_750g	food	revolve	合わせみそ だし入り 750g
+ketchup_bottle_500g	food	revolve	トマトケチャップ 500g
+sugar_bag_1kg	food	pouch	上白糖 1kg
+flour_bag_1kg	food	pouch	薄力小麦粉 1kg
+salad_oil_pet_1000g	food	revolve	サラダ油 1000g
+somen_pack	food	pouch	そうめん 300g（6束）
+black_tea_pet_500ml	beverage	revolve	無糖紅茶 500ml
+fabric_softener_bottle	household	revolve	柔軟剤 ラベンダーの香り 600ml
+dog_food_bag	household	pouch	ドッグフード 成犬用 チキン＆野菜 2kg
+strawberry_growing_rack	fixture	assembly	イチゴの多段栽培棚（3 段・株付き）
+strawberry_growing_rack_empty	fixture	assembly	イチゴの多段栽培棚（3 段・定植前）
+strawberry_plant_pot	household	assembly	イチゴの苗（9 cm ポット）
+magnetic_guide_tape	environment	assembly	磁気誘導テープ（幅 50 mm・1 m）
+sliding_window_waist	environment	assembly	引き違いの腰窓 1690×1170（網戸付き）
+sliding_window_floor	environment	assembly	引き違いの掃き出し窓 1690×2030（網戸付き）
+bathroom_window	environment	assembly	浴室・トイレの小窓 640×570（型板ガラス・網戸付き）
+shop_front_window	environment	assembly	店先の 4 枚引き違いサッシ 3600×2200
+fixed_window	environment	assembly	はめ殺しの FIX 窓 1190×1170
+casement_window	environment	assembly	縦すべり出し窓 405×970
+curtain_waist_window	environment	assembly	腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 1.35 m
+curtain_floor_window	environment	assembly	掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 2.1 m
+roll_screen	environment	assembly	ロールスクリーン 幅 1.75 m（生地を半分下ろした形）
+booth_seat	fixture	assembly	ファミレスのボックス席のソファ（2 人掛け・片側）
+family_table_4	fixture	assembly	ファミレスの 4 人用テーブル（1200 × 750 mm）
+family_table_2	fixture	assembly	ファミレスの 2 人用テーブル（750 × 750 mm）
+restaurant_chair	fixture	assembly	ファミレス・定食屋の椅子（ビニールレザー張り）
+kids_high_chair	fixture	assembly	子ども用ハイチェア（木）
+zataku_table	fixture	assembly	座敷の座卓（1200 × 750 mm）
+zabuton	household	assembly	座布団（銘仙判 550 × 590 mm）
+high_counter_table	fixture	assembly	立ち飲み・カウンター席のハイテーブル（1500 × 600 mm）
+call_bell	household	assembly	テーブルの呼び出しボタン
+menu_stand	household	assembly	卓上のメニュー立て（二つ折りのメニュー付き）
+condiment_set	household	assembly	卓上の調味料セット（醤油・ソース・塩・こしょう）
+napkin_holder	household	assembly	紙ナプキン立て（ステンレス）
+toothpick_holder	household	assembly	つまようじ入れ
+order_slip_holder	household	assembly	伝票立て（注文伝票付き）
+dinner_plate	household	assembly	白い洋皿（ディナー皿 26 cm）
+deep_plate	household	assembly	カレー・パスタの深皿（24 cm）
+donburi_bowl	household	assembly	丼（どんぶり 5.5 寸）
+rice_bowl	household	assembly	茶碗（ご飯茶碗）
+soup_bowl	household	assembly	汁椀（味噌汁の椀・黒と朱）
+water_glass	household	assembly	お冷やのグラス（タンブラー 280 ml・氷入り）
+beer_mug	household	assembly	生ビールの中ジョッキ（435 ml）
+water_pitcher	household	assembly	水差し（ピッチャー 1.3 L）
+oshibori	household	assembly	おしぼりとおしぼり受け
+cutlery_set	household	assembly	卓上のカトラリーケース（フォーク・ナイフ・スプーン・割り箸）
+hamburg_steak_set	food	assembly	ハンバーグ（鉄板・デミグラスソース）
+omurice	food	assembly	オムライス
+meat_sauce_pasta	food	assembly	スパゲッティ ミートソース
+curry_rice	food	assembly	カレーライス
+ramen_bowl	food	assembly	ラーメン（みそ）
+karaage_set	food	assembly	唐揚げ定食
+gyoza_plate	food	assembly	焼き餃子（6 個）
+pizza_plate	food	assembly	マルゲリータ ピザ
+salad_bowl	food	assembly	グリーンサラダ（ボウル）
+parfait_glass	food	assembly	いちごのパフェ
+drink_bar	fixture	assembly	ファミレスのドリンクバー（ジュース・氷・コーヒー 1800 mm）
+waiting_board	fixture	assembly	入口の順番待ち受付表のスタンド
+serving_wagon	fixture	assembly	配膳ワゴン（ステンレス 3 段・キャスター付き）
+serving_tray	household	assembly	配膳トレー（角盆 450×330 mm）
+deshap_counter	fixture	assembly	デシャップ台（料理の受け渡し台・保温ランプ付き 1800 mm）
+kitchen_fridge_2door	fixture	assembly	業務用縦型冷蔵庫（2ドア・幅 750 mm）
+cold_table	fixture	assembly	コールドテーブル（台下冷蔵庫・幅 1500 mm）
+gas_range	fixture	assembly	業務用ガスレンジ（4口・オーブン付き 900 mm）
+floor_fryer	fixture	assembly	業務用フライヤー（床置き・1槽 450 mm）
+sink_2bowl	fixture	assembly	業務用 2 槽シンク（バックガード付き 1200 mm）
+work_table_steel	fixture	assembly	ステンレス作業台（バックガード・下棚付き 1200 mm）
+dishwasher_door	fixture	assembly	業務用食器洗浄機（ドアタイプ）
+kitchen_rack	fixture	assembly	ステンレスのワイヤーシェルフ（4段 1200 mm）
+exhaust_hood	fixture	assembly	厨房の排気フード（壁付け 1800 mm）
+office_partition_panel	environment	assembly	ローパーティション 幅1200×高さ1600（布張り）
+glass_partition	environment	assembly	ガラスパーティション 幅1200×高さ2700
+glass_partition_door	environment	assembly	ガラスパーティションの開き戸 幅900×高さ2700
+tsuitate_screen	environment	assembly	衝立 幅900×高さ1500（木枠・和紙調）
+oki_tatami	environment	assembly	置き畳 820角（縁付き）
+genkan_step	environment	assembly	玄関の上がり框 幅1690×奥行900×高さ180
+koagari_platform	environment	assembly	小上がり 1800角×高さ400（畳 2 枚）
+tile_carpet_panel	environment	assembly	タイルカーペット 500角 4枚（1 m 角）
+floor_access_hatch	environment	assembly	床下点検口 600角（木目のふた）
+raised_floor_panel	environment	assembly	OA フロアのパネル 600角 4枚（給気パネル 1 枚）
+wood_slat_wall_panel	environment	assembly	木のルーバー壁パネル 幅1200×高さ2400
+kitchen_tile_backsplash	environment	assembly	キッチンの壁タイル 幅1800×高さ800（白のサブウェイタイル）
+pegboard_wall_panel	environment	assembly	有孔ボード 910×1820
+ceiling_ac_cassette	environment	assembly	天井カセット形エアコン 4方向（化粧パネル 950角）
+ceiling_air_diffuser	environment	assembly	天井の吹出し口 アネモ形 φ400
+sprinkler_head	environment	assembly	スプリンクラーヘッド（天井・フラッシュ形）
+smoke_detector	environment	assembly	煙感知器（天井・光電式 φ100）
+ceiling_access_hatch	environment	assembly	天井点検口 450角
+emergency_light	environment	assembly	非常用照明（天井埋込 φ100）
+cut_flower_bucket	household	assembly	花桶の切り花（バラ・カーネーション・ガーベラ・花束）
+toy_car_box	household	box	ラジコンカーの箱
+building_blocks_tub	household	assembly	ブロックのケース（120 ピース）
+plush_bear	household	assembly	クマのぬいぐるみ（座り）
+toy_car_blister	household	assembly	ミニカー（ブリスター）
+cat_food_can	household	revolve	キャットフード 缶 まぐろ＆かつお 80g
+dog_toy	household	assembly	犬のおもちゃ（ラバーのほね）
+pet_toy_blister	household	assembly	犬のおもちゃ ボール＆ほね（ブリスター）
+dog_treat_bag	household	pouch	犬用おやつ ささみジャーキー 100g
+leather_shoe	household	assembly	革靴（黒・片足）
+shoe_insole_pack	household	assembly	クッションインソール（吊り下げ）
+shoelace_blister	household	assembly	くつひも 2 本入り（ブリスター）
+eyeglasses	household	assembly	眼鏡（黒ぶち）
+glasses_case	household	assembly	眼鏡ケース（ハード）
+glasses_cleaner_blister	household	assembly	メガネクリーナー スプレー＋クロス（ブリスター）
+shoe_display_riser	fixture	assembly	靴の陳列台（2 段）
+shoe_fitting_bench	fixture	assembly	試し履きのベンチ
+shoe_floor_mirror	fixture	assembly	靴売場の足元ミラー
+eyewear_wall_case	fixture	assembly	眼鏡フレームの壁面ケース
+phoropter_stand	fixture	assembly	検眼器（フォロプター）のスタンド
+throw_cushion	household	assembly	クッション（45 cm 角）
+area_rug	household	assembly	ラグ（160 × 120 cm）
+tv_remote	household	assembly	テレビのリモコン
+pet_wire_cage	fixture	assembly	ペットのワイヤーケージ（中型犬用）
+puppy_showcase	fixture	assembly	子犬・子猫の展示ケース（3 × 2 室）
+aquarium_tank	fixture	assembly	水槽（90 cm）と水槽台
+pet_treat_bulk_case	fixture	assembly	ペットおやつの量り売りケース（8 種）
+wine_step_rack	fixture	assembly	木のひな壇ワインラック
+wine_crate	fixture	assembly	木のワイン箱（陳列用）
+beer_bottle_334ml	beverage	revolve	瓶ビール 334ml（王冠）
+chrome_wire_shelf	fixture	assembly	キャスター付きのスチールラック（4 段）
+ceiling_fan	environment	assembly	シーリングファン（照明付き）
+track_spotlights	environment	assembly	ライティングレールとスポットライト 4 灯
+laptop_open	household	assembly	ノートパソコン（13 インチ・開いた状態）
+device_display_table	fixture	assembly	スマホ・タブレットの展示台
+seedling_tray	household	assembly	野菜の苗のトレー（32 穴）
+garden_bench_table	fixture	assembly	園芸店の平台（金網、1800 × 900）
+mobile_whiteboard	fixture	assembly	ホワイトボード（脚付き・キャスター）
+wheelchair	fixture	assembly	車椅子（自走式・標準形）
+road_bicycle	fixture	assembly	ロードバイク（700C・ドロップハンドル）
+city_bicycle	fixture	assembly	シティサイクル（26 インチ・前かご付き）
+bicycle_helmet	household	assembly	自転車のヘルメット
+bicycle_stand_rack	fixture	assembly	サイクルスタンド（5 台用）
+woven_basket	household	assembly	編みかご（角型・中）
+basket_display_stand	fixture	assembly	かごの陳列台（2 段・6 かご）
+dango_pack	food	assembly	だんご 3本入（みたらし・三色）
+manju_pack	food	assembly	栗まんじゅう 4個入
+monaka_pack	food	assembly	最中 3個入
+yokan_bar	food	assembly	小倉羊羹 一本入
+wagashi_gift_box	food	assembly	和菓子の詰め合わせ（菓子折り・のし付き）
+wagashi_showcase	fixture	assembly	和菓子のショーケース（ガラス・低め）
+noren	fixture	assembly	のれん（藍染め風・3 枚）
+lp_record	household	assembly	LP レコード（12 インチ・ジャケット入り）
+lp_record_bin	fixture	assembly	レコードのエサ箱（2 列）
+soccer_ball	household	assembly	サッカーボール（5 号）
+basketball	household	assembly	バスケットボール（7 号）
+ball_cart	fixture	assembly	ボールかご（キャスター付き）
+tennis_racket	household	assembly	テニスラケット（硬式）
+modern_bed	fixture	assembly	ダブルベッド（木のフレーム・寝具付き）
+nightstand	household	assembly	ナイトテーブル（引き出し 2 段）
+wardrobe	fixture	assembly	ワードローブ（両開き・幅 1000）
+round_display_table	fixture	assembly	丸い陳列台（2 段）
+cosmetics_tester_island	fixture	assembly	化粧品のテスター台（島型）
+postcard_spinner_rack	fixture	assembly	絵はがきの回転ラック
+shop_fix_window	environment	assembly	店の FIX 窓 2600×2000（中央方立て）
+asian_noodle_bag	food	pouch	トムヤム麺（輸入の袋めん）
+jasmine_rice_bag	food	pouch	ジャスミンライス 5kg
+chili_oil_jar	food	revolve	食べるラー油（瓶）
+oyster_sauce_bottle	food	revolve	オイスターソース（瓶 510g）

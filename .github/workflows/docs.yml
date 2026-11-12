@@ -16,10 +16,10 @@ concurrency:
 jobs:
   build:
     name: build (Zensical)
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
-      - uses: astral-sh/setup-uv@v6
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v10.3.3
         with:
           enable-cache: true
       - name: Build the site
@@ -35,7 +35,7 @@ jobs:
     name: deploy (GitHub Pages)
     if: github.event_name != 'pull_request' && github.event.repository.visibility == 'public'
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     permissions:
       pages: write
       id-token: write

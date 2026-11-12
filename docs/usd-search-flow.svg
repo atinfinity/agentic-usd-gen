@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 270" width="800" height="270" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">assets/ を USD Search で検索するまでの流れ</title>
+<desc id="d">git で管理する assets/ を rsync でコピーし、そのコピーを USD Search に渡す。fs-watcher が変更を見つけ、graph-builder が USD のセマンティックラベルと隣の asset.json から索引を作り、/search の API とブラウザの UI で検索できる。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:13px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dir{fill:#F0F0EC;stroke:#D0D0CA}
+.ln{fill:none;stroke:#9A9A94;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dim{fill:none;stroke:#9A9A94;stroke-width:1.2}
+.sh{fill:#EDEDE8;stroke:#6B6F76;stroke-width:1.5;stroke-linejoin:round}
+</style>
+<rect x="0.5" y="0.5" width="799" height="269" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+<rect x="404" y="24" width="384" height="232" rx="12" fill="none" stroke="#C9C9C3" stroke-width="1.5" stroke-dasharray="6 5"/>
+<text x="420" y="47" class="n">USD Search（Docker Compose）</text>
+<rect x="24" y="62" width="160" height="70" rx="10" class="dir"/><rect x="24" y="62" width="6" height="70" rx="3" fill="#24292F"/>
+<text x="42" y="90" class="m h">assets/</text>
+<text x="42" y="112" class="b" style="font-size:12px">git で管理する書き出し先</text>
+<rect x="221" y="62" width="160" height="70" rx="10" class="dir"/><rect x="221" y="62" width="6" height="70" rx="3" fill="#B4530A"/>
+<text x="239" y="90" class="m h">コピー</text>
+<text x="239" y="112" class="n" style="font-size:12px">LOCAL_FS_DATA_DIR</text>
+<rect x="418" y="62" width="160" height="70" rx="10" class="box"/><rect x="418" y="62" width="6" height="70" rx="3" fill="#1D5FA8"/>
+<text x="436" y="90" class="m h">fs-watcher</text>
+<text x="436" y="112" class="b" style="font-size:12px">変更を見つける</text>
+<rect x="615" y="62" width="160" height="70" rx="10" class="box"/><rect x="615" y="62" width="6" height="70" rx="3" fill="#6B3FA0"/>
+<text x="633" y="90" class="m h">graph-builder</text>
+<text x="633" y="112" class="b" style="font-size:12px">索引を作る</text>
+<path d="M184 97 H214" class="ln"/><path d="M214 92 L221 97 L214 102" class="ln"/>
+<text x="202" y="86" class="m n" text-anchor="middle" style="font-size:11px">rsync</text>
+<path d="M381 97 H411" class="ln"/><path d="M411 92 L418 97 L411 102" class="ln"/>
+<path d="M578 97 H608" class="ln"/><path d="M608 92 L615 97 L608 102" class="ln"/>
+<path d="M695 132 V165" class="ln"/><path d="M690 165 L695 172 L700 165" class="ln"/>
+<rect x="418" y="172" width="357" height="70" rx="10" class="box"/><rect x="418" y="172" width="6" height="70" rx="3" fill="#2F7D4F"/>
+<text x="436" y="200" class="h">検索</text>
+<text x="436" y="222" class="b" style="font-size:12px">/search の API と、ブラウザの UI（:8080/ui/）</text>
+<text x="24" y="168" class="h">索引に入るもの</text>
+<text x="24" y="190" class="n">・USD のセマンティックラベル（class・tag・name）</text>
+<text x="24" y="210" class="n">・隣の asset.json（寸法・質量・版など）</text>
+<text x="24" y="240" class="n">コピーを渡すのは、読み書き可能でマウントされるため。</text>
+</svg>

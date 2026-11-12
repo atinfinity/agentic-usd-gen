@@ -32,6 +32,10 @@ Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. C
 
 <img src="docs/pipeline.svg" width="640" alt="処理の流れ: 商品名から、(1) Claude が検索で寸法・色・画像 URL を取得、(2) 画像をダウンロード、(3) Claude の画像認識で側面画像とキャップ・ラベル・液面の位置を判定、(4) OpenCV で輪郭から半径プロファイルを作成、(5) Blender で回転体を作って USD に書き出し、(6) pxr で物理・MDL マテリアルを付けて検証し、USD アセットができる">
 
+`agentic-usd-gen-fictional` の処理の流れ:
+
+<img src="docs/fictional-pipeline.svg" width="640" alt="架空の商品ができるまで: slug を渡すと、(1) fictional/*.py の定義を読み、(2) paint.py でラベル・箱の面・画面の絵柄を描き、(3) 画像と spec.json・vision.json を cache/fictional/ に書き、(4) Blender で形を作って USD に書き出し、(5) pxr で物理・MDL マテリアルを付けて検証し、USD アセットができる。Claude も検索も使わない">
+
 ## 準備
 
 - Python 3.12 以上と [uv](https://docs.astral.sh/uv/)

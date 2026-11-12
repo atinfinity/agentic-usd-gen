@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 344" width="800" height="344" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">4 つの形状（shape_class）</title>
+<desc id="d">revolve は回転体（ボトル・瓶・缶・カップ）で高さと直径、pouch は袋でシール間の長さ・幅・厚さ、box は箱で高さ・正面の横幅・奥行き、assembly は部品の組み合わせ（什器・内装）で parts に部品を並べる。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:13px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dir{fill:#F0F0EC;stroke:#D0D0CA}
+.ln{fill:none;stroke:#9A9A94;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.dim{fill:none;stroke:#9A9A94;stroke-width:1.2}
+.sh{fill:#EDEDE8;stroke:#6B6F76;stroke-width:1.5;stroke-linejoin:round}
+</style>
+<rect x="0.5" y="0.5" width="799" height="343" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+<rect x="20" y="24" width="182" height="296" rx="10" class="box"/><rect x="20" y="24" width="6" height="296" rx="3" fill="#1D5FA8"/>
+<text x="40" y="236" class="m h">revolve</text>
+<text x="40" y="258" class="h">回転体</text>
+<text x="40" y="280" class="n">ボトル・瓶・缶・カップ</text>
+<text x="40" y="300" class="n">高さ × 直径</text>
+<path d="M111 52 h18 v12 h-18 z" class="sh" fill="#D8D8D2"/>
+<path d="M112 64 h16 v8 c0 10 14 12 14 26 v84 a6 6 0 0 1 -6 6 h-32 a6 6 0 0 1 -6 -6 v-84 c0 -14 14 -16 14 -26 z" class="sh"/>
+<path d="M120 44 V198" stroke="#1D5FA8" stroke-width="1.2" stroke-dasharray="5 4"/>
+<path d="M86 52 V190 M82 52 H90 M82 190 H90" class="dim"/><text x="79" y="121.0" text-anchor="middle" class="m n" style="font-size:11px" transform="rotate(-90 79 121.0)">height</text>
+<path d="M98 204 H142 M98 200 V208 M142 200 V208" class="dim"/><text x="120.0" y="219" text-anchor="middle" class="m n" style="font-size:11px">diameter</text>
+<rect x="210" y="24" width="182" height="296" rx="10" class="box"/><rect x="210" y="24" width="6" height="296" rx="3" fill="#B4530A"/>
+<text x="230" y="236" class="m h">pouch</text>
+<text x="230" y="258" class="h">袋</text>
+<text x="230" y="280" class="n">ピロー包装の袋</text>
+<text x="230" y="300" class="n">シール間 × 幅 × 厚さ</text>
+<rect x="274" y="58" width="72" height="130" rx="4" class="sh"/>
+<path d="M274 70 H346 M274 176 H346" stroke="#6B6F76" stroke-width="1.2" stroke-dasharray="3 3"/>
+<ellipse cx="310" cy="123" rx="24" ry="36" fill="none" stroke="#C9C9C3" stroke-width="1.2"/>
+<path d="M262 58 V188 M258 58 H266 M258 188 H266" class="dim"/><text x="255" y="123.0" text-anchor="middle" class="m n" style="font-size:11px" transform="rotate(-90 255 123.0)">height</text>
+<path d="M274 202 H346 M274 198 V206 M346 198 V206" class="dim"/><text x="310.0" y="217" text-anchor="middle" class="m n" style="font-size:11px">diameter</text>
+<rect x="400" y="24" width="182" height="296" rx="10" class="box"/><rect x="400" y="24" width="6" height="296" rx="3" fill="#2F7D4F"/>
+<text x="420" y="236" class="m h">box</text>
+<text x="420" y="258" class="h">箱</text>
+<text x="420" y="280" class="n">菓子箱・紙パック</text>
+<text x="420" y="300" class="n">高さ × 横幅 × 奥行き</text>
+<path d="M450 80 l28 -18 h62 l-28 18 z" class="sh" fill="#F7F7F4"/>
+<path d="M512 80 l28 -18 v108 l-28 18 z" class="sh" fill="#D8D8D2"/>
+<rect x="450" y="80" width="62" height="108" class="sh"/>
+<text x="481.0" y="138.0" text-anchor="middle" class="n">正面</text>
+<path d="M438 80 V188 M434 80 H442 M434 188 H442" class="dim"/><text x="431" y="134.0" text-anchor="middle" class="m n" style="font-size:11px" transform="rotate(-90 431 134.0)">height</text>
+<path d="M450 202 H512 M450 198 V206 M512 198 V206" class="dim"/><text x="481.0" y="217" text-anchor="middle" class="m n" style="font-size:11px">diameter</text>
+<path d="M518 194 l28 -18" class="dim"/>
+<text x="536" y="198" class="m n" style="font-size:11px">depth</text>
+<rect x="590" y="24" width="182" height="296" rx="10" class="box"/><rect x="590" y="24" width="6" height="296" rx="3" fill="#6B3FA0"/>
+<text x="610" y="236" class="m h">assembly</text>
+<text x="610" y="258" class="h">部品の組み合わせ</text>
+<text x="610" y="280" class="n">什器・内装</text>
+<text x="610" y="300" class="n">parts に部品を並べる</text>
+<rect x="646" y="150" width="88" height="40" rx="2" class="sh"/>
+<rect x="660" y="110" width="60" height="40" rx="2" class="sh" fill="#F7F7F4"/>
+<rect x="704" y="56" width="8" height="54" class="sh" fill="#D8D8D2"/>
+<rect x="658" y="70" width="40" height="30" rx="2" class="sh" fill="#24292F" transform="rotate(-12 678 85)"/>
+<text x="690" y="208" text-anchor="middle" class="m n" style="font-size:11px">parts: [box, cylinder]</text>
+</svg>

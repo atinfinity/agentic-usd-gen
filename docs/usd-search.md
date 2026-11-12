@@ -23,6 +23,8 @@ USD Search は Linux＋Docker Compose（画像検索・サムネイル描画に�
 
 ## 起動
 
+![検索までの流れ: assets/ を rsync でコピーし、そのコピー（LOCAL_FS_DATA_DIR）を USD Search に渡す。fs-watcher が変更を見つけ、graph-builder が USD のセマンティックラベルと隣の asset.json から索引を作り、/search の API とブラウザの UI で検索できる](usd-search-flow.svg)
+
 usd-search のリポジトリで、ローカルのディレクトリをそのままストレージにする `local-fs` 構成を使い、このリポジトリの設定を重ねます。
 
 ```bash

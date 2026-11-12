@@ -1,8 +1,15 @@
 # agentic-usd-gen
 
-Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. Claude searches for the dimensions and images, Blender builds the 3D model, and OpenUSD (`pxr`) adds physics and materials and validates the result. A second entry point draws 565 fictional Japanese retail products and store fixtures without using any real brand, logo or product photo. The documentation is in Japanese. Licensed under Apache-2.0.
+Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. Claude works as an agent: it searches the web and opens pages on its own to find the dimensions and images. Then Blender builds the 3D model, and OpenUSD (`pxr`) adds physics and materials and validates the result. A second entry point draws 565 fictional Japanese retail products and store fixtures without using any real brand, logo or product photo. The documentation is in Japanese. Licensed under Apache-2.0.
 
-商品名から寸法と画像を検索し、Blender で 3D モデルを作って Isaac Sim 向けの USD を書き出すツールです。
+商品名を渡すと、AI エージェント（Claude）が自分で Web を検索して寸法と画像を調べ、Blender で 3D モデルを作って Isaac Sim 向けの USD を書き出すツールです。
+
+エージェントが受け持つのは「調べる」部分です。
+
+- Claude が検索（`web_search`）とページの取得（`web_fetch`）のツールを使い、何を検索するか・どのページを開くかを自分で決めながら、寸法・形状・色・商品画像の URL を集めます。人が検索語や URL を渡す必要はありません。
+- 集めた画像のうち、形を取るのに使う 1 枚と、キャップ・ラベル・液面の位置も、Claude が画像を見て決めます。
+
+そのあとは決まった処理です。Blender が形を作り、OpenUSD（`pxr`）が物理とマテリアルを付けて検証します。架空の商品（`agentic-usd-gen-fictional`）はエージェントを使わず、定義から描いて同じ処理で作ります。
 
 <img src="docs/images/fictional-preview.webp" width="800" alt="架空の商品のプレビュー 8 点。上段は回転体の緑茶のペットボトル・カップ麺・いちごジャムの瓶と、袋のポテトチップス。下段は箱のバタークッキー・牛乳の紙パックと、什器のセルフレジ・買い物カート">
 

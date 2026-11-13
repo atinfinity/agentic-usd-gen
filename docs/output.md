@@ -11,53 +11,53 @@ out/<slug>/
 
 ## テクスチャの解像度
 
-テクスチャの解像度は、貼る表面の実寸から決めます（1 mm あたり 8 px 以上になる 2 のべき乗、一辺は最大 4096 px）。
-箱は 6 面を 1 枚に並べるので、1 面は最大 2048 px です。元の画像が小さいときは、それにいちばん近い 2 のべき乗までにとどめます。
-実際の大きさと画素密度は `meta.json` の `textures` に記録します。
+テクスチャの解像度は、貼る表面の実寸から決めます（1 mmあたり8 px以上になる2のべき乗、一辺は最大4096 px）。
+箱は6面を1枚に並べるので、1面は最大2048 pxです。元の画像が小さいときは、それにいちばん近い2のべき乗までにとどめます。
+実際の大きさと画素密度は`meta.json`の`textures`に記録します。
 
-## USD の内容
+## USDの内容
 
-回転体（透明な容器）の部品は次のとおりです。袋・箱は `Body` に画像を貼り、部品の組み合わせは `parts` の名前がそのままメッシュの名前になります。
+回転体（透明な容器）の部品は次のとおりです。袋・箱は`Body`に画像を貼り、部品の組み合わせは`parts`の名前がそのままメッシュの名前になります。
 
-![透明なボトルの断面: 上から Cap（キャップ）、Body（容器）、容器の外側に巻いた Label（ラベル）とその内側の LabelBack（ラベルの裏面）、容器の中の Liquid（中身）。コリジョンがあるのは Body と Cap だけ](revolve-parts.svg)
+![透明なボトルの断面: 上からCap（キャップ）、Body（容器）、容器の外側に巻いたLabel（ラベル）とその内側のLabelBack（ラベルの裏面）、容器の中のLiquid（中身）。コリジョンがあるのはBodyとCapだけ](revolve-parts.svg)
 
-- ステージ: メートル単位（`metersPerUnit = 1`）、Z 軸が上、原点は底面の中心、`defaultPrim` 設定済み、`kind = component`
-- `/<slug>`: `RigidBodyAPI` と `MassAPI`（中身込みの質量と重心）
+- ステージ: メートル単位（`metersPerUnit = 1`）、Z軸が上、原点は底面の中心、`defaultPrim`設定済み、`kind = component`
+- `/<slug>`: `RigidBodyAPI`と`MassAPI`（中身込みの質量と重心）
     - `Body`・`Cap`: `CollisionAPI`（既定は凸包。部品ごとに変えられる）＋物理マテリアル（素材ごとの摩擦・反発。[物理マテリアル](export.md#物理マテリアル)の表）
     - `Liquid`（透明・半透明の容器のみ）・`Label`: 見た目だけで、コリジョンなし
-    - `_materials/*`: 各マテリアルが UsdPreviewSurface・MDL（`OmniGlass` / `OmniPBR` / `OmniSurface`）・MaterialX の OpenPBR（[OpenPBR](export.md#openpbr)）の 3 つを持つ
-        - 液体: `OmniSurface` の透過。色の付いた液体は、胴の中心を通る光（内径ぶん）がちょうど液体の色になるよう体積吸収させる（縁は薄く、中心は濃く見える）
-        - 濁った液体（ジュース・乳飲料など。`colors.liquid_turbidity` が 0〜1、未設定なら商品名・タグから推定）: さらに体積散乱（`specular_transmission_scattering_color` に散乱係数、`specular_transmission_scatter_anisotropy` に 0.2）を足し、胴の中心を通る光の光学的な厚さを 60 × 濁り^2.5 にする
-        - PET の容器とガラス瓶: `OmniGlass` の `thin_walled`（薄い膜。屈折させない）。ガラス瓶は屈折率 1.52 と薄い緑の色味で、厚い底と口の縁は形で表す
-        - 半透明の容器・部品: `OmniSurface` の `thin_walled`。一部をぼやけたまま素通しにし（`frosted` は 7 割、`translucent` は 4.5 割）、残りは 7:3 で拡散透過と拡散反射にする
-        - UsdPreviewSurface では、濁りと半透明をオパシティで近似する
+    - `_materials/*`: 各マテリアルがUsdPreviewSurface・MDL（`OmniGlass` / `OmniPBR` / `OmniSurface`）・MaterialXのOpenPBR（[OpenPBR](export.md#openpbr)）の3つを持つ
+        - 液体: `OmniSurface`の透過。色の付いた液体は、胴の中心を通る光（内径ぶん）がちょうど液体の色になるよう体積吸収させる（縁は薄く、中心は濃く見える）
+        - 濁った液体（ジュース・乳飲料など。`colors.liquid_turbidity`が0〜1、未設定なら商品名・タグから推定）: さらに体積散乱（`specular_transmission_scattering_color`に散乱係数、`specular_transmission_scatter_anisotropy`に0.2）を足し、胴の中心を通る光の光学的な厚さを60 × 濁り^2.5にする
+        - PETの容器とガラス瓶: `OmniGlass`の`thin_walled`（薄い膜。屈折させない）。ガラス瓶は屈折率1.52と薄い緑の色味で、厚い底と口の縁は形で表す
+        - 半透明の容器・部品: `OmniSurface`の`thin_walled`。一部をぼやけたまま素通しにし（`frosted`は7割、`translucent`は4.5割）、残りは7:3で拡散透過と拡散反射にする
+        - UsdPreviewSurfaceでは、濁りと半透明をオパシティで近似する
 
-物理には UsdPhysics だけを使い、PhysxSchema は使いません。
+物理にはUsdPhysicsだけを使い、PhysxSchemaは使いません。
 
 ## 透明・半透明の部品（深度センサー向け）
 
 実物の深度カメラ（ステレオ・ToF）は、透明・半透明の物体の深度をうまく測れません（欠損する、奥の背景の深度になる）。
 合成データの深度は完璧なので、そのまま学習に使うと実機とずれます。加工できるよう、透明・半透明のメッシュにカスタム属性
-`agenticUsdGen:transparency`（token）を付け、`meta.json` の `transparency` にも一覧（ルートからのパス → 透け方）を書きます。
+`agenticUsdGen:transparency`（token）を付け、`meta.json`の`transparency`にも一覧（ルートからのパス → 透け方）を書きます。
 
 | 値 | 付くメッシュ |
 |---|---|
-| `transparent` | 透明な容器（PET など）・ガラス瓶・`finish: glass` の部品、澄んだ液体（`colors.liquid_turbidity` が 0.5 未満） |
-| `translucent` | 半透明の容器（HDPE・`frosted` など）・`finish: frosted` / `translucent` の部品、濁った液体（0.5 以上） |
+| `transparent` | 透明な容器（PETなど）・ガラス瓶・`finish: glass`の部品、澄んだ液体（`colors.liquid_turbidity`が0.5未満） |
+| `translucent` | 半透明の容器（HDPE・`frosted`など）・`finish: frosted` / `translucent`の部品、濁った液体（0.5以上） |
 
-不透明な部品（キャップ・ラベル・缶・紙パックなど）には付けません。1 つのメッシュの面ごとにマテリアルを分けている場合は、
+不透明な部品（キャップ・ラベル・缶・紙パックなど）には付けません。1つのメッシュの面ごとにマテリアルを分けている場合は、
 いちばん面の多いマテリアルで決めます。
 
-`transparent` のメッシュには `primvars:doNotCastShadows = true`（constant）も付け、影を落とさないようにします。
-Isaac Sim の RTX Real-Time では `OmniGlass` や透過の `OmniSurface` も不透明な影を落とすため、付けないと
-ケースの中の商品・包装の中身・ボトルの下半分が黒くなります。`translucent` は実物でも影ができるので付けません。
+`transparent`のメッシュには`primvars:doNotCastShadows = true`（constant）も付け、影を落とさないようにします。
+Isaac SimのRTX Real-Timeでは`OmniGlass`や透過の`OmniSurface`も不透明な影を落とすため、付けないと
+ケースの中の商品・包装の中身・ボトルの下半分が黒くなります。`translucent`は実物でも影ができるので付けません。
 
 ```json
 "transparency": {"Body": "transparent", "Liquid": "transparent"}
 ```
 
-Isaac Sim の Replicator では、インスタンスのセグメンテーション（プリムのパスが分かる）と深度を一緒に取り、
-`agenticUsdGen:transparency` の付いたプリムの画素の深度を欠損（`inf`）にする、といった使い方ができます。
+Isaac SimのReplicatorでは、インスタンスのセグメンテーション（プリムのパスが分かる）と深度を一緒に取り、
+`agenticUsdGen:transparency`の付いたプリムの画素の深度を欠損（`inf`）にする、といった使い方ができます。
 
 ```python
 import numpy as np

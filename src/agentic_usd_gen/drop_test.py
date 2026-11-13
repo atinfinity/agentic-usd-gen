@@ -248,7 +248,8 @@ def main(argv: list[str] | None = None) -> int:
                                 description="Isaac Sim（headless）でアセットを床に落とし、倒れ・跳ね・突き抜け・静止までの時間を確かめる")
     p.add_argument("paths", nargs="*", type=Path, help="USD ファイルかフォルダ（既定: assets/）")
     p.add_argument("--height", type=float, default=0.2, help="[m] 落とす高さ（床から底面まで。既定 0.2）")
-    p.add_argument("--seconds", type=float, default=5.0, help="[s] 落としてから見る時間（既定 5）")
+    p.add_argument("--seconds", type=float, default=8.0,
+                   help="[s] 落としてから見る時間（既定 8。戸・障子などの可動部が止まるまでに 5 秒を超える内装があるため）")
     p.add_argument("--tilt", type=float, default=2.0, help="[度] 傾け置きの傾き（既定 2。0 なら傾け置きをしない）")
     p.add_argument("--hz", type=float, default=60.0, help="物理の刻み [Hz]（既定は Isaac Sim と同じ 60）")
     p.add_argument("--max-tilt", type=float, default=Limits.max_tilt_deg, help="[度] これより傾いたら倒れたとみなす")

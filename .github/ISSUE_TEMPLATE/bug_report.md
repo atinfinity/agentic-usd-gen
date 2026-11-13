@@ -24,7 +24,7 @@ labels: bug
 - OS:
 - Python:
 - Blender:
-- agentic-usd-gen のコミット / commit:
+- agentic-usd-genのコミット / commit:
 
 ## ログ・画像 / Logs and images
 

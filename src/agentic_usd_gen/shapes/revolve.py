@@ -269,7 +269,10 @@ class RevolveBuilder:
         picked = _select_image(ctx) if ctx.images else None
         if picked:
             img_path, rgb, sil = picked
-            prof = build_profile(rgb, sil, dims, ctx.landmarks, spec_colors)
+            # 側面の展開図が別にあるとき（架空の商品など）は、この画像は形を取るだけで、色は合わせない
+            side = (ctx.faces or {}).get("side")
+            from_photo = side is None or not 0 <= side < len(ctx.images)
+            prof = build_profile(rgb, sil, dims, ctx.landmarks, spec_colors, match_image=from_photo)
             cv2.imwrite(str(ctx.debug_dir / "silhouette.png"), draw_debug(rgb, sil, prof))
             meta["image"] = str(img_path)
         else:

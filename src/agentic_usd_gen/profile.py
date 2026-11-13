@@ -84,6 +84,19 @@ def _to_hex(rgb: np.ndarray) -> str:
     return f"#{r:02X}{g:02X}{b:02X}"
 
 
+def _hex_to_rgb(h: str) -> np.ndarray:
+    return np.array([int(h[i : i + 2], 16) for i in (1, 3, 5)], np.float32)
+
+
+def _lab_distance(a: np.ndarray, b: np.ndarray) -> float:
+    """2 つの RGB 色の、Lab 色空間での距離（OpenCV の 8 bit の目盛り）。"""
+    lab = cv2.cvtColor(np.clip(np.stack([a, b]), 0, 255).astype(np.uint8).reshape(1, 2, 3), cv2.COLOR_RGB2LAB).astype(np.float32)[0]
+    return float(np.linalg.norm(lab[0] - lab[1]))
+
+
+# 検索結果のキャップの色と写真の色の差（Lab）がこれを超えたら、写真の色を使う
+CAP_COLOR_TOLERANCE = 25.0
+
 # 輪郭の線の切れ目をふさぐ幅（画像の長辺に対する比）
 FILL_GAP = 0.02
 
@@ -247,7 +260,12 @@ def build_profile(
     dims: Dimensions,
     landmarks: Landmarks,
     spec_colors: dict[str, str | None],
+    match_image: bool = False,
 ) -> RevolveProfile:
+    """輪郭と寸法から回転体の断面を作る。
+
+    match_image: ラベルもこの画像から作るとき True。キャップの色が検索結果と画像ではっきり違えば、画像の色に合わせる。
+    """
     warnings: list[str] = []
     H, R = dims.height, dims.diameter / 2
 
@@ -301,11 +319,17 @@ def build_profile(
         warnings.append("液面が判別できないため肩の位置にしました")
     liquid_z = min(liquid_z, cap_z - 0.002)
 
-    # キャップとラベル地の色は検索結果を優先し、無いときだけ画像から推定する（印刷や反射で色がずれやすい）
+    # キャップとラベル地の色は検索結果を優先し、無いときだけ画像から推定する（印刷や反射で色がずれやすい）。
+    # ただしラベルもこの画像から作るときは、キャップの色が画像とはっきり違えば画像の色にして、見た目をそろえる
     colors = dict(spec_colors)
     cap_px = _center_strip(rgb, sil, sil.top, cap_row, 0.5)
-    if cap_px.size and not colors.get("cap"):
-        colors["cap"] = _to_hex(np.median(cap_px, axis=0))
+    if cap_px.size:
+        seen = np.median(cap_px, axis=0)
+        if not colors.get("cap"):
+            colors["cap"] = _to_hex(seen)
+        elif match_image and _lab_distance(_hex_to_rgb(colors["cap"]), seen) > CAP_COLOR_TOLERANCE:
+            log.info("キャップの色: 検索結果 %s は画像と違うので、画像の色 %s を使います", colors["cap"], _to_hex(seen))
+            colors["cap"] = _to_hex(seen)
     if label_z and not colors.get("label_base"):
         lab_px = _center_strip(rgb, sil, sil.row(1 - label_z[1] / H), sil.row(1 - label_z[0] / H), 0.6)
         if lab_px.size:

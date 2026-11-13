@@ -1,7 +1,8 @@
 """正面画像のラベル部分を円筒に逆投影して、全周のラベルテクスチャを作る。
 
 テクスチャの u は円周方向（u=0.75 が正面 = Blender の -Y 側）、v は下端=0。
-正面から見えている ±VISIBLE_DEG の範囲だけ画像から取り、残りはラベルの地の色で塗る。
+正面から見えている ±VISIBLE_DEG の範囲だけ画像から取る。写っていない側は、高さごとに、写っている範囲の代表色で塗る
+（絵柄が空・山・草地のように上下で色が変わるラベルでも、境目が縦の切れ目にならない）。
 """
 
 from __future__ import annotations
@@ -11,8 +12,8 @@ import numpy as np
 from .profile import RevolveProfile, Silhouette
 from .texres import texture_px
 
-VISIBLE_DEG = 60.0
-FEATHER_DEG = 12.0
+VISIBLE_DEG = 70.0
+FEATHER_DEG = 20.0
 FRONT_U = 0.75
 
 
@@ -64,7 +65,12 @@ def make_label_texture(rgb: np.ndarray, sil: Silhouette, prof: RevolveProfile) -
     xs = np.clip(np.round(xs).astype(int), 0, rgb.shape[1] - 1)
 
     sampled = rgb[rows[:, None], xs].astype(np.float32)
-    base = _hex_to_rgb(prof.colors.get("label_base") or "#808080")
-    tex = sampled * weight[None, :, None] + base * (1 - weight[None, :, None])
+    # 写っていない側の色: 高さごとに、写っている範囲の中央値（文字やマークに引かれない）。上下に少しならして筋を消す
+    seen = sampled[:, weight >= 1] if (weight >= 1).any() else sampled
+    fill = np.median(seen, axis=1)
+    n = max(1, tex_h // 16) | 1
+    padded = np.pad(fill, ((n // 2, n // 2), (0, 0)), mode="edge")
+    fill = np.stack([np.convolve(padded[:, c], np.ones(n) / n, mode="valid") for c in range(3)], axis=1)
+    tex = sampled * weight[None, :, None] + fill[:, None, :] * (1 - weight[None, :, None])
     # 行 0 が v=1（上端）になるよう上下反転して画像として返す
     return np.clip(tex[::-1], 0, 255).astype(np.uint8)

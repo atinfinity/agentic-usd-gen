@@ -1,6 +1,6 @@
 [project]
 name = "agentic-usd-gen"
-version = "0.1.0"
+version = "0.2.0"
 description = "商品名から画像・寸法を検索し、Blender で3Dモデル化して Isaac Sim 向け USD を書き出す"
 readme = "README.md"
 license = "Apache-2.0"

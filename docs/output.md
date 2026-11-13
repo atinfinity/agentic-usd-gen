@@ -26,8 +26,8 @@ out/<slug>/
     - `Body`・`Cap`: `CollisionAPI`（既定は凸包。部品ごとに変えられる）＋物理マテリアル（素材ごとの摩擦・反発。[物理マテリアル](export.md#物理マテリアル)の表）
     - `Liquid`（透明・半透明の容器のみ）・`Label`: 見た目だけで、コリジョンなし
     - `_materials/*`: 各マテリアルがUsdPreviewSurface・MDL（`OmniGlass` / `OmniPBR` / `OmniSurface`）・MaterialXのOpenPBR（[OpenPBR](export.md#openpbr)）の3つを持つ
-        - 液体: `OmniSurface`の透過。色の付いた液体は、胴の中心を通る光（内径ぶん）がちょうど液体の色になるよう体積吸収させる（縁は薄く、中心は濃く見える）
-        - 濁った液体（ジュース・乳飲料など。`colors.liquid_turbidity`が0〜1、未設定なら商品名・タグから推定）: さらに体積散乱（`specular_transmission_scattering_color`に散乱係数、`specular_transmission_scatter_anisotropy`に0.2）を足し、胴の中心を通る光の光学的な厚さを60 × 濁り^2.5にする
+        - 液体: `OmniSurface`の透過で、`thin_walled`（薄い膜）。Isaac SimのRTXは、薄い膜（PETの胴）越しの液体の体積（吸収・散乱）を描かないため。色は、胴の中心を通る光（内径ぶん）を体積吸収させたときと同じにする
+        - 濁った液体（ジュース・乳飲料など。`colors.liquid_turbidity`が0〜1、未設定なら商品名・タグから推定）: 胴の中心を通る光の光学的な厚さτを60 × 濁り^2.5とし、MDLでは半透明の膜にする。exp(-0.15τ)を液体の色で素通しにし、残りは液体の色の拡散反射と拡散透過（`subsurface_weight` 0.3）。OpenPBRでは体積散乱（異方性0.2）で描く
         - PETの容器とガラス瓶: `OmniGlass`の`thin_walled`（薄い膜。屈折させない）。ガラス瓶は屈折率1.52と薄い緑の色味で、厚い底と口の縁は形で表す
         - 半透明の容器・部品: `OmniSurface`の`thin_walled`。一部をぼやけたまま素通しにし（`frosted`は7割、`translucent`は4.5割）、残りは7:3で拡散透過と拡散反射にする
         - UsdPreviewSurfaceでは、濁りと半透明をオパシティで近似する

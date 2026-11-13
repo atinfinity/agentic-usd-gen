@@ -125,45 +125,16 @@ def apply_transparent_materials(usd_path):
             bsdf.inputs["Base Color"].default_value = (*tint, 1)
             continue
         bsdf.inputs["Base Color"].default_value = (1, 1, 1, 1)
-        scatter = inp.get("specular_transmission_scattering_color") or (0, 0, 0)
-        sigma_s, sigma_a = omnisurface_volume(tint, scatter, depth)
-        if max(scatter) <= 0:
-            # 澄んだ液体: 式の定数の丸めで散乱がわずかに残る（σt の 1e-5 倍ほど）。そのまま濁った液体の換算にかけると
-            # 吸収がほぼ消えて無色に写るので、散乱を 0 にして全部を吸収にする
-            sigma_a = [a + s for a, s in zip(sigma_a, sigma_s)]
-            sigma_s = [0.0, 0.0, 0.0]
-        if max(sigma_s) > 0:
-            sigma_a = cycles_turbid_sigma_a(sigma_s, sigma_a)
+        # 澄んだ液体（濁った液体は拡散透過のある薄い膜で、上の translucent_material）。式の定数の丸めで散乱が
+        # わずかに残る（σt の 1e-5 倍ほど）ので、散乱も吸収に足す
+        sigma_s, sigma_a = omnisurface_volume(tint, inp.get("specular_transmission_scattering_color") or (0, 0, 0), depth)
+        sigma_a = [a + s for a, s in zip(sigma_a, sigma_s)]
         # Blender の吸収係数は (1 - color) × density
         density = max(sigma_a) or 1.0
         vol = nt.nodes.new("ShaderNodeVolumeAbsorption")
         vol.inputs["Color"].default_value = (*(1 - s / density for s in sigma_a), 1)
         vol.inputs["Density"].default_value = density
-        volume = vol.outputs["Volume"]
-        if max(sigma_s) > 0:
-            # 濁った液体: 吸収に体積散乱を足す（散乱係数は color × density）
-            sc = nt.nodes.new("ShaderNodeVolumeScatter")
-            s_max = max(sigma_s)
-            sc.inputs["Color"].default_value = (*(c / s_max for c in sigma_s), 1)
-            sc.inputs["Density"].default_value = s_max
-            sc.inputs["Anisotropy"].default_value = inp.get("specular_transmission_scatter_anisotropy", 0.0)
-            add = nt.nodes.new("ShaderNodeAddShader")
-            nt.links.new(volume, add.inputs[0])
-            nt.links.new(sc.outputs["Volume"], add.inputs[1])
-            volume = add.outputs["Shader"]
-        nt.links.new(volume, output.inputs["Volume"])
-        weight = inp.get("specular_transmission_weight", 1.0)
-        if inp.get("diffuse_reflection_weight", 0.0) > 0 and weight < 1:
-            # 濁った液体の拡散反射（usd_post.turbid_diffuse_weight）：透過と、液体の色の不透明な面を混ぜる
-            opaque = nt.nodes.new("ShaderNodeBsdfPrincipled")
-            opaque.inputs["Base Color"].default_value = (*tuple(inp.get("diffuse_reflection_color", (1, 1, 1))), 1)
-            opaque.inputs["IOR"].default_value = bsdf.inputs["IOR"].default_value
-            opaque.inputs["Roughness"].default_value = bsdf.inputs["Roughness"].default_value
-            both = nt.nodes.new("ShaderNodeMixShader")
-            both.inputs[0].default_value = 1 - weight
-            nt.links.new(bsdf.outputs["BSDF"], both.inputs[1])
-            nt.links.new(opaque.outputs["BSDF"], both.inputs[2])
-            nt.links.new(both.outputs[0], mix.inputs[1])
+        nt.links.new(vol.outputs["Volume"], output.inputs["Volume"])
 
 
 def omnisurface_volume(transmission, scattering, depth):
@@ -181,43 +152,6 @@ def omnisurface_volume(transmission, scattering, depth):
         sigma_a.append(a)
         sigma_s.append(st - a)
     return sigma_s, sigma_a
-
-
-# usd_post.ISAAC_TURBID_ALBEDO の写し：Isaac Sim で濁った液体が見せる明るさと散乱アルベド
-ISAAC_TURBID_ALBEDO = (
-    (0.010, 0.05), (0.013, 0.1), (0.019, 0.2), (0.026, 0.3), (0.042, 0.4377), (0.097, 0.6838), (0.172, 0.8222),
-    (0.262, 0.9), (0.360, 0.94377), (0.455, 0.96838), (0.539, 0.98222), (0.603, 0.99), (0.650, 0.99438),
-    (0.675, 0.99684), (0.692, 0.99822), (0.696, 0.999),
-)
-
-
-def isaac_turbid_reflectance(albedo):
-    """usd_post.isaac_turbid_reflectance の写し。散乱アルベドの濁った液体が Isaac Sim で見せる明るさ。"""
-    tab = ISAAC_TURBID_ALBEDO
-    if albedo <= tab[0][1]:
-        return tab[0][0] * albedo / tab[0][1]
-    for (r0, a0), (r1, a1) in zip(tab, tab[1:]):
-        if albedo <= a1:
-            t = (math.log(1 - albedo) - math.log(1 - a0)) / (math.log(1 - a1) - math.log(1 - a0))
-            return r0 + t * (r1 - r0)
-    return tab[-1][0]
-
-
-def cycles_turbid_sigma_a(sigma_s, sigma_a):
-    """濁った液体の MDL の吸収係数（Isaac Sim の実測の表で決めたもの）を、Cycles で同じ明るさに見える吸収係数にする。
-
-    Isaac は体積の中の散乱を打ち切るので、同じ係数でも Cycles の方がずっと明るい。Isaac での明るさ A を表から求め、
-    散乱して戻る光が A になる散乱アルベドを Christensen–Burley の式で求め直す（usd_post._turbid_sigma_a と同じ式）。
-    """
-    out = []
-    for s, a in zip(sigma_s, sigma_a):
-        if s <= 0:
-            out.append(a)
-            continue
-        r = min(max(isaac_turbid_reflectance(s / (s + a)), 1e-3), 0.999)
-        albedo = 1 - (4.09712 + 4.20863 * r - math.sqrt(9.59217 + 41.6808 * r + 17.7126 * r * r)) ** 2
-        out.append(s * (1 - albedo) / albedo)
-    return out
 
 
 def transparent_prims(usd_path):

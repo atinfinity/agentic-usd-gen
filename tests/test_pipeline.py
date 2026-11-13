@@ -1,5 +1,6 @@
 """Blender を使う結合テスト（Blender が無ければスキップ）。"""
 
+import math
 import zipfile
 
 import numpy as np
@@ -12,7 +13,7 @@ from agentic_usd_gen.shapes.revolve import (LIQUID_INSET, TURBID_ANISOTROPY, TUR
                                   RevolveBuilder, make_lid_texture)
 from agentic_usd_gen.physics_runtimes import applied_schemas
 from agentic_usd_gen.spec import Dimensions, ProductSpec
-from agentic_usd_gen.usd_post import omnisurface_volume, export_usda, export_usdz, postprocess
+from agentic_usd_gen.usd_post import TURBID_CLARITY_K, export_usda, export_usdz, postprocess
 from agentic_usd_gen.validate import check_usdz, validate
 from agentic_usd_gen.vision import Landmarks
 
@@ -95,6 +96,8 @@ def test_liquid_absorption(built):
     assert mdl.GetInput("enable_specular_transmission").Get() is True
     depth = mdl.GetInput("specular_transmission_scattering_depth").Get()
     color = mdl.GetInput("specular_transmission_color").Get()
+    # 澄んだ液体は MDL では薄い膜（PET 越しに体積吸収が描かれないため）
+    assert mdl.GetInput("thin_walled").Get() is True
     if depth > 0:
         assert depth == pytest.approx(2 * _max_radius(stage, "/synthetic_bottle/Liquid"), rel=0.05)
     else:
@@ -424,7 +427,7 @@ def test_glass_jar(tmp_path, bottle_png, blender):
 
 @pytest.mark.parametrize("turbidity", [None, 0.7])
 def test_turbid_liquid(tmp_path, bottle_png, blender, turbidity):
-    """濁った液体は OmniSurface の体積散乱（散乱係数と異方性）を持ち、プレビューの不透明度も上がる。
+    """濁った液体は、MDL では半透明の膜、OpenPBR では体積散乱になり、プレビューの不透明度も上がる。
     濁りが未設定なら商品名から推定する（オレンジ → 0.7）。"""
     from agentic_usd_gen.spec import Colors
 
@@ -437,19 +440,19 @@ def test_turbid_liquid(tmp_path, bottle_png, blender, turbidity):
     stage = Usd.Stage.Open(str(result.usd_path))
     mat = stage.GetDefaultPrim().GetPath().AppendPath("_materials/LiquidMat")
     mdl = UsdShade.Shader.Get(stage, mat.AppendChild("MDL"))
-    # OmniSurface の入力（色・散乱の色・深さ）から、Isaac Sim と同じ計算で散乱係数と吸収係数に戻す
-    color = mdl.GetInput("specular_transmission_color").Get()
-    scatter = mdl.GetInput("specular_transmission_scattering_color").Get()
-    depth = mdl.GetInput("specular_transmission_scattering_depth").Get()
-    assert depth > 0 and min(scatter) > 0
-    sigma_s, sigma_a = omnisurface_volume(color, scatter, depth)
-    assert sigma_s[0] == pytest.approx(sigma_s[1], rel=1e-3) and sigma_s[1] == pytest.approx(sigma_s[2], rel=1e-3)
-    tau = sigma_s[0] * 2 * _max_radius(stage, stage.GetDefaultPrim().GetPath().AppendChild("Liquid"))
-    assert tau == pytest.approx(TURBID_TAU * 0.7**2.5, rel=0.05)  # 胴の中心を通る光の光学的な厚さ
-    # 散乱して戻る光がオレンジになるよう、青ほど強く吸収する（逆にすると青く見える）
-    r, g, b = sigma_a
-    assert 0 < r < g < b
-    assert mdl.GetInput("specular_transmission_scatter_anisotropy").Get() == pytest.approx(TURBID_ANISOTROPY)
+    # MDL（Isaac Sim）は半透明の膜。PET 越しに体積散乱が描かれないため
+    assert mdl.GetInput("thin_walled").Get() is True
+    assert mdl.GetInput("enable_diffuse_transmission").Get() is True
+    tau = TURBID_TAU * 0.7**2.5  # 胴の中心を通る光の光学的な厚さ
+    assert mdl.GetInput("specular_transmission_weight").Get() == pytest.approx(math.exp(-TURBID_CLARITY_K * tau),
+                                                                               abs=1e-4)
+    col = mdl.GetInput("diffuse_reflection_color").Get()
+    assert col[0] > col[1] > col[2]  # オレンジ
+    assert not mdl.GetInput("specular_transmission_scattering_color")
+    # OpenPBR は体積散乱（散乱を追う描画器向け）
+    pbr = UsdShade.Shader.Get(stage, mat.AppendChild("OpenPBR"))
+    assert max(pbr.GetInput("transmission_scatter").Get()) > 0
+    assert pbr.GetInput("transmission_scatter_anisotropy").Get() == pytest.approx(TURBID_ANISOTROPY)
     ps = [UsdShade.Shader(c) for c in stage.GetPrimAtPath(mat).GetChildren()
           if UsdShade.Shader(c) and UsdShade.Shader(c).GetIdAttr().Get() == "UsdPreviewSurface"]
     assert ps and ps[0].GetInput("opacity").Get() > 0.92

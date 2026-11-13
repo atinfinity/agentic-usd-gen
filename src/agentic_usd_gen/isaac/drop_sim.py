@@ -7,7 +7,7 @@
 ルートの剛体（本体）の毎ステップの位置・姿勢から、重心の高さ・傾き・速さの推移をまとめ、1 アセット 1 行の JSON で書き出す。
 判定（倒れた・跳ねすぎ・突き抜け・静止までの時間）は agentic-usd-gen-droptest 側で行う（drop_test.py）。
 
-    $ISAACSIM_PYTHON drop_sim.py --out raw.jsonl [--height 0.2] [--tilt 2] [--seconds 5] a.usd b.usd ...
+    $ISAACSIM_PYTHON drop_sim.py --out raw.jsonl [--height 0.2] [--tilt 2] [--seconds 8] a.usd b.usd ...
 
 什器（キネマティックな剛体）も、重心と質量を確かめるため、テストの間だけ動く剛体にして落とす（ファイルは変えない）。
 天井付けの什器（--ceiling に渡したもの）は、上下を返して取り付け面を下にして落とす（ドームカメラは書き出したままだと半球が下で転がる）。
@@ -26,7 +26,7 @@ ap = argparse.ArgumentParser()
 ap.add_argument("usd", nargs="+")
 ap.add_argument("--out", required=True, help="結果を 1 アセット 1 行の JSON で追記する先")
 ap.add_argument("--height", type=float, default=0.2, help="[m] 落とす高さ（床から底面まで）")
-ap.add_argument("--seconds", type=float, default=5.0, help="[s] 落としてから見る時間")
+ap.add_argument("--seconds", type=float, default=8.0, help="[s] 落としてから見る時間")
 ap.add_argument("--tilt", type=float, default=2.0, help="[度] 傾け置きの傾き（0 なら傾け置きをしない）")
 ap.add_argument("--hz", type=float, default=60.0, help="物理の刻み [Hz]（既定は Isaac Sim と同じ 60）")
 ap.add_argument("--ceiling", action="append", default=[], help="天井付けのアセット（上下を返して落とす。何度でも指定できる）")

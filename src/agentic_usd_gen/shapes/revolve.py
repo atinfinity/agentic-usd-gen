@@ -164,6 +164,10 @@ def _section(prof: RevolveProfile, z0: float, z1: float, dr: float = 0.0, r_min:
     return pts.tolist()
 
 
+# 輪郭の縦横比と寸法の縦横比のずれがこれを超える画像は、形を取るのに使わない
+MAX_ASPECT_ERROR = 0.4
+
+
 def _select_image(ctx: BuildContext) -> tuple[Path, np.ndarray, object] | None:
     """画像認識の選択を優先し、だめなら輪郭の品質スコアが最も高い画像を使う。"""
     scored = []
@@ -178,6 +182,12 @@ def _select_image(ctx: BuildContext) -> tuple[Path, np.ndarray, object] | None:
         except ValueError:
             continue
         q = sil.quality(rgb.shape)
+        # 輪郭の縦横比が寸法と大きく違う画像は、側面の全体像ではない（ラベルの拡大、斜めからの写真など）
+        dims = ctx.spec.dimensions
+        aspect = (sil.height_px / (2 * sil.radius.max())) / (dims.height / dims.diameter)
+        if abs(aspect - 1) > MAX_ASPECT_ERROR:
+            log.info("画像 %s: 縦横比が寸法と %.0f%% 違うので使いません", ctx.images[i].name, abs(aspect - 1) * 100)
+            q = 0.0
         log.info("画像 %s: 品質 %.3f", ctx.images[i].name, q)
         if i == ctx.preferred_image and q > 0:
             return ctx.images[i], rgb, sil

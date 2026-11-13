@@ -53,6 +53,18 @@ def test_landmarks_override_heuristics(bottle_rgb, sil):
     assert not any("キャップ" in w for w in p.warnings)
 
 
+def test_cap_color_follows_image_when_it_differs(bottle_rgb, sil):
+    def cap(colors, **kw):
+        return build_profile(bottle_rgb, sil, DIMS, Landmarks(), colors, **kw).colors["cap"].upper()
+
+    # 写真のキャップは赤 (200, 20, 30)。検索結果が白でも、ラベルを写真から作るなら写真の赤にする
+    assert cap({"cap": "#F2F2F2"}, match_image=True).startswith("#C")
+    # 近い色なら検索結果のまま
+    assert cap({"cap": "#D01828"}, match_image=True) == "#D01828"
+    # 側面の展開図が別にあるとき（写真は形を取るだけ）は検索結果のまま
+    assert cap({"cap": "#F2F2F2"}) == "#F2F2F2"
+
+
 def test_label_texture(bottle_rgb, sil, prof):
     tex = make_label_texture(bottle_rgb, sil, prof)
     h, w, _ = tex.shape
@@ -61,8 +73,13 @@ def test_label_texture(bottle_rgb, sil, prof):
     assert w == 1024 and 16 <= h < w
     front = tex[:, int(w * (0.75 - 0.15))]  # 正面（u=0.75）の少し横はラベルの赤
     assert front[:, 0].mean() > 150 and front[:, 1].mean() < 80
-    back = tex[:, int(w * 0.25)]  # 裏側は地色で埋める
-    assert np.ptp(back.astype(int), axis=0).max() < 10
+    # 裏側は、高さごとに正面の代表色で埋める（横には一様で、正面と同じ赤）
+    back = tex[:, int(w * 0.05) : int(w * 0.45)].astype(int)
+    assert np.ptp(back, axis=1).max() < 10
+    assert back[..., 0].mean() > 150 and back[..., 1].mean() < 80
+    # 正面との境目（u=0.75 から 50〜70 度）が縦の切れ目にならない（隣の列との差が小さい）
+    edge = tex[:, int(w * (0.75 - 0.2)) : int(w * (0.75 - 0.13))].astype(int)
+    assert np.abs(np.diff(edge, axis=1)).max() < 10
 
 
 def test_parametric_profile():

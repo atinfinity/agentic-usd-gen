@@ -175,6 +175,8 @@ def cola_pet_1500ml() -> Product:
     c.gradient(0, 0, W, H, "#5D4037", dark)
     for k in range(9):  # 泡
         x = (k * 37.0) % W
+        if abs(x + 2 - fx) < 24:  # 正面の文字（COLA・コーラ・ZESTY SPARK）に重ねない
+            continue
         c.ellipse(x, H * 0.55 - k % 3 * 6, x + 4 + k % 3, H * 0.55 - k % 3 * 6 + 4 + k % 3, outline=mix(red, white, 0.5),
                   width=0.4)
     c.rect(0, 0, W, 2.5, fill=amber)

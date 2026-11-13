@@ -64,7 +64,7 @@ SCHEMA = {
     "additionalProperties": False,
     "required": ["score", "issues", "summary"],
     "properties": {
-        "score": {"type": "integer", "minimum": 0, "maximum": 100},
+        "score": {"type": "integer"},  # 構造化出力のスキーマは minimum・maximum を持てない。範囲は check_visual() で丸める
         "issues": {
             "type": "array",
             "items": {

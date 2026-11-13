@@ -28,7 +28,7 @@ SYSTEM = """\
 - liquid_top: 中身の液面（容器が不透明で見えない、または判断できなければ null）
 """
 
-_RATIO = {"type": "number", "minimum": 0, "maximum": 1}
+_RATIO = {"type": "number"}  # 構造化出力のスキーマは minimum・maximum を持てないので、範囲は _ratio() で見る
 
 SCHEMA = {
     "type": "object",
@@ -64,6 +64,11 @@ def _encode(path: Path) -> dict:
     return {"type": "image", "source": {"type": "base64", "media_type": "image/png", "data": data}}
 
 
+def _ratio(v: float | None) -> float | None:
+    """0〜1 に入らない比率は、読み取れなかったものとして捨てる。"""
+    return v if v is not None and 0 <= v <= 1 else None
+
+
 def analyze_images(paths: list[Path], product_name: str, model: str) -> tuple[int | None, Landmarks, str]:
     content: list[dict] = []
     for i, p in enumerate(paths):
@@ -76,9 +81,9 @@ def analyze_images(paths: list[Path], product_name: str, model: str) -> tuple[in
     if idx is not None and not 0 <= idx < len(paths):
         idx = None
     lm = Landmarks(
-        cap_bottom=data["cap_bottom"],
-        label_top=data["label_top"],
-        label_bottom=data["label_bottom"],
-        liquid_top=data["liquid_top"],
+        cap_bottom=_ratio(data["cap_bottom"]),
+        label_top=_ratio(data["label_top"]),
+        label_bottom=_ratio(data["label_bottom"]),
+        liquid_top=_ratio(data["liquid_top"]),
     )
     return idx, lm, data["reason"]

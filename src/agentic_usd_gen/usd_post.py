@@ -84,67 +84,11 @@ def _turbid_sigma_a(col: Gf.Vec3f, sigma_s: float, depth: float) -> list[float]:
     return sigma_a
 
 
-# Isaac Sim 6.1 のパストレーサーで、濁った液体（散乱係数 290〜620 /m、異方性 0.2、屈折率 1.34）の大きな塊が見せる明るさ
-# （同じ照明の拡散反射の板に換算した反射率）と、そのときの散乱アルベド α = σs / (σs + σa)。Isaac Sim で実測（dome のみ、
-# 奥行きのある 8.5 cm の箱）。Isaac は体積の中の散乱を打ち切る（設定によらず 60 回ほど）ので、同じ α でも Christensen–Burley の式より
-# ずっと暗く、α → 1 でも 0.7 ほどで頭打ちになる。低い側の 0.01 は表面の反射
-ISAAC_TURBID_ALBEDO = (
-    (0.010, 0.05), (0.013, 0.1), (0.019, 0.2), (0.026, 0.3), (0.042, 0.4377), (0.097, 0.6838), (0.172, 0.8222),
-    (0.262, 0.9), (0.360, 0.94377), (0.455, 0.96838), (0.539, 0.98222), (0.603, 0.99), (0.650, 0.99438),
-    (0.675, 0.99684), (0.692, 0.99822), (0.696, 0.999),
-)
-
-
-ISAAC_TURBID_MAX = 0.65  # Isaac で出せる明るさ（表の頭打ち 0.696）より少し下。ここまでは表の傾きで色を区別できる
-
-
-def isaac_turbid_albedo(reflectance: float) -> float:
-    """Isaac Sim のパストレーサーで、濁った液体が明るさ reflectance（線形）に見える散乱アルベド α（ISAAC_TURBID_ALBEDO を補間）。
-
-    表より明るい色は端の値（0.696 より明るくは出せない）。表より暗い色は 0 に向けて比例で延ばす（暗い色でもチャンネルの
-    順序を保つ）。補間は log(1 - α) で行う。
-    """
-    tab = ISAAC_TURBID_ALBEDO
-    if reflectance <= tab[0][0]:
-        return tab[0][1] * max(reflectance, 1e-4) / tab[0][0]
-    for (r0, a0), (r1, a1) in zip(tab, tab[1:]):
-        if reflectance <= r1:
-            t = (reflectance - r0) / (r1 - r0)
-            return 1 - math.exp((1 - t) * math.log(1 - a0) + t * math.log(1 - a1))
-    return tab[-1][1]
-
-
-def isaac_turbid_reflectance(albedo: float) -> float:
-    """isaac_turbid_albedo の逆。散乱アルベド α の濁った液体が Isaac Sim で見せる明るさ。"""
-    tab = ISAAC_TURBID_ALBEDO
-    if albedo <= tab[0][1]:
-        return tab[0][0] * albedo / tab[0][1]
-    for (r0, a0), (r1, a1) in zip(tab, tab[1:]):
-        if albedo <= a1:
-            t = (math.log(1 - albedo) - math.log(1 - a0)) / (math.log(1 - a1) - math.log(1 - a0))
-            return r0 + t * (r1 - r0)
-    return tab[-1][0]
-
-
-def _isaac_turbid_sigma_a(col: Gf.Vec3f, sigma_s: float, depth: float) -> list[float]:
-    """Isaac Sim（OmniSurface）用の濁った液体の吸収係数 σa [1/m]。_turbid_sigma_a の Christensen–Burley の式の代わりに、
-    Isaac で実測した表（ISAAC_TURBID_ALBEDO）で、液体の色 col（線形）に見える散乱アルベドを決める。"""
-    # 上限（約 0.7）を超える色は、1 チャンネルだけ頭打ちになると色相がずれる（オレンジが黄色に）ので、比を保って暗くする。
-    m = max(col)
-    k = ISAAC_TURBID_MAX / m if m > ISAAC_TURBID_MAX else 1.0
-    sigma_a = []
-    for c in col:
-        albedo = isaac_turbid_albedo(c * k)
-        sigma_a.append(max(-math.log(max(c, 1e-3)) / depth, sigma_s * (1 - albedo) / albedo))
-    return sigma_a
-
-
-def turbid_diffuse_weight(turbidity: float) -> float:
-    """Isaac Sim（OmniSurface）の濁った液体に混ぜる拡散反射の割合。濁り 0.3 以下で 0、0.9 以上で 1。
-
-    Isaac の体積散乱は明るさが頭打ちになり（ISAAC_TURBID_ALBEDO）、狙いの色まで届かない。牛乳・ミルクティーのような
-    濃い濁りは、実物でもほぼ不透明なので、液体の色の拡散反射に置き換えるとその明るさで見える。"""
-    return min(max((turbidity - 0.3) / 0.6, 0.0), 1.0)
+# 濁った液体（Isaac Sim 用の MDL）：散乱されずに素通しになる割合 exp(-k τ) の k と、素通しでない分のうち拡散透過の割合。
+# PET 越しの見た目を、胴を外して体積散乱で描いた液体とスポーツドリンク・オレンジジュース・
+# ミルクティーで見比べて決めた
+TURBID_CLARITY_K = 0.15
+TURBID_DIFFUSE_TRANSMISSION = 0.3
 
 
 def _turbid_absorption(col: Gf.Vec3f, sigma_s: float, depth: float) -> tuple[Gf.Vec3f, float]:
@@ -177,37 +121,6 @@ def omnisurface_volume(transmission: Gf.Vec3f, scattering: Gf.Vec3f, depth: floa
         sigma_a.append(a)
         sigma_s.append(st - a)
     return sigma_s, sigma_a
-
-
-def omnisurface_turbid_inputs(sigma_a: list[float], sigma_s: float, depth: float
-                              ) -> tuple[Gf.Vec3f, Gf.Vec3f, float]:
-    """吸収係数 σa（チャンネルごと）と散乱係数 σs [1/m] になる OmniSurface の (透過の色, 散乱の色, 深さ [m])。
-
-    OmniSurface の散乱の色は係数ではなく、透過の色との積から吸収と散乱の割合を決める（omnisurface_volume）。
-    係数をそのまま入れると、吸収の弱い赤・緑ほど吸収が強くなり、色が反転する（オレンジジュースが青く見えた）。
-    チャンネルごとに f(x)^4 = σa / σt となる x を求め、max(散乱の色) = M として
-    色 = (1 + M) exp(-σt 深さ)、散乱の色 = x / 色。M (1 + M) = max(x exp(σt 深さ)) から M が決まる。
-    深さは、exp(-σt 深さ) が 0.002 を下回らないように短くする（係数は変わらない）。
-    色は 1 を超えることがある（深さがあるとき、OmniSurface は色を体積の計算にしか使わない）。
-    """
-    sigma_t = [a + sigma_s for a in sigma_a]
-    if max(sigma_t) > 0:
-        depth = min(depth, -math.log(0.002) / max(sigma_t))
-    xs = []
-    for a, st in zip(sigma_a, sigma_t):
-        ratio = a / st if st > 0 else 1.0
-        lo, hi = 0.0, 1.0  # f は [0, 1] で単調に減る
-        for _ in range(60):
-            mid = (lo + hi) / 2
-            if _omni_albedo(mid) ** 4 > ratio:
-                lo = mid
-            else:
-                hi = mid
-        xs.append((lo + hi) / 2)
-    k = max(x * math.exp(st * depth) for x, st in zip(xs, sigma_t))
-    m = (math.sqrt(1 + 4 * k) - 1) / 2
-    color = [(1 + m) * math.exp(-st * depth) for st in sigma_t]
-    return Gf.Vec3f(*color), Gf.Vec3f(*(x / c for x, c in zip(xs, color))), depth
 
 
 def _add_mdl(mat: UsdShade.Material, module: str, inputs: dict[str, tuple[Sdf.ValueTypeName, object]]) -> None:
@@ -257,34 +170,41 @@ def _setup_material(mat: UsdShade.Material, params: dict) -> None:
         depth = params.get("absorption_depth") or 0.0
         mpu = UsdGeom.GetStageMetersPerUnit(mat.GetPrim().GetStage())
         tint = Gf.Vec3f(*(max(c, 1e-3) for c in col)) if depth else Gf.Vec3f(1, 1, 1)
-        mdl_tint, mdl_depth, scatter = tint, depth, {}
-        # 濁った液体は体積散乱（params["scattering"] は散乱係数 [1/m]）
+        # 濁った液体は体積散乱（params["scattering"] は散乱係数 [1/m]）。OpenPBR（散乱を追う描画器向け）だけ体積で描く
         sigma_s = params.get("scattering", 0.0) * mpu
+        # Isaac Sim の RTX（Real-Time・パストレースとも）では、薄い膜（PET の胴）を通した先の液体の体積（吸収・散乱）が
+        # 描かれず、胴が白っぽく濁って液体の色が見えない。MDL では液体も薄い膜にする
         if sigma_s and depth:
+            # 濁った液体：半透明の膜（translucent と同じ形）。胴の中心を通る光のうち散乱されずに抜ける割合
+            # exp(-k τ)（τ = 散乱係数 × 内径）だけ素通しにし、残りは液体の色で拡散反射・拡散透過させる
+            clarity = math.exp(-TURBID_CLARITY_K * params["scattering"] * params["absorption_depth"])
+            _add_mdl(mat, "OmniSurface", {
+                "diffuse_reflection_weight": (F, 1.0),
+                "diffuse_reflection_color": (C, col),
+                "specular_reflection_roughness": (F, 0.02),
+                "specular_reflection_ior": (F, 1.34),
+                "enable_specular_transmission": (B, True),
+                "specular_transmission_weight": (F, round(clarity, 4)),
+                "specular_transmission_color": (C, col),
+                "enable_diffuse_transmission": (B, True),
+                "subsurface_weight": (F, TURBID_DIFFUSE_TRANSMISSION),
+                "subsurface_transmission_color": (C, col),
+                "thin_walled": (B, True),
+            })
             tint, depth = _turbid_absorption(col, params["scattering"], depth)
-            # MDL（Isaac Sim）は実測の表で、OpenPBR（物理的に正しく散乱を追う描画器向け）は Christensen–Burley の式で
-            sigma_a = _isaac_turbid_sigma_a(col, params["scattering"], params["absorption_depth"])
-            mdl_tint, scatter_color, mdl_depth = omnisurface_turbid_inputs(sigma_a, params["scattering"],
-                                                                           params["absorption_depth"])
-            scatter = {"specular_transmission_scattering_color": (C, scatter_color),
-                       "specular_transmission_scatter_anisotropy": (F, params.get("anisotropy", 0.0))}
-            diffuse = turbid_diffuse_weight(turbidity)
-            if diffuse:
-                # 透過のぶんを減らし、残りを液体の色の拡散反射にする（MDL だけ。OpenPBR は散乱を追う描画器向け）
-                scatter["diffuse_reflection_color"] = (C, col)
         else:
-            diffuse = 0.0
-        _add_mdl(mat, "OmniSurface", {
-            "diffuse_reflection_weight": (F, 1.0 if diffuse else 0.0),
-            "specular_reflection_roughness": (F, 0.02),
-            "specular_reflection_ior": (F, 1.34),
-            "enable_specular_transmission": (B, True),
-            "specular_transmission_weight": (F, round(1.0 - diffuse, 4)),
-            "specular_transmission_color": (C, mdl_tint),
-            "specular_transmission_scattering_depth": (F, mdl_depth / mpu),
-            **scatter,
-            "thin_walled": (B, False),
-        })
+            # 澄んだ液体：色は体積吸収（深さ＝内径）のときと同じでよい。薄い膜でも、PET を外して体積吸収で描いた
+            # 液体とほぼ同じ濃さになる
+            _add_mdl(mat, "OmniSurface", {
+                "diffuse_reflection_weight": (F, 0.0),
+                "specular_reflection_roughness": (F, 0.02),
+                "specular_reflection_ior": (F, 1.34),
+                "enable_specular_transmission": (B, True),
+                "specular_transmission_weight": (F, 1.0),
+                "specular_transmission_color": (C, tint),
+                "specular_transmission_scattering_depth": (F, depth / mpu),
+                "thin_walled": (B, True),
+            })
         # OpenPBR の媒質: 消散 μt = -ln(transmission_color) / depth、散乱 μs = transmission_scatter / depth
         # （深さはステージの長さ）。MDL と同じ吸収 σa と散乱 σs になるように、色に散乱のぶんの減衰も含める
         extra = (sigma_s / mpu) * depth if depth else 0.0  # σs [1/m] × 深さ [m]

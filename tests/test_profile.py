@@ -82,3 +82,45 @@ def test_mass_properties(prof):
 def test_rdp():
     pts = np.stack([np.linspace(0, 1, 50), np.zeros(50)], 1)
     assert len(_rdp(pts, 1e-6)) == 2
+
+
+def test_silhouette_of_clear_bottle():
+    """透明なボトルは輪郭が途切れた細い線になる。線の内側を埋めて、左右とも外形を取る。"""
+    rgb = synth.make_clear_bottle()
+    sil = extract_silhouette(rgb)
+    assert abs(sil.top - synth.TOP) <= 2 and abs(sil.bottom - synth.BOTTOM) <= 2
+    body = sil.radius[synth.SHOULDER_BOTTOM - sil.top : synth.BOTTOM - 20 - sil.top]
+    assert body.min() == pytest.approx(synth.R_BODY, abs=3)
+    assert sil.asymmetry < 0.02 and abs(sil.tilt) < 0.005
+    assert sil.quality(rgb.shape) > 0.5
+
+
+def test_silhouette_ignores_caption_below():
+    """商品のすぐ下にある注記の文字は、輪郭に含めない。"""
+    rgb = synth.make_bottle()
+    for x in range(synth.CX - 110, synth.CX + 110, 10):
+        rgb[synth.BOTTOM + 8 : synth.BOTTOM + 16, x : x + 4] = (40, 40, 40)
+    sil = extract_silhouette(rgb)
+    assert abs(sil.bottom - synth.BOTTOM) <= 2
+
+
+def _ctx(images, preferred=None):
+    from types import SimpleNamespace
+
+    return SimpleNamespace(images=images, preferred_image=preferred, spec=SimpleNamespace(dimensions=DIMS))
+
+
+def test_select_image_skips_wrong_aspect(tmp_path, bottle_png):
+    """輪郭がきれいでも、縦横比が寸法と合わない画像（ラベルの拡大など）は形を取るのに使わない。"""
+    from PIL import Image
+
+    from agentic_usd_gen.shapes.revolve import _select_image
+
+    closeup = np.full((500, 500, 3), 255, np.uint8)
+    closeup[150:350, 80:420] = (60, 140, 210)
+    p = tmp_path / "closeup.png"
+    Image.fromarray(closeup).save(p)
+
+    assert _select_image(_ctx([p])) is None
+    assert _select_image(_ctx([p, bottle_png]))[0] == bottle_png
+    assert _select_image(_ctx([p, bottle_png], preferred=0))[0] == bottle_png

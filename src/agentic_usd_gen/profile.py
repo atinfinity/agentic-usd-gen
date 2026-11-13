@@ -84,6 +84,10 @@ def _to_hex(rgb: np.ndarray) -> str:
     return f"#{r:02X}{g:02X}{b:02X}"
 
 
+# 輪郭の線の切れ目をふさぐ幅（画像の長辺に対する比）
+FILL_GAP = 0.02
+
+
 def extract_silhouette(rgb: np.ndarray) -> Silhouette:
     """輪郭を抽出する。返す座標は元画像のもの。"""
     h0, w0 = rgb.shape[:2]
@@ -114,6 +118,19 @@ def extract_silhouette(rgb: np.ndarray) -> Silhouette:
 
     k = max(3, int(0.006 * max(h, w)) | 1)
     fg = cv2.morphologyEx(fg.astype(np.uint8), cv2.MORPH_CLOSE, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (k, k)))
+    # 透明な容器は輪郭が細い線にしか写らず、線はところどころ途切れる。線で囲まれた内側も前景にする。
+    # 線を太らせて切れ目をふさぎ、外周から届かない領域（内側）を同じ幅だけ広げて線まで戻す
+    kf = max(k, int(FILL_GAP * max(h, w)) | 1)
+    thick = cv2.dilate(fg, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kf, kf)))
+    cv2.floodFill(thick, None, (0, 0), 2)
+    inside = (thick == 0).astype(np.uint8)
+    if inside.any():
+        fg |= cv2.dilate(inside, cv2.getStructuringElement(cv2.MORPH_ELLIPSE, (kf + 2, kf + 2)))
+        # 内側に凹凸の線が多いと、広げた内側が輪郭の線まで届かない。同じ行の中で近い線とはつなぐ。
+        # 横方向だけなので各行の左右の端は変わらない。内側とつながった部分だけを足す（商品の下の注記の文字などは足さない）
+        joined = cv2.morphologyEx(fg, cv2.MORPH_CLOSE, np.ones((1, kf), np.uint8))
+        _, lab_j = cv2.connectedComponents(joined, connectivity=8)
+        fg |= np.isin(lab_j, np.unique(lab_j[inside > 0])).astype(np.uint8)
     fg = cv2.morphologyEx(fg, cv2.MORPH_OPEN, np.ones((3, 3), np.uint8))
 
     n, labels, stats, _ = cv2.connectedComponentsWithStats(fg, connectivity=8)

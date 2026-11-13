@@ -17,6 +17,7 @@ web_search と web_fetch を使って、指定された商品の実物の外形�
 - 箱（box）は、height に高さ、diameter に正面の横幅、depth に奥行きを入れる（正面 = 商品名が大きく見える面）。
 - orientation は、チョコバーのようにシールが左右にある横長の袋を寝かせて置くものなら "lying"、それ以外は "upright"。
 - キャップ寸法や総質量が見つからない場合は、同種容器の一般的な値から推定してよいが、notes に「推定」と明記する。
+- notes・container_material・画像の source_page と description・sources の note は、書くことがなければ空文字にする。
 - mass_kg は中身込みの総質量。
 
 画像について:
@@ -43,24 +44,24 @@ assembly のとき（それ以外は parts を空、static を false にする�
   rotation は XYZ 順のオイラー角 [度]（傾いた画面など。不要なら [0,0,0]）。
 - finish は表面の種類（matte / plastic / metal / glossy / glass / frosted / translucent / screen / light。液晶の画面・光る看板は screen、照明の光るカバー・LED は light、透明な窓・扉は glass、
   すりガラス・ビニール傘・半透明のフィルムのように後ろがぼやけて透けるものは frosted、乳白の樹脂（HDPE のボトル・ヨーグルトのカップ）は translucent）。
-- material は部品の素材を英語 1 語で（wood / food / paper など）。finish から分かる plastic・metal・glass なら null。
-- faces は box 部品の面に貼る画像の番号（image_candidates の順番、front/right/back/left/top/bottom、ない面は null）。
+- material は部品の素材を英語 1 語で（wood / food / paper など）。finish から分かる plastic・metal・glass なら空文字。
+- faces は box 部品の面に貼る画像の番号（image_candidates の順番）を、[front, right, back, left, top, bottom] の順に 6 個並べる。
+  画像のない面は -1。どの面にも貼らない部品は空の配列にする。
 - 床に据え置く什器は static を true にする（剛体にせず、動かないコリジョンにする）。
 tags は検索用の短い語を 3〜8 個（ブランド・種類・味・用途など。日本語と英語を混ぜてよい。カテゴリと形状は自動で足すので不要）。
 slug は英小文字とアンダースコアの短い識別子（例: green_tea_600ml_pet）。
 """
 
+# 構造化出力のスキーマは、null を許す項目（anyOf）を 16 個までしか持てない。
+# 文字列の「なし」は空文字、faces の「なし」は -1・空の配列で受け取り、_normalize() で None に戻す。
 _STR = {"type": "string"}
 _NUM = {"type": "number"}
 _HEX = {"type": "string", "pattern": "^#[0-9A-Fa-f]{6}$"}
 
 _VEC3 = {"type": "array", "items": _NUM}
-_FACES = {
-    "type": "object",
-    "additionalProperties": False,
-    "required": ["front", "right", "back", "left", "top", "bottom"],
-    "properties": {f: nullable({"type": "integer"}) for f in ("front", "right", "back", "left", "top", "bottom")},
-}
+_FACE_NAMES = ("front", "right", "back", "left", "top", "bottom")
+# 面ごとのオブジェクトにすると、検索ツールと一緒に送ったときに「文法が大きすぎる」と拒否される
+_FACES = {"type": "array", "items": {"type": "integer"}}
 _PART = {
     "type": "object",
     "additionalProperties": False,
@@ -73,9 +74,9 @@ _PART = {
         "rotation": _VEC3,
         "color": nullable(_HEX),
         "finish": {"type": "string", "enum": list(FINISHES)},
-        "faces": nullable(_FACES),
+        "faces": _FACES,
         "collision": {"type": "boolean"},
-        "material": nullable(_STR),
+        "material": _STR,
     },
 }
 
@@ -105,7 +106,7 @@ SCHEMA = {
         },
         "capacity_ml": nullable(_NUM),
         "mass_kg": nullable(_NUM),
-        "container_material": nullable(_STR),
+        "container_material": _STR,
         "transparency": nullable({"type": "string", "enum": list(TRANSPARENCIES)}),
         "orientation": {"type": "string", "enum": list(ORIENTATIONS)},
         "category": {"type": "string", "enum": list(CATEGORIES)},
@@ -122,7 +123,7 @@ SCHEMA = {
                 "type": "object",
                 "additionalProperties": False,
                 "required": ["url", "source_page", "description"],
-                "properties": {"url": _STR, "source_page": nullable(_STR), "description": nullable(_STR)},
+                "properties": {"url": _STR, "source_page": _STR, "description": _STR},
             },
         },
         "sources": {
@@ -131,10 +132,10 @@ SCHEMA = {
                 "type": "object",
                 "additionalProperties": False,
                 "required": ["url", "note"],
-                "properties": {"url": _STR, "note": nullable(_STR)},
+                "properties": {"url": _STR, "note": _STR},
             },
         },
-        "notes": nullable(_STR),
+        "notes": _STR,
         "parts": {"type": "array", "items": _PART},
         "static": {"type": "boolean"},
         "tags": {"type": "array", "items": _STR},
@@ -156,4 +157,31 @@ def search_product(product_name: str, model: str) -> ProductSpec:
         tools=TOOLS,
         effort="high",
     )
-    return ProductSpec.from_dict(data)
+    return ProductSpec.from_dict(_normalize(data))
+
+
+def _none_if_blank(d: dict, *keys: str) -> None:
+    for k in keys:
+        if isinstance(d.get(k), str) and not d[k].strip():
+            d[k] = None
+
+
+def _faces(v: list[int] | None) -> dict | None:
+    """[front, right, back, left, top, bottom] の番号（-1 = なし）を、面の名前をキーにした辞書に直す。"""
+    nums = [n if isinstance(n, int) and n >= 0 else None for n in (v or [])][: len(_FACE_NAMES)]
+    if not any(n is not None for n in nums):
+        return None
+    return dict(zip(_FACE_NAMES, nums + [None] * (len(_FACE_NAMES) - len(nums))))
+
+
+def _normalize(data: dict) -> dict:
+    """スキーマの都合で空文字・-1・空の配列にした「なし」を None に戻す。"""
+    _none_if_blank(data, "notes", "container_material")
+    for c in data.get("image_candidates") or []:
+        _none_if_blank(c, "source_page", "description")
+    for src in data.get("sources") or []:
+        _none_if_blank(src, "note")
+    for part in data.get("parts") or []:
+        _none_if_blank(part, "material")
+        part["faces"] = _faces(part.get("faces"))
+    return data

@@ -53,7 +53,7 @@ Isaac Simは、作る・書き出す・SimReadyの検証には要りません。
 
 ```sh
 git clone https://github.com/atinfinity/agentic-usd-gen.git && cd agentic-usd-gen
-uv sync
+uv sync --extra simready   # agentic-usd-gen-simready を使わないなら uv sync だけでよい
 cp .env.example .env   # 商品名から検索して作るときだけ。ANTHROPIC_API_KEY=... を記入
 ```
 

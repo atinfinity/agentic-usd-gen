@@ -67,6 +67,9 @@ TRANSLUCENT_COLOR = "#F4F4F0"  # 色の指定がない半透明の容器（無�
 # 濁り 0.25（スポーツドリンク）で約 2、0.7（オレンジジュース）で約 25、0.95（牛乳）で約 50
 TURBID_TAU = 60.0
 TURBID_ANISOTROPY = 0.2  # 散乱は少し前向き（果肉・乳脂肪の粒）
+# 半透明の容器に濁った液体（濁り 0.5 以上。ケチャップなど）を入れたときの容器の MDL：素通しでない分をすべて拡散透過にする。
+# Isaac Sim の RTX では、容器の拡散反射が少しでもある（0.9 でも）と白いもやがかかり、赤いケチャップが薄い桃色に見えた
+TRANSLUCENT_TURBID = 0.5
 
 
 def container_transparency(container_material: str | None, transparency: str | None = None) -> str:
@@ -363,6 +366,8 @@ class RevolveBuilder:
             if turbidity:
                 materials["Liquid"].update(turbidity=turbidity, anisotropy=TURBID_ANISOTROPY,
                                            scattering=round(TURBID_TAU * turbidity**2.5 / liq_d, 3))
+            if translucent and turbidity >= TRANSLUCENT_TURBID:
+                body_mat["diffuse_transmission"] = 1.0
         double_sided = ["Body"]
         if knurl:
             # ねじキャップの側面の縦の溝（法線マップ）。上面は溝を付けないので別のマテリアルにする

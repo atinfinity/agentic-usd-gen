@@ -932,7 +932,7 @@ def miso_cup_750g() -> Product:
 
 def ketchup_bottle_500g() -> Product:
     form = _squeeze_bottle(0.205, 0.072, body_h=0.172, neck_r=0.0145, cap_r=0.0190, cap_h=0.020, tip_r=0.0050,
-                           label=(0.040, 0.125), liquid_top=0.160)
+                           label=(0.040, 0.125), liquid_top=0.170)
     white, red, green, liquid = WHITE, "#C62828", "#2E7D32", "#B3160E"
     c = label_canvas(form, white, seed=5971)
     W, H = c.w_mm, c.h_mm

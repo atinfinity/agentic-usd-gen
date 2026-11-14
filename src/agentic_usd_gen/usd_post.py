@@ -267,6 +267,8 @@ def _setup_material(mat: UsdShade.Material, params: dict) -> None:
         # ぼやけて素通しになり（後ろや中身がにじんで見える）、残りは光を拡散させて通す・返す（白く濁る）
         col = srgb_to_linear(params["color"])
         clarity, rough = params.get("clarity", 0.5), params.get("roughness", 0.35)
+        # 素通しでない分のうち拡散透過の割合（MDL）。濁った液体を入れた容器は 1（拡散反射なし。shapes/revolve.py）
+        diffuse_transmission = params.get("diffuse_transmission", 0.7)
         preview(diffuseColor=col, opacity=round(1 - 0.6 * clarity, 3), ior=1.5, roughness=rough)
         _add_mdl(mat, "OmniSurface", {
             "diffuse_reflection_weight": (F, 1.0),
@@ -279,7 +281,7 @@ def _setup_material(mat: UsdShade.Material, params: dict) -> None:
             # 素通しでない分の 7 割を拡散透過（thin_walled では subsurface が拡散透過になる）。
             # 拡散反射が多いと白く光って中身が見えなくなる
             "enable_diffuse_transmission": (B, True),
-            "subsurface_weight": (F, 0.7),
+            "subsurface_weight": (F, diffuse_transmission),
             "subsurface_transmission_color": (C, col),
             "thin_walled": (B, True),
         })

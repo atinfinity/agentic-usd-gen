@@ -367,10 +367,15 @@ def test_can_label_metallic(tmp_path, bottle_png, blender, material, metallic):
     assert body.GetInput("metallic_constant").Get() == pytest.approx(metallic)
 
 
-def test_translucent_container(tmp_path, bottle_png, blender):
-    """半透明の容器（HDPE など）は中身の液体を作り、本体を半透明の膜（OmniSurface の thin_walled + 拡散透過）にする。"""
+@pytest.mark.parametrize("turbidity, diffuse_transmission", [(None, 0.7), (1.0, 1.0)])
+def test_translucent_container(tmp_path, bottle_png, blender, turbidity, diffuse_transmission):
+    """半透明の容器（HDPE など）は中身の液体を作り、本体を半透明の膜（OmniSurface の thin_walled + 拡散透過）にする。
+    濁った液体（ケチャップなど）を入れた容器は拡散反射をなくす（白いもやで中身が桃色に見えるため）。"""
+    from agentic_usd_gen.spec import Colors
+
     spec = ProductSpec(product_name="漂白剤", slug="bleach", shape_class="revolve",
-                       dimensions=Dimensions(H, D), mass_kg=0.5, container_material="HDPE (translucent)")
+                       dimensions=Dimensions(H, D), mass_kg=0.5, container_material="HDPE (translucent)",
+                       colors=Colors(liquid="#B3160E", liquid_turbidity=turbidity))
     ctx = BuildContext(spec, [bottle_png], None, Landmarks(), tmp_path, tmp_path / "debug", blender)
     result = RevolveBuilder().build(ctx)
     assert result.meta["profile"]["translucent"] == "translucent"
@@ -382,6 +387,7 @@ def test_translucent_container(tmp_path, bottle_png, blender):
     assert mdl.GetSourceAssetSubIdentifier("mdl") == "OmniSurface"
     assert mdl.GetInput("thin_walled").Get() is True
     assert mdl.GetInput("enable_diffuse_transmission").Get() is True
+    assert mdl.GetInput("subsurface_weight").Get() == pytest.approx(diffuse_transmission)
     assert validate(result.usd_path, spec.dimensions).ok
 
 

@@ -9,7 +9,7 @@ uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --recipes reci
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional -m "フタの色を修正"  # 更新履歴に変更内容を書く
 ```
 
-書き出しでは、中身が同じテクスチャを1つのファイルにまとめ、USDの参照をそれに向けます（同じ商品を什器に並べると、部品ごとに同じ画像ができるため。有孔ボードの電池・電球売場`pegboard_batteries_bulbs`は、まとめる前の559 MBが51 MBになった）。asset.jsonが名前で参照する画面・掲示物の画像はまとめません。
+書き出しでは、中身が同じテクスチャを1つのファイルにまとめ、USDの参照をそれに向けます。同じ商品を什器に並べると、部品ごとに同じ画像ができるためです。たとえば有孔ボードの電池・電球売場（`pegboard_batteries_bulbs`）は、559 MBが51 MBになりました。asset.jsonが名前で参照する画面・掲示物の画像はまとめません。
 
 ```
 assets/
@@ -157,8 +157,10 @@ UsdPreviewSurfaceとMDLはそのまま残すので、使う側が対応する出
 ## 把持の線
 
 ロボットがつかむ向きの目安として、把持の線（SimReadyのFET_005。GSP.001）も書きます（`src/agentic_usd_gen/grasp.py`）。
-ルート直下の`grasp_identifier_01`（2点の`BasisCurves`）で、2点はハンドの指が当たる所です。高さの中ほどの断面
-（メッシュの辺と水平面の交点）で幅の狭いほうの向き（xかy）に引くので、ボトル・缶・カップは直径、箱・袋・かごは短い辺を横切ります。
+ルート直下の`grasp_identifier_01`（2点の`BasisCurves`）で、2点はハンドの指が当たる所です。高さの中ほどの断面（メッシュの辺と水平面の交点）で幅の狭いほうの向き（xかy）に引くので、ボトル・缶・カップは直径、箱・袋・かごは短い辺を横切ります。
+
+![把持の線の引き方: (1) 高さの中ほどで水平に切った断面を使う。(2) ボトル・缶は断面がほぼ円なので直径を横切り、2点の間が指の開き（width）。(3) 箱・袋は幅の狭いほうの向き（XかY）に引くので短い辺を横切る](grasp.svg)
+
 描画しない`guide`なので、プレビューにもQuick Look用のusdzにも出ません。床に固定する什器（`static`）には付けません。
 線の2点と指の開き（`width`）は`meta.json`の`grasp`に書きます。
 

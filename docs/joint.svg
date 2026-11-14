@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 340" width="800" height="340" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">関節の書き方（扉の例）</title>
+<desc id="d">上から見た什器と扉。扉の部品に link = DoorLink を付け、joints に revolute の関節を書く。anchor は蝶番の位置、axis = Z は上向きの回転軸、limits = [-100, 0] は閉じた位置 0° から手前へ 100° 開く範囲。USD では DoorLink がルートの下の別の剛体になり、DoorLink/Joint が本体（ルート）と DoorLink をつなぐ。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:12.5px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dim{fill:none;stroke:#9A9A94;stroke-width:1.2}
+.sh{fill:#EDEDE8;stroke:#6B6F76;stroke-width:1.5;stroke-linejoin:round}
+.door{fill:#D9E6F5;stroke:#1D5FA8;stroke-width:1.5}
+.ac{fill:none;stroke:#C2410C;stroke-width:1.8;stroke-dasharray:6 4}
+.tr{fill:none;stroke:#C9C9C3;stroke-width:1.5}
+</style>
+<rect x="0.5" y="0.5" width="799" height="339" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+
+<rect x="20" y="20" width="440" height="300" rx="10" class="box"/>
+<text x="36" y="44" class="h">上から見る</text>
+<text x="36" y="64" class="n">右が +X、上が +Y、下が正面（−Y）</text>
+
+<rect x="160" y="76" width="140" height="108" rx="3" class="sh"/>
+<text x="230" y="126" text-anchor="middle" class="b">本体（ルート）</text>
+<text x="230" y="144" text-anchor="middle" class="n">static なら動かない</text>
+
+<rect x="170" y="184" width="120" height="6" fill="none" stroke="#1D5FA8" stroke-width="1.2" stroke-dasharray="4 3"/>
+<text x="296" y="206" class="n">0°（閉じた位置）</text>
+
+<path d="M290 187 A120 120 0 0 1 149 305" class="ac"/>
+<path d="M156 299 L149 305 L158 307" fill="none" stroke="#C2410C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+<text x="262" y="270" class="m n" fill="#C2410C" style="fill:#C2410C">limits: [-100, 0]</text>
+<text x="262" y="288" class="n">0° から手前へ 100° まで開く</text>
+
+<rect x="167" y="187" width="6" height="120" class="door" transform="rotate(10 170 187)"/>
+<text x="40" y="244" class="b">Door</text>
+<text x="40" y="262" class="m n">link: DoorLink</text>
+<text x="40" y="280" class="n">−100° で開いた扉</text>
+
+<circle cx="170" cy="187" r="9" fill="#FFFFFF" stroke="#24292F" stroke-width="1.5"/>
+<circle cx="170" cy="187" r="2.5" fill="#24292F"/>
+<path d="M158 182 L112 168" class="dim"/>
+<text x="36" y="96" class="m n">axis: Z</text>
+<text x="36" y="112" class="n">⊙ = 上向きの軸</text>
+<text x="36" y="158" class="m n">anchor</text>
+<text x="36" y="174" class="n">蝶番の位置</text>
+
+<rect x="470" y="20" width="310" height="300" rx="10" class="box"/>
+<text x="486" y="44" class="h">書き出した USD</text>
+<text x="486" y="78" class="m h">/&lt;ルート&gt;</text>
+<text x="600" y="78" class="n">本体の剛体</text>
+<text x="522" y="116" class="m b">Body …</text>
+<text x="600" y="116" class="n">link のない部品</text>
+<rect x="516" y="168" width="248" height="94" rx="8" fill="#F3F7FC" stroke="#C5D7EC"/>
+<path d="M500 82 V184 M500 112 H516 M500 184 H516 M532 198 V250 M532 220 H548 M532 250 H548" class="tr"/>
+<text x="522" y="188" class="m h">DoorLink</text>
+<text x="600" y="188" class="n">可動部の剛体</text>
+<text x="554" y="224" class="m b">Door</text>
+<text x="600" y="224" class="n">link = DoorLink の部品</text>
+<text x="554" y="254" class="m b">Joint</text>
+<text x="600" y="254" class="n">RevoluteJoint</text>
+<text x="486" y="290" class="n">Joint は body0 = ルート、body1 = DoorLink。</text>
+<text x="486" y="308" class="n">質量は体積比で本体と可動部に分ける。</text>
+</svg>

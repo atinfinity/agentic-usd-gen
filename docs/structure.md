@@ -1,10 +1,10 @@
 # ソースの構成
 
-2行目からのファイルは、どれも`src/agentic_usd_gen/`の下にあります。
+表のパスは`src/agentic_usd_gen/`からの相対パスです。
 
 | ファイル | 役割 |
 |---|---|
-| `src/agentic_usd_gen/cli.py` | コマンドライン、全体の流れ |
+| `cli.py` | コマンドライン、全体の流れ |
 | `search.py` / `vision.py` / `llm.py` | Claudeによる検索・画像判定 |
 | `images.py` | 画像のダウンロード |
 | `profile.py` / `label.py` | 輪郭抽出・半径プロファイル・ラベルの展開 |

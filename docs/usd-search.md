@@ -18,8 +18,7 @@ USD SearchはLinux＋Docker Compose（画像検索・サムネイル描画には
 | `semantics:labels:class` / `semantics:labels:tag` | `UsdSemantics.LabelsAPI`のラベル | Isaac Sim 5以降のReplicatorのラベル |
 | 同じディレクトリの`asset.json` | 寸法・質量・物理・出典・版など全部 | サイドカー設定を入れるとUSD Searchの索引に入る |
 
-タグはカテゴリ・形状・容器の材質（英語の識別子と日本語）に、`cache/<商品名>/spec.json`の`tags`を足したものです。
-`tags`はspec.jsonに書き足して`agentic-usd-gen-export`し直せば反映されます（作り直しは不要。版はminorが上がります）。
+タグの中身と足し方は[タグ](export.md#タグ)にあります。
 
 ## 起動
 

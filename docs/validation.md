@@ -42,7 +42,7 @@ uv run agentic-usd-gen-simready --output report.json  # 結果を JSON でも書
     uv run agentic-usd-gen-simready --strict-mdl
     ```
 
-    Isaac Sim 6.1.0（pip版、Linux）で、このツールで作った架空のアセット565点すべてがこの方法で合格することを確認しました。RTXで描画しても、OmniGlassの透け方とラベルのテクスチャは崩れません。
+    この方法で合格したアセットの数は[Isaac Simの環境](#isaac-simの環境)にあります。RTXで描画しても、OmniGlassの透け方とラベルのテクスチャは崩れません。
 
 - 任意の機能（把持・OpenPBRなど）は満たさなくても合格です。`-v`では満たしていない理由（要件IDと最初のメッセージ）も出します。
 
@@ -79,6 +79,14 @@ uv run agentic-usd-gen-simready --output report.json  # 結果を JSON でも書
 | 環境変数`ISAACSIM_PATH` | 同上（`ISAACSIM_PYTHON`がないとき） | `python.sh`のあるフォルダ（既定`~/isaacsim`） |
 | 環境変数`PXR_AR_DEFAULT_SEARCH_PATH` | SimReadyの検証の`--strict-mdl` | `<Isaac Sim の venv>/lib/python3.12/site-packages/isaacsim/kit/mdl/core/Base` |
 
+Isaac Sim 6.1.0（pip版、Linux）で、このツールで作った架空のアセットが次のとおりすべて合格することを確かめています。
+
+| 検証 | 合格した点数 |
+|---|---|
+| SimReadyの検証（`--strict-mdl`） | 565点 |
+| [落下テスト](#落下テスト) | 565点 |
+| [関節の開閉テスト](#関節の開閉テスト) | 関節のある23点（扉・窓・便器のふた・冷蔵や冷凍のケースの扉・回転する什器など） |
+
 ## 落下テスト
 
 書き出したアセットをIsaac Sim（headless）で床に落とし、倒れ・跳ね・床の突き抜け・静止までの時間を確かめます。重心や質量の誤りを見つけるためのものです。
@@ -112,7 +120,7 @@ uv run agentic-usd-gen-droptest --output drop.json --series  # 結果を JSON �
 - 什器（キネマティックな剛体）も、テストの間だけ動く剛体にして落とします（ファイルは変えません）。
 - 天井付けの什器（`asset.json`の`mount`が`ceiling`。仕様の`mount`）は、上下を返して取り付け面を下にして落とします。書き出したままの向きだと、ドーム型の監視カメラは半球が下になって転がるためです。
 - 1点でも不合格なら終了コードは1です。Isaac Simのログは`--log`（既定は一時フォルダの`agentic-usd-gen-droptest.log`）に書きます。
-- 物理の刻みはIsaac Simの既定と同じ60 Hzです（`--hz`）。Isaac Sim 6.1.0（pip版）で、このツールで作った架空のアセット565点すべてが合格することを確かめています。
+- 物理の刻みはIsaac Simの既定と同じ60 Hzです（`--hz`）。
 
 ## 関節の開閉テスト
 
@@ -138,7 +146,6 @@ uv run agentic-usd-gen-jointtest --output joint.json --series  # 結果を JSON 
 | 本体が動いた | 床に固定した本体が1 mmより動いた |
 
 - 1点でも不合格なら終了コードは1です。Isaac Simのログは`--log`（既定は一時フォルダの`agentic-usd-gen-jointtest.log`）に書きます。
-- このツールで作った架空のアセットのうち関節のある23点（扉・窓・便器のふた・冷蔵や冷凍のケースの扉・回転する什器など）すべてが、Isaac Sim 6.1.0（pip版）で合格することを確かめています。
 
 ## 見た目の検証
 

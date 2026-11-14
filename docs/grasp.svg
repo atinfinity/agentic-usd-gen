@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 300" width="800" height="300" role="img" aria-labelledby="t d" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', 'Hiragino Sans', 'Noto Sans JP', 'Yu Gothic', Meiryo, sans-serif">
+<title id="t">把持の線の引き方</title>
+<desc id="d">高さの中ほどで水平に切った断面を上から見て、幅の狭いほうの向き（X か Y）に線を引く。2 点は指が当たる所で、2 点の間の長さが指の開き（width）。ボトルや缶は断面がほぼ円なので直径を、箱や袋は短い辺を横切る。</desc>
+<style>
+.m{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace}
+.h{font-size:13px;font-weight:700;fill:#1F2328}
+.b{font-size:12.5px;fill:#484F58}
+.n{font-size:12px;fill:#6B6F76}
+.box{fill:#FFFFFF;stroke:#DEDED9}
+.dim{fill:none;stroke:#9A9A94;stroke-width:1.2}
+.sh{fill:#EDEDE8;stroke:#6B6F76;stroke-width:1.5;stroke-linejoin:round}
+.g{stroke:#2F7D4F;stroke-width:3;stroke-linecap:round}
+.gd{fill:#2F7D4F}
+</style>
+<rect x="0.5" y="0.5" width="799" height="299" rx="14" fill="#FBFBFA" stroke="#D9D9D4"/>
+
+<rect x="20" y="20" width="250" height="260" rx="10" class="box"/>
+<text x="36" y="44" class="h">① 横から見る</text>
+<rect x="136" y="58" width="20" height="14" rx="2" class="sh" fill="#D8D8D2"/>
+<path d="M138 72 h16 v6 c0 12 14 14 14 28 v118 a6 6 0 0 1 -6 6 h-32 a6 6 0 0 1 -6 -6 v-118 c0 -14 14 -16 14 -28 z" class="sh"/>
+<path d="M92 144 H200" stroke="#9A9A94" stroke-width="1.2" stroke-dasharray="5 4"/>
+<path d="M124 144 H168" class="g"/>
+<circle cx="124" cy="144" r="4" class="gd"/><circle cx="168" cy="144" r="4" class="gd"/>
+<text x="178" y="137" class="n">高さの中ほど</text>
+<path d="M76 58 V230 M72 58 H80 M72 230 H80" class="dim"/>
+<text x="64" y="144" text-anchor="middle" class="n" transform="rotate(-90 64 144)">高さ</text>
+<text x="36" y="258" class="b">高さの中ほどで水平に切った</text>
+<text x="36" y="274" class="b">断面を使う</text>
+
+<rect x="280" y="20" width="250" height="260" rx="10" class="box"/>
+<text x="296" y="44" class="h">② 断面を上から（ボトル・缶）</text>
+<circle cx="405" cy="134" r="44" class="sh"/>
+<path d="M361 134 H449" class="g"/>
+<circle cx="361" cy="134" r="4" class="gd"/><circle cx="449" cy="134" r="4" class="gd"/>
+<path d="M361 196 H449 M361 192 V200 M449 192 V200" class="dim"/>
+<text x="405" y="214" text-anchor="middle" class="n"><tspan class="m">width</tspan>（指の開き）</text>
+<text x="296" y="258" class="b">断面はほぼ円なので、</text>
+<text x="296" y="274" class="b">直径を横切る</text>
+
+<rect x="540" y="20" width="250" height="260" rx="10" class="box"/>
+<text x="556" y="44" class="h">③ 断面を上から（箱・袋）</text>
+<rect x="615" y="112" width="100" height="44" rx="2" class="sh"/>
+<path d="M615 92 H715 M615 88 V96 M715 88 V96" class="dim"/>
+<text x="665" y="82" text-anchor="middle" class="n">広い（X）</text>
+<path d="M665 112 V156" class="g"/>
+<circle cx="665" cy="112" r="4" class="gd"/><circle cx="665" cy="156" r="4" class="gd"/>
+<path d="M724 112 V156 M720 112 H728 M720 156 H728" class="dim"/>
+<text x="731" y="138" class="n">狭い（Y）</text>
+<text x="665" y="180" text-anchor="middle" class="n">正面（−Y）</text>
+<path d="M660 188 L665 196 L670 188" class="dim"/>
+<text x="556" y="258" class="b">幅の狭いほうの向き（X か Y）に</text>
+<text x="556" y="274" class="b">引くので、短い辺を横切る</text>
+</svg>

@@ -326,27 +326,27 @@ def _curtain(slug: str, name: str, W: float, drop: float, *, mass: float, tags: 
                    description=description + "厚手の 2 枚はタッセルで両側に寄せ、レースは閉じた形。生地には当たり判定が無い"
                                "（レールだけ）。正面（-Y）が室内側。",
                    tags=["カーテン", "カーテンレール", "レースのカーテン", "窓まわり", "内装", "curtain", "curtains",
-                         "drapes", "sheer curtain", "window treatment", *tags],
+                         "drapes", "sheer curtain", "window treatment", *tags],  # 窓の名前だけのタグは付けない（窓として選ばれる）
                    colors=Colors(label_base=FABRIC), images=[fab, lace], parts=parts, mount="floor")
 
 
 def curtain_waist_window() -> Product:
     return _curtain("curtain_waist_window", "腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 1.35 m",
-                    1.90, 1.35, mass=4.5, tags=["腰窓", "waist window"],
+                    1.90, 1.35, mass=4.5, tags=["腰窓用", "waist window curtain"],
                     description="形は住宅の腰窓（幅 1690 mm）に掛けるカーテン（レール幅 1.9 m、丈 1350 mm＝窓の下端より 15 cm 長い、"
                                 "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 
 
 def curtain_floor_window() -> Product:
     return _curtain("curtain_floor_window", "掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 2.1 m",
-                    1.90, 2.08, mass=6.5, tags=["掃き出し窓", "floor-length curtain"],
+                    1.90, 2.08, mass=6.5, tags=["掃き出し窓用", "floor-length curtain"],
                     description="形は住宅の掃き出し窓（幅 1690 mm）に掛けるカーテン（レール幅 1.9 m、丈 2080 mm＝床から 1 cm 浮く、"
                                 "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 
 
 def curtain_small_window() -> Product:
     return _curtain("curtain_small_window", "小さな腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.0 m・丈 1.1 m",
-                    1.00, 1.10, mass=2.2, gather=0.18, pleats=(16, 5), tags=["腰窓", "小窓", "small window", "waist window"],
+                    1.00, 1.10, mass=2.2, gather=0.18, pleats=(16, 5), tags=["腰窓用", "小窓用", "small window curtain", "waist window curtain"],
                     description="形は住宅の小さな腰窓（幅 600〜800 mm）に掛けるカーテン（レール幅 1.0 m、丈 1100 mm、"
                                 "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 
@@ -354,7 +354,7 @@ def curtain_small_window() -> Product:
 def curtain_wide_window() -> Product:
     return _curtain("curtain_wide_window", "幅の広い掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 2.1 m",
                     2.80, 2.08, mass=9.0, gather=0.42, pleats=(40, 11),
-                    tags=["掃き出し窓", "幅の広い窓", "floor-length curtain", "wide window"],
+                    tags=["掃き出し窓用", "幅の広い窓用", "floor-length curtain", "wide window curtain"],
                     description="形は住宅の幅の広い掃き出し窓（幅 2560 mm の 4 枚引き違い）に掛けるカーテン（レール幅 2.8 m、"
                                 "丈 2080 mm＝床から 1 cm 浮く、ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 

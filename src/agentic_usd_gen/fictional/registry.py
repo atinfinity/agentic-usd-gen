@@ -75,6 +75,13 @@ _dup = PRODUCTS.keys() & windows.PRODUCTS.keys()
 assert not _dup, f"slug が重複しています: {sorted(_dup)}"
 PRODUCTS.update(windows.PRODUCTS)
 
+# Wall chalkboards and whiteboards, and floor rugs: classrooms, offices and homes.
+from . import room_goods  # noqa: E402
+
+_dup = PRODUCTS.keys() & room_goods.PRODUCTS.keys()
+assert not _dup, f"slug が重複しています: {sorted(_dup)}"
+PRODUCTS.update(room_goods.PRODUCTS)
+
 # Family restaurant and izakaya: seating, tabletop goods, tableware, plated dishes, service equipment and the kitchen.
 # A separate block keeps merges simple.
 from . import (restaurant_dining, restaurant_equipment, restaurant_food, restaurant_kitchen,  # noqa: E402

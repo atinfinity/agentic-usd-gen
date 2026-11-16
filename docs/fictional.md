@@ -1,7 +1,7 @@
 # 架空の商品
 
 実在の商品名・ブランド名・ロゴ・商品写真を使わないアセットを作ります。公開リポジトリに置く用途を想定しています。
-565点を定義しています（`src/agentic_usd_gen/fictional/`の下。slugの一覧は`agentic-usd-gen-fictional --list`）。
+576点を定義しています（`src/agentic_usd_gen/fictional/`の下。slugの一覧は`agentic-usd-gen-fictional --list`）。
 
 ![架空の商品のプレビュー8点。上段は回転体の緑茶のペットボトル・カップ麺・いちごジャムの瓶と、袋のポテトチップス。下段は箱のバタークッキー・牛乳の紙パックと、什器のセルフレジ・買い物カート](images/fictional-preview.webp)
 
@@ -22,7 +22,7 @@
 | 飲食店 | `restaurant_dining.py`・`restaurant_equipment.py`・`restaurant_food.py`・`restaurant_kitchen.py`・`restaurant_tableware.py` | 48 | 客席の家具・配膳の備品・皿に盛った料理・業務用厨房機器・食器 |
 | 専門店・そのほかの店 | `specialty_shops.py`・`store_kinds.py`・`misc_shops.py` | 69 | 自転車店・和菓子店・レコード店・スポーツ用品店・家具店・花屋・おもちゃ屋・ペットショップ・靴屋・眼鏡店・酒屋など |
 | バックヤード・物流 | `backyard.py` | 13 | カゴ台車・番重・折りたたみコンテナ・段ボール箱・ハンドリフト・スチールラック |
-| 内装・建具 | `store_env.py`・`interior.py`・`windows.py` | 47 | 床・壁・天井・照明・掲示物・ドア・トイレ・間仕切り・窓・カーテン |
+| 内装・建具 | `store_env.py`・`interior.py`・`windows.py`・`room_goods.py` | 58 | 床・壁・天井・照明・掲示物・ドア・トイレ・間仕切り・窓・カーテン・黒板・ホワイトボード・ラグ |
 | 植物工場 | `farm.py` | 4 | イチゴの栽培ラック・ポット苗・AGVの誘導テープ |
 
 ## 見本
@@ -42,6 +42,10 @@
 | ![窓の架空のアセット: 引き違い窓・すべり出し窓・FIX窓・カーテン付きの窓など](images/window_assets.jpg) | ![植物工場の架空のアセット: イチゴの栽培ラックを並べた通路](images/strawberry_farm_aisle.jpg) |
 | **食品・日用品（棚の追加分）** | **専門店・そのほかの店** |
 | ![食品・日用品の架空のアセット: 缶詰・調味料の瓶・袋の粉物・酒の瓶・洗剤のボトルなど22点](images/more_products.jpg) | ![専門店の架空のアセット: 自転車・ヘルメット・和菓子・レコード・ボール・家具・化粧品の什器・アジア食材の袋や瓶など](images/specialty_shops_preview.jpg) |
+
+### 教室・オフィス・住宅の内装
+
+![壁掛けの黒板・ホワイトボード2点、ラグ4点（ベージュ・グレーの柄・丸・ランナー）、4枚引き違いの腰窓・掃き出し窓、小さな窓用と幅の広い窓用のカーテン](images/room_goods.jpg)
 
 ### パン屋
 

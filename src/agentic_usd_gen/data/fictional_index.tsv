@@ -427,6 +427,17 @@ casement_window	environment	assembly	縦すべり出し窓 405×970
 curtain_waist_window	environment	assembly	腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 1.35 m
 curtain_floor_window	environment	assembly	掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 2.1 m
 roll_screen	environment	assembly	ロールスクリーン 幅 1.75 m（生地を半分下ろした形）
+sliding_window_waist_wide	environment	assembly	4 枚引き違いの腰窓 2560×1170
+sliding_window_floor_wide	environment	assembly	4 枚引き違いの掃き出し窓 2560×2030
+curtain_small_window	environment	assembly	小さな腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.0 m・丈 1.1 m
+curtain_wide_window	environment	assembly	幅の広い掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 2.1 m
+wall_chalkboard	environment	assembly	壁掛けの黒板 3600×1200（緑・粉受け付き）
+wall_whiteboard	environment	assembly	壁掛けのホワイトボード 1800×900（マーカー受け付き）
+wall_whiteboard_small	environment	assembly	壁掛けのホワイトボード 1200×900（マーカー受け付き）
+rug_beige_200x140	environment	assembly	無地のラグ 2000×1400（ベージュ）
+rug_gray_240x170	environment	assembly	柄のラグ 2400×1700（グレー・ひし形）
+rug_round_120	environment	assembly	丸いラグ 直径 1200（セージグリーン）
+rug_runner_70x200	environment	assembly	細長いラグ（ランナー）700×2000（キリム風の縞）
 booth_seat	fixture	assembly	ファミレスのボックス席のソファ（2 人掛け・片側）
 family_table_4	fixture	assembly	ファミレスの 4 人用テーブル（1200 × 750 mm）
 family_table_2	fixture	assembly	ファミレスの 2 人用テーブル（750 × 750 mm）

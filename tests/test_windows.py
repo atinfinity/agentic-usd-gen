@@ -59,3 +59,13 @@ def test_fabric_has_no_collider(products, slug):
     parts = products[slug].parts
     assert all(not p.collision for p in parts if p.material == "fabric")
     assert any(p.collision for p in parts)
+
+
+@pytest.mark.parametrize("slug", [s for s in windows.PRODUCTS if s.startswith("curtain_")])
+def test_curtain_tags_do_not_name_a_bare_window(products, slug):
+    """窓の名前だけのタグがあると、検索で窓として選ばれる。カーテンのタグはどれもカーテンと分かる形にする。"""
+    tags = products[slug].spec().tags
+    window_words = ("window", "窓")
+    bare = [t for t in tags if any(w in t for w in window_words)
+            and not any(c in t for c in ("curtain", "カーテン", "用", "window treatment", "窓まわり"))]
+    assert not bare, (slug, bare)

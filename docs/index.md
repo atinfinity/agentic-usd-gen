@@ -23,7 +23,7 @@
 | コマンド | 何をするか | APIキー | 作ったアセットの公開 |
 |---|---|---|---|
 | `agentic-usd-gen <商品名>` | 実在の商品を検索し、商品ページの画像をテクスチャにして作る | 要る | できない |
-| `agentic-usd-gen-fictional` | [架空の商品](fictional.md) 565点（商品・什器・内装）を、実在の商品名・ロゴ・商品写真を使わずに描いて作る | 要らない | できる |
+| `agentic-usd-gen-fictional` | [架空の商品](fictional.md) 576点（商品・什器・内装）を、実在の商品名・ロゴ・商品写真を使わずに描いて作る | 要らない | できる |
 
 > [!CAUTION]
 > `agentic-usd-gen <商品名>`で作ったアセットは、実在の商品の画像を含みます。画像の権利は元の権利者にあるので、そのアセット（テクスチャ・USD）を公開・再配布しないでください。公開するアセットは`agentic-usd-gen-fictional`で作ります。
@@ -50,7 +50,7 @@ uv sync
 uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 ```
 
-- `soda_pet_500ml`は作る商品の名前（slug）です。ほかのslugに替えたり、空白で区切っていくつも並べたりできます（例: `cup_noodle_tall potato_chips_bag`）。`--all`を付けると565点すべてを作ります。
+- `soda_pet_500ml`は作る商品の名前（slug）です。ほかのslugに替えたり、空白で区切っていくつも並べたりできます（例: `cup_noodle_tall potato_chips_bag`）。`--all`を付けると576点すべてを作ります。
 - 指定できるslugは`uv run agentic-usd-gen-fictional --list`で、分類・形状・品名と一緒に一覧できます（何も作りません）。後ろに語を並べると絞り込めます（例: `--list pouch food`）。分野ごとのまとめは[架空の商品](fictional.md)にあります。
 - `--out`は出力先のフォルダ、`--preview`はプレビュー画像も描く指定です。できたUSDは`out/fictional/soda_pet_500ml/`に入ります。
 

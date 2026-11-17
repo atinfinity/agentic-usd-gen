@@ -138,10 +138,9 @@ def bathroom_window() -> Product:
 
 
 
-def shop_front_window() -> Product:
-    """店先の 4 枚引き違いの掃き出しサッシ（幅 3600・高さ 2200 mm）。八百屋・花屋の開け放した店先。"""
-    W, H, D = 3.60, 2.20, 0.070
-    color = ALU
+def _sliding4(W: float, H: float, color: str = ALU) -> tuple[list[Part], list[Joint], float]:
+    """4 枚引き違い（両端は外のレール、中の 2 枚は室内側のレールで中央で突き合わせる）の部品・関節・動く長さ。"""
+    D = 0.070
     ov = 0.030
     inner_w = W - 2 * F
     sw = (inner_w + 2 * ov) / 4
@@ -161,11 +160,20 @@ def shop_front_window() -> Product:
         sash = _sash(name, x, y, sw, sh, z0, color, GLASS, "glass")
         if i in (1, 2):
             xl = x - sw / 2 + 0.016 if i == 1 else x + sw / 2 - 0.016
-            sash.append(_p(f"{name}Lock", "box", (0.020, 0.012, 0.060), (xl, y - SASH_D / 2 - 0.006, z0 + 1.0),
+            sash.append(_p(f"{name}Lock", "box", (0.020, 0.012, 0.060), (xl, y - SASH_D / 2 - 0.006,
+                                                                         z0 + min(1.0, sh / 2)),
                            STAINLESS, "metal", collision=False, material="steel", bevel=0.003))
         parts += _links(sash, name, f"{name}Link")
         joints.append(Joint(link=f"{name}Link", anchor=[x, y, z0 + sh / 2], type="prismatic", axis="X",
                             limits=limits[i]))
+    return parts, joints, stroke
+
+
+def shop_front_window() -> Product:
+    """店先の 4 枚引き違いの掃き出しサッシ（幅 3600・高さ 2200 mm）。八百屋・花屋の開け放した店先。"""
+    W, H, D = 3.60, 2.20, 0.070
+    color = ALU
+    parts, joints, stroke = _sliding4(W, H, color)
     return Product(slug="shop_front_window", name="店先の 4 枚引き違いサッシ 3600×2200", shape_class="assembly",
                    category=ENV, dims=Dimensions(H, W, depth=D), mass_kg=95.0, static=True,
                    material="aluminum",
@@ -177,6 +185,38 @@ def shop_front_window() -> Product:
                          "内装", "window", "sliding window", "aluminum window", "shop front", "storefront",
                          "storefront window", "shop window", "wide window", "sliding glass door"],
                    colors=Colors(label_base=color), images=[], parts=parts, joints=joints)
+
+
+def _wide(slug: str, name: str, W: float, H: float, *, mass: float, tags: list[str], description: str) -> Product:
+    """住宅・教室の幅の広い 4 枚引き違い窓（網戸なし）。"""
+    D = 0.070
+    parts, joints, stroke = _sliding4(W, H)
+    return Product(slug=slug, name=name, shape_class="assembly", category=ENV, dims=Dimensions(H, W, depth=D),
+                   mass_kg=mass, static=True, material="aluminum",
+                   description=description + "両端の障子は外のレール、中の 2 枚は室内側のレールで、どれも X 方向のスライドの関節"
+                               f"（Sash1Link〜Sash4Link）で {stroke * 1000:.0f} mm まで動く。網戸は無い。正面（-Y）が室内側。",
+                   tags=["窓", "サッシ", "アルミサッシ", "引き違い窓", "4 枚引き違い", "幅の広い窓", "建具", "内装", "window",
+                         "sliding window", "aluminum window", "wide window", "four-pane sliding window", *tags],
+                   colors=Colors(label_base=ALU), images=[], parts=parts, joints=joints)
+
+
+def sliding_window_waist_wide() -> Product:
+    """4 枚引き違いの腰窓（幅 2560・高さ 1170 mm）。和室・広い居室・教室の窓。"""
+    return _wide("sliding_window_waist_wide", "4 枚引き違いの腰窓 2560×1170", 2.56, 1.17, mass=40.0,
+                 tags=["腰窓", "教室の窓", "和室の窓", "waist window", "classroom window", "house window",
+                       "living room window"],
+                 description="形は和室・広い居室・教室に多いアルミの 4 枚引き違いの腰窓（枠の外寸 2560 × 1170 mm、"
+                             "見込み 70 mm、透明のガラス・クレセント錠）で、寸法・質量は代表値。")
+
+
+def sliding_window_floor_wide() -> Product:
+    """4 枚引き違いの掃き出し窓（幅 2560・高さ 2030 mm）。広いリビング・和室の縁側の窓。"""
+    return _wide("sliding_window_floor_wide", "4 枚引き違いの掃き出し窓 2560×2030", 2.56, 2.03, mass=64.0,
+                 tags=["掃き出し窓", "テラス窓", "縁側", "floor-length window", "patio window", "balcony window",
+                       "sliding glass door"],
+                 description="形は広いリビング・和室の縁側に多いアルミの 4 枚引き違いの掃き出し窓（枠の外寸 2560 × 2030 mm、"
+                             "見込み 70 mm、床まであるので庭・ベランダに出られる。透明のガラス・クレセント錠）で、"
+                             "寸法・質量は代表値。")
 
 
 def fixed_window() -> Product:
@@ -257,14 +297,15 @@ def _pleats(prefix: str, x0: float, x1: float, y: float, z0: float, h: float, n:
     return out
 
 
-def _curtain(slug: str, name: str, W: float, drop: float, *, mass: float, tags: list[str], description: str) -> Product:
+def _curtain(slug: str, name: str, W: float, drop: float, *, mass: float, tags: list[str], description: str,
+             gather: float = 0.30, pleats: tuple[int, int] = (28, 8)) -> Product:
     """レール付きのカーテン（厚手 2 枚を両側に寄せ、レースは閉じる）。原点は生地の下端の中央、正面（-Y）が室内側。
 
     レールは上端。窓の枠の外寸より左右 0.1 m ずつ広く、上枠の 0.05〜0.1 m 上に付ける。
     """
     rail_h = 0.030
     H = drop + rail_h + 0.01
-    gather = 0.30  # 寄せた厚手の幅（片側）
+    # gather: 寄せた厚手の幅（片側）。pleats: レースと厚手（片側）のひだの数
     y_drape, y_lace, y_rail = -0.045, 0.020, -0.012
     fab, lace = _weave(FABRIC, 7101), _weave(LACE, 7102)
     parts = [_p("Rail", "box", (W, 0.030, rail_h), (0, y_rail, H - rail_h / 2), WHITE_ALU, "plastic", material="aluminum",
@@ -274,9 +315,9 @@ def _curtain(slug: str, name: str, W: float, drop: float, *, mass: float, tags: 
              _p("RailCapR", "box", (0.020, 0.040, 0.040), (W / 2 + 0.010, y_rail, H - rail_h / 2), WHITE_ALU, "plastic",
                 collision=False, bevel=0.004)]
     z0 = 0.0
-    parts += _pleats("Lace", -W / 2 + 0.02, W / 2 - 0.02, y_lace, z0 + 0.01, drop - 0.01, 28, LACE, "frosted", 0.025, 1)
-    parts += _pleats("DrapeL", -W / 2, -W / 2 + gather, y_drape, z0, drop, 8, FABRIC, "matte", 0.060, 0)
-    parts += _pleats("DrapeR", W / 2 - gather, W / 2, y_drape, z0, drop, 8, FABRIC, "matte", 0.060, 0)
+    parts += _pleats("Lace", -W / 2 + 0.02, W / 2 - 0.02, y_lace, z0 + 0.01, drop - 0.01, pleats[0], LACE, "frosted", 0.025, 1)
+    parts += _pleats("DrapeL", -W / 2, -W / 2 + gather, y_drape, z0, drop, pleats[1], FABRIC, "matte", 0.060, 0)
+    parts += _pleats("DrapeR", W / 2 - gather, W / 2, y_drape, z0, drop, pleats[1], FABRIC, "matte", 0.060, 0)
     parts += [_p(f"Tieback{s}", "box", (gather + 0.02, 0.085, 0.040), (sx * (W / 2 - gather / 2), y_drape, z0 + drop * 0.45),
                  mix(FABRIC, "#000000", 0.15), "matte", collision=False, material="fabric", bevel=0.01)
               for s, sx in (("L", -1), ("R", 1))]
@@ -285,22 +326,37 @@ def _curtain(slug: str, name: str, W: float, drop: float, *, mass: float, tags: 
                    description=description + "厚手の 2 枚はタッセルで両側に寄せ、レースは閉じた形。生地には当たり判定が無い"
                                "（レールだけ）。正面（-Y）が室内側。",
                    tags=["カーテン", "カーテンレール", "レースのカーテン", "窓まわり", "内装", "curtain", "curtains",
-                         "drapes", "sheer curtain", "window treatment", *tags],
+                         "drapes", "sheer curtain", "window treatment", *tags],  # 窓の名前だけのタグは付けない（窓として選ばれる）
                    colors=Colors(label_base=FABRIC), images=[fab, lace], parts=parts, mount="floor")
 
 
 def curtain_waist_window() -> Product:
     return _curtain("curtain_waist_window", "腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 1.35 m",
-                    1.90, 1.35, mass=4.5, tags=["腰窓", "waist window"],
+                    1.90, 1.35, mass=4.5, tags=["腰窓用", "waist window curtain"],
                     description="形は住宅の腰窓（幅 1690 mm）に掛けるカーテン（レール幅 1.9 m、丈 1350 mm＝窓の下端より 15 cm 長い、"
                                 "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 
 
 def curtain_floor_window() -> Product:
     return _curtain("curtain_floor_window", "掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.9 m・丈 2.1 m",
-                    1.90, 2.08, mass=6.5, tags=["掃き出し窓", "floor-length curtain"],
+                    1.90, 2.08, mass=6.5, tags=["掃き出し窓用", "floor-length curtain"],
                     description="形は住宅の掃き出し窓（幅 1690 mm）に掛けるカーテン（レール幅 1.9 m、丈 2080 mm＝床から 1 cm 浮く、"
                                 "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
+
+
+def curtain_small_window() -> Product:
+    return _curtain("curtain_small_window", "小さな腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.0 m・丈 1.1 m",
+                    1.00, 1.10, mass=2.2, gather=0.18, pleats=(16, 5), tags=["腰窓用", "小窓用", "small window curtain", "waist window curtain"],
+                    description="形は住宅の小さな腰窓（幅 600〜800 mm）に掛けるカーテン（レール幅 1.0 m、丈 1100 mm、"
+                                "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
+
+
+def curtain_wide_window() -> Product:
+    return _curtain("curtain_wide_window", "幅の広い掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 2.1 m",
+                    2.80, 2.08, mass=9.0, gather=0.42, pleats=(40, 11),
+                    tags=["掃き出し窓用", "幅の広い窓用", "floor-length curtain", "wide window curtain"],
+                    description="形は住宅の幅の広い掃き出し窓（幅 2560 mm の 4 枚引き違い）に掛けるカーテン（レール幅 2.8 m、"
+                                "丈 2080 mm＝床から 1 cm 浮く、ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 
 
 def roll_screen() -> Product:
@@ -330,5 +386,6 @@ def roll_screen() -> Product:
 
 PRODUCTS = {f.__name__: f for f in (
     sliding_window_waist, sliding_window_floor, bathroom_window, shop_front_window, fixed_window, casement_window,
-    curtain_waist_window, curtain_floor_window, roll_screen,
+    curtain_waist_window, curtain_floor_window, roll_screen, sliding_window_waist_wide, sliding_window_floor_wide,
+    curtain_small_window, curtain_wide_window,
 )}

@@ -351,6 +351,14 @@ def curtain_small_window() -> Product:
                                 "ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
 
 
+def curtain_wide_waist_window() -> Product:
+    return _curtain("curtain_wide_waist_window", "幅の広い腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 1.35 m",
+                    2.80, 1.35, mass=6.5, gather=0.42, pleats=(40, 11),
+                    tags=["腰窓用", "幅の広い窓用", "waist window curtain", "wide window curtain"],
+                    description="形は住宅の幅の広い腰窓（幅 2560 mm の 4 枚引き違い）に掛けるカーテン（レール幅 2.8 m、"
+                                "丈 1350 mm＝窓の下端より 15 cm 長い、ベージュの厚手のひだ 2 枚と白いレース）で、寸法・質量は代表値。")
+
+
 def curtain_wide_window() -> Product:
     return _curtain("curtain_wide_window", "幅の広い掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 2.1 m",
                     2.80, 2.08, mass=9.0, gather=0.42, pleats=(40, 11),
@@ -387,5 +395,5 @@ def roll_screen() -> Product:
 PRODUCTS = {f.__name__: f for f in (
     sliding_window_waist, sliding_window_floor, bathroom_window, shop_front_window, fixed_window, casement_window,
     curtain_waist_window, curtain_floor_window, roll_screen, sliding_window_waist_wide, sliding_window_floor_wide,
-    curtain_small_window, curtain_wide_window,
+    curtain_small_window, curtain_wide_window, curtain_wide_waist_window,
 )}

@@ -21,7 +21,7 @@
 <rect x="408" y="24" width="6" height="70" rx="3" fill="#2F7D4F"/>
 <text x="428" y="52" class="m h">agentic-usd-gen-fictional</text>
 <text x="760" y="52" text-anchor="end" font-size="12" fill="#2F7D4F">API キー不要</text>
-<text x="428" y="76" class="b">架空の商品 576 点を描いて作る</text>
+<text x="428" y="76" class="b">架空の商品 577 点を描いて作る</text>
 
 <path d="M208 94 V110" class="ln"/><path d="M203 110 L208 117 L213 110" class="ln"/>
 <path d="M592 94 V110" class="ln"/><path d="M587 110 L592 117 L597 110" class="ln"/>

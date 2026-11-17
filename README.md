@@ -1,6 +1,6 @@
 # agentic-usd-gen
 
-Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. Claude works as an agent: it searches the web and opens pages on its own to find the dimensions and images. Then Blender builds the 3D model, and OpenUSD (`pxr`) adds physics and materials and validates the result. A second entry point draws 576 fictional Japanese retail products and store fixtures without using any real brand, logo or product photo. The documentation is in Japanese. Licensed under Apache-2.0.
+Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. Claude works as an agent: it searches the web and opens pages on its own to find the dimensions and images. Then Blender builds the 3D model, and OpenUSD (`pxr`) adds physics and materials and validates the result. A second entry point draws 577 fictional Japanese retail products and store fixtures without using any real brand, logo or product photo. The documentation is in Japanese. Licensed under Apache-2.0.
 
 商品名を渡すと、AIエージェント（Claude）が自分でWebを検索して寸法と画像を調べ、Blenderで3Dモデルを作ってIsaac Sim向けのUSDを書き出すツールです。
 
@@ -23,7 +23,7 @@ Generate simulation-ready USD assets for NVIDIA Isaac Sim from a product name. C
 | コマンド | 何をするか | APIキー | 作ったアセットの公開 |
 |---|---|---|---|
 | `agentic-usd-gen <商品名>` | 実在の商品を検索し、商品ページの画像をテクスチャにして作る | 要る | できない（下の注意） |
-| `agentic-usd-gen-fictional` | 架空の商品576点（商品・什器・内装）を、実在の商品名・ロゴ・商品写真を使わずに描いて作る（[docs/fictional.md](docs/fictional.md)） | 要らない | できる |
+| `agentic-usd-gen-fictional` | 架空の商品577点（商品・什器・内装）を、実在の商品名・ロゴ・商品写真を使わずに描いて作る（[docs/fictional.md](docs/fictional.md)） | 要らない | できる |
 
 > [!CAUTION]
 > `agentic-usd-gen <商品名>`で作ったアセットは、実在の商品の画像を含みます。画像の権利は元の権利者にあるので、そのアセット（テクスチャ・USD）を公開・再配布しないでください。検索や画像の取得が各サイトの利用規約に合っているかも、使う人の責任で確かめてください。公開するアセットは`agentic-usd-gen-fictional`で作ります。
@@ -88,7 +88,7 @@ uv run agentic-usd-gen "緑茶 600ml PET" --usdz --preview
 uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 ```
 
-- `soda_pet_500ml`は作る商品の名前（slug）です。ほかのslugに替えたり、空白で区切っていくつも並べたりできます。`--all`を付けると576点すべてを作ります。
+- `soda_pet_500ml`は作る商品の名前（slug）です。ほかのslugに替えたり、空白で区切っていくつも並べたりできます。`--all`を付けると577点すべてを作ります。
 - 指定できるslugは`uv run agentic-usd-gen-fictional --list`で、分類・形状・品名と一緒に一覧できます（何も作りません）。後ろに語を並べると絞り込めます（例: `--list pouch food`）。分野ごとのまとめは[docs/fictional.md](docs/fictional.md)にあります。
 - 下の表のオプションは、`--dims`・`--image`・`--slug`・`--refresh`など検索して作るとき専用のものを除いて、`agentic-usd-gen-fictional`にもそのまま渡せます。
 

@@ -431,6 +431,7 @@ sliding_window_waist_wide	environment	assembly	4 枚引き違いの腰窓 2560×
 sliding_window_floor_wide	environment	assembly	4 枚引き違いの掃き出し窓 2560×2030
 curtain_small_window	environment	assembly	小さな腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 1.0 m・丈 1.1 m
 curtain_wide_window	environment	assembly	幅の広い掃き出し窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 2.1 m
+curtain_wide_waist_window	environment	assembly	幅の広い腰窓用のカーテン（厚手 2 枚・レース、レール付き）幅 2.8 m・丈 1.35 m
 wall_chalkboard	environment	assembly	壁掛けの黒板 3600×1200（緑・粉受け付き）
 wall_whiteboard	environment	assembly	壁掛けのホワイトボード 1800×900（マーカー受け付き）
 wall_whiteboard_small	environment	assembly	壁掛けのホワイトボード 1200×900（マーカー受け付き）

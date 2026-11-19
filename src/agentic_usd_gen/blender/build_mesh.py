@@ -15,7 +15,8 @@ from common import build_object, export_usd, materials_from_cfg, new_scene  # no
 
 
 def main():
-    cfg = json.load(open(sys.argv[sys.argv.index("--") + 1]))
+    with open(sys.argv[sys.argv.index("--") + 1]) as f:
+        cfg = json.load(f)
     new_scene()
     mats = materials_from_cfg(cfg["materials"])
     for spec in cfg["objects"]:

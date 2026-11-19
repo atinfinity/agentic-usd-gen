@@ -30,7 +30,7 @@ SIM_SCRIPT = Path(__file__).parent / "isaac" / "drop_sim.py"
 G = 9.81
 
 
-@dataclass
+@dataclass(frozen=True)
 class Limits:
     max_tilt_deg: float = 15.0  # これより傾いて止まり、
     min_com_drop: float = 0.1  # 重心が置いたときの高さからこの割合以上下がったら「倒れた」（寝かせた円筒が転がっただけは除く）

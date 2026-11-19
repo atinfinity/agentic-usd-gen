@@ -121,7 +121,8 @@ def revolve(name, points, segments, close_bottom, close_top, y_scale=1.0, square
 
 
 def main():
-    cfg = json.load(open(sys.argv[sys.argv.index("--") + 1]))
+    with open(sys.argv[sys.argv.index("--") + 1]) as f:
+        cfg = json.load(f)
     new_scene()
 
     seg = cfg["segments"]

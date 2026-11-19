@@ -1137,7 +1137,7 @@ def postcard_spinner_rack() -> Product:
         a = math.radians(90 * f)
         ca, sa = math.cos(a), math.sin(a)
 
-        def at(x, y, z):
+        def at(x, y, z, ca=ca, sa=sa):
             return (x * ca - y * sa, x * sa + y * ca, z)
 
         spin.append(_p(f"Panel{f}", "box", (0.26, 0.006, Hr), at(0, -0.08, z_low + Hr / 2), wire, "metal",

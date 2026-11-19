@@ -25,7 +25,7 @@ MIN_SIDE = 200
 MAX_PAGE_IMAGES = 4
 
 _OG_IMAGE = re.compile(
-    r"<meta[^>]+(?:property|name)=[\"'](?:og:image|twitter:image)[\"'][^>]+content=[\"']([^\"']+)", re.I
+    r"<meta[^>]+(?:property|name)=[\"'](?:og:image|twitter:image)[\"'][^>]+content=[\"']([^\"']+)", re.IGNORECASE
 )
 
 

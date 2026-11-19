@@ -19,13 +19,13 @@ import numpy as np
 from PIL import Image
 
 from ..blender_runner import run_script
-from . import details
 from ..label import label_circumference, make_label_texture, wrap_texture
-from ..texres import record, texture_px
 from ..profile import RevolveProfile, build_profile, draw_debug, extract_silhouette, parametric_profile
 from ..semantics import LIQUID, container_labels, liquid_turbidity
 from ..spec import TRANSLUCENCY, ProductSpec
+from ..texres import record, texture_px
 from ..vision import Landmarks
+from . import details
 
 log = logging.getLogger(__name__)
 

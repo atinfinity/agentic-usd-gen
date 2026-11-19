@@ -8,7 +8,7 @@ from . import assembly, box, pouch, revolve
 
 
 class ShapeBuilder(Protocol):
-    def build(self, ctx: "revolve.BuildContext") -> "revolve.BuildResult": ...
+    def build(self, ctx: revolve.BuildContext) -> revolve.BuildResult: ...
 
 
 BUILDERS: dict[str, ShapeBuilder] = {

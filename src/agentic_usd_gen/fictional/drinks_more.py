@@ -12,7 +12,7 @@ from .base import NOTICE, Product, label_canvas, revolve, top_canvas
 from .conv_drinks import ALCOHOL_NOTE, _alcohol_mark
 from .forms import RevolveForm, _arc
 from .paint import Canvas, finish, mix
-from .products import INK, steam, _bottle_back, _box, _can_top, _face, back_info
+from .products import INK, _bottle_back, _box, _can_top, _face, back_info, steam
 
 BOX_FACES = {"front": 0, "back": 1, "right": 2, "left": 3, "top": 4, "bottom": 5}
 

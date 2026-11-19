@@ -298,7 +298,7 @@ def pet_treat_bulk_case() -> Product:
         parts.append(_p(f"Shelf{r}", "box", (W, D - 0.06, 0.02), (0, 0.0, z + 0.01), OAK, "matte", material="wood"))
         for k in range(4):
             i = r * 4 + k
-            name, col, top = goods[i]
+            _name, col, top = goods[i]
             x = -W / 2 + 0.02 + bw / 2 + k * (bw + 0.013)
             parts += [_p(f"Bin{i}", "box", (bw, bd, bh), (x, -0.03, z + 0.02 + bh / 2), GLASS, "glass",
                          material="plastic", thin_walled=True, bevel=0.004),

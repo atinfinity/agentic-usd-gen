@@ -5,7 +5,17 @@ import pytest
 from PIL import Image
 from pxr import Usd, UsdShade
 
-from agentic_usd_gen.shapes.box import BOX_BEVEL, CELL, FACES, BoxBuilder, bevel_width, box_mesh, cell_uv, face_layout, make_texture
+from agentic_usd_gen.shapes.box import (
+    BOX_BEVEL,
+    CELL,
+    FACES,
+    BoxBuilder,
+    bevel_width,
+    box_mesh,
+    cell_uv,
+    face_layout,
+    make_texture,
+)
 from agentic_usd_gen.shapes.revolve import BuildContext
 from agentic_usd_gen.spec import Dimensions, ProductSpec
 from agentic_usd_gen.usd_post import postprocess

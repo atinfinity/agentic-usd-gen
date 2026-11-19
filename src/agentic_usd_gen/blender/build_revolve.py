@@ -14,8 +14,7 @@ import bpy
 from mathutils import Matrix, Vector
 
 sys.path.insert(0, str(Path(__file__).parent))
-from common import (build_object, export_usd, finish_mesh, material, materials_from_cfg, new_scene,  # noqa: E402
-                    srgb_to_linear)
+from common import build_object, export_usd, finish_mesh, material, materials_from_cfg, new_scene, srgb_to_linear
 
 
 def _squircle(n, segments):
@@ -121,7 +120,8 @@ def revolve(name, points, segments, close_bottom, close_top, y_scale=1.0, square
 
 
 def main():
-    cfg = json.load(open(sys.argv[sys.argv.index("--") + 1]))
+    with open(sys.argv[sys.argv.index("--") + 1]) as f:
+        cfg = json.load(f)
     new_scene()
 
     seg = cfg["segments"]

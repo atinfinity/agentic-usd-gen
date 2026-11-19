@@ -345,7 +345,7 @@ def rice_bag_5kg() -> Product:
     b.rect(0, H - 20, W, H - 14, fill=green)
     b.text(W / 2, 36, "精米 5kg  国内産 複数原料米", 11, green, 900)
     b.rect(16, 50, W - 16, 150, fill=white, radius=4)
-    y = back_info(b, 22, 56, W - 22, [
+    back_info(b, 22, 56, W - 22, [
         ("名称", "精米"), ("原料玄米", "国内産 複数原料米"), ("内容量", "5kg"), ("精米年月日", "2026年10月上旬"),
         ("保存方法", "直射日光・高温多湿を避け、涼しい所で保存してください")], 8.0)
     b.rect(16, 162, W - 16, 262, fill=white, radius=4)

@@ -5,18 +5,20 @@ products.py と同じく、実在の商品名・ブランド名・ロゴ・商�
 
 from __future__ import annotations
 
-from ..spec import Colors, Dimensions, Part
+import numpy as np
+
+from ..spec import Colors, Dimensions
 from . import forms
 from .base import NOTICE, Product, label_canvas, revolve, top_canvas
 from .drug_medicine import BOX_FACES, pkg_box
-from .paint import Canvas, finish, mix
-from .products import INK, _face, _pump_bottle
+from .paint import finish, mix
+from .products import INK, _pump_bottle
 
 WHITE = "#FFFFFF"
 
 
 def _cosme_label(form, bg: str, accent: str, seed: int, en: str, title: str, sub: str, size: str, back: str,
-                 photo: str | None = None) -> "np.ndarray":
+                 photo: str | None = None) -> np.ndarray:
     c = label_canvas(form, bg, seed=seed)
     W, H = c.w_mm, c.h_mm
     fx = 0.75 * W
@@ -85,7 +87,7 @@ def foundation_compact() -> Product:
                    colors=Colors(cap=dark, label_base=dark), **revolve(form, label=label, top=top, body_fill=dark))
 
 
-def _stick_label(form, base: str, accent: str, seed: int, en: str, ja: str, sub: str) -> "np.ndarray":
+def _stick_label(form, base: str, accent: str, seed: int, en: str, ja: str, sub: str) -> np.ndarray:
     c = label_canvas(form, base, seed=seed)
     W, H = c.w_mm, c.h_mm
     fx = 0.75 * W

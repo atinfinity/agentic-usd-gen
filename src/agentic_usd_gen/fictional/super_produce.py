@@ -420,7 +420,6 @@ def lettuce_whole() -> Product:
     green = "#9CCB5E"
     skin = _leafy(7171, D * 1000, "#E4F0C4", "#86BF4A", "#F2F8E2", 16)
     tape = _label(44, 28, "レタス", "1玉", 198, GREEN_TAG, 7172, keep="野菜室で保存してください")
-    H = h_lo + h_up
     Df, hf = D + 0.006, h_up + 0.003
     r_tag = 0.040
     dz, tilt = _dome_tilt(r_tag, Df / 2, hf)

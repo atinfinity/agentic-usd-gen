@@ -3,7 +3,16 @@
 from __future__ import annotations
 
 from .llm import nullable, request_json
-from .spec import CATEGORIES, FINISHES, ORIENTATIONS, PART_SHAPES, PROFILE_SHAPES, SHAPE_CLASSES, TRANSPARENCIES, ProductSpec
+from .spec import (
+    CATEGORIES,
+    FINISHES,
+    ORIENTATIONS,
+    PART_SHAPES,
+    PROFILE_SHAPES,
+    SHAPE_CLASSES,
+    TRANSPARENCIES,
+    ProductSpec,
+)
 
 SYSTEM = """\
 あなたはロボットシミュレーション用 3D アセットを作るための商品リサーチ担当です。

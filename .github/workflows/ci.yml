@@ -23,6 +23,8 @@ jobs:
         with:
           enable-cache: true
       - run: uv sync --extra simready
+      - name: Lint (ruff; keep the version in step with pyproject.toml)
+        run: uv run --with ruff==0.17.6 ruff check --output-format github .
       - run: uv run pytest
 
   test-blender:

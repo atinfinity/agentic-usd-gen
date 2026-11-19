@@ -12,7 +12,7 @@ from . import forms
 from .base import NOTICE, Product, label_canvas, revolve, top_canvas
 from .forms import RevolveForm, _arc
 from .paint import Canvas, finish, mix
-from .products import INK, steam, _bottle_back, _box, _can_top, _cyl, _face, back_info
+from .products import INK, _bottle_back, _box, _can_top, _cyl, _face, back_info, steam
 
 ALCOHOL_NOTE = "お酒は20歳になってから。飲酒運転は法律で禁止されています。妊娠中・授乳期の飲酒は、胎児・乳児の発育に悪影響を与えるおそれがあります。"
 

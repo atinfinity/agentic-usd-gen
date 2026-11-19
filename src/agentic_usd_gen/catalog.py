@@ -37,7 +37,7 @@ import logging
 import re
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from PIL import Image
@@ -46,19 +46,19 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdPhysics, UsdSemantics, Vt
 from .blender_runner import find_blender, run_script
 from .isaac_layout import split_layers
 from .lighting import DEFAULT_VARIANT, VARIANT_SET, VARIANTS
+from .physics_material import CONTACTS, DEFAULT
+from .physics_material import SOURCE as PHYSICS_SOURCE
 from .picture import BLANK_SUFFIX as PICTURE_BLANK_SUFFIX
 from .picture import DEFAULT_VARIANT as PICTURE_DEFAULT
 from .picture import VARIANT_SET as PICTURE_VARIANT_SET
 from .picture import VARIANTS as PICTURE_VARIANTS
+from .qcode import lookup as lookup_qcode
 from .screen import DEFAULT_VARIANT as SCREEN_DEFAULT
 from .screen import OFF_SUFFIX as SCREEN_OFF_SUFFIX
 from .screen import VARIANT_SET as SCREEN_VARIANT_SET
 from .screen import VARIANTS as SCREEN_VARIANTS
-from .texdedupe import dedupe_textures, referenced_names
-from .qcode import lookup as lookup_qcode
 from .spec import CATEGORIES
-from .physics_material import CONTACTS, DEFAULT
-from .physics_material import SOURCE as PHYSICS_SOURCE
+from .texdedupe import dedupe_textures, referenced_names
 
 log = logging.getLogger("agentic_usd_gen.export")
 
@@ -452,7 +452,7 @@ def build_asset_json(meta: dict, slug: str, category: str, usd_mtime: float) -> 
         "image_credits": spec.get("image_credits", []),
         "notes": spec.get("notes"),
         "warnings": meta.get("warnings", []),
-        "generated_at": datetime.fromtimestamp(usd_mtime, timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": datetime.fromtimestamp(usd_mtime, UTC).isoformat(timespec="seconds"),
         "generator": {"tool": f"agentic-usd-gen {package_version()}", "model": meta.get("model")},
     }
 
@@ -616,8 +616,8 @@ def model_card(a: dict) -> str:
         "## 使い方",
         "",
         "Z 軸が上、単位はメートル、原点は底面の中心です。ステージに参照で読み込みます。",
-        *(["", f"`{a['usd']}` は入口で、中身は Isaac Sim のレイヤー構成（`payloads/` の base・meshes・physics）に分けています。"
-            "物理は physics のレイヤーだけにあります。"] if a.get("layers") else []),
+        *(["", (f"`{a['usd']}` は入口で、中身は Isaac Sim のレイヤー構成（`payloads/` の base・meshes・physics）に分けています。"
+            "物理は physics のレイヤーだけにあります。")] if a.get("layers") else []),
         "",
         "```python",
         "from pxr import Usd",
@@ -644,9 +644,9 @@ def model_card(a: dict) -> str:
             out.append(f"- **{h['version']}**（{h['date'][:10]}）: " + "、".join(h["changes"]))
     if a.get("fictional"):
         out += ["", "## 架空のパッケージ", "",
-                "実在の商品をもとにしていない架空のデザインです。実在の商品名・ブランド名・ロゴ・商品画像は使っていません。"
-                "形と寸法・質量は同じ種類の商品の一般的な値です。バーコードはインストアコードの範囲（先頭 2）のダミーで、"
-                "実在の商品コードではありません。",
+                ("実在の商品をもとにしていない架空のデザインです。実在の商品名・ブランド名・ロゴ・商品画像は使っていません。"
+                 "形と寸法・質量は同じ種類の商品の一般的な値です。バーコードはインストアコードの範囲（先頭 2）のダミーで、"
+                 "実在の商品コードではありません。"),
                 "", "## 素材の出典", ""]
         credits = a.get("image_credits") or []
         out += [f"- {c.get('subject') or c.get('title')}: [{c.get('title')}]({c.get('url')})"
@@ -656,8 +656,8 @@ def model_card(a: dict) -> str:
         out += [f"- {c['title']} — {c['license']}" for c in credits if not c.get("url")]
         if a.get("license") in LICENSES:
             title, url = LICENSES[a["license"]]
-            out += ["", "## ライセンス", "", f"このモデル（USD・テクスチャ・メタデータ）は [{title}]({url})（`{a['license']}`）です。"
-                    "合成した写真とフォントはそれぞれ上記のライセンスです。"]
+            out += ["", "## ライセンス", "", (f"このモデル（USD・テクスチャ・メタデータ）は [{title}]({url})（`{a['license']}`）です。"
+                    "合成した写真とフォントはそれぞれ上記のライセンスです。")]
         return "\n".join(out) + "\n"
     out += [
         "",
@@ -805,8 +805,8 @@ def write_catalog(assets_root: Path) -> None:
             lines.append(f"| {img} | [{a['name']}]({rel}/README.md) | {a.get('version', '—')} | {SHAPE_LABELS.get(a['shape_class'], '')} "
                          f"| {size} | {a['mass_kg']:.3f} kg |")
         lines.append("")
-    lines += ["`catalog.usda` は全アセットを X 方向に並べて payload で読み込むステージです（物理付きなので、見比べるときは"
-              "シミュレーションを止めておくか床を置いてください）。", ""]
+    lines += [("`catalog.usda` は全アセットを X 方向に並べて payload で読み込むステージです（物理付きなので、見比べるときは"
+               "シミュレーションを止めておくか床を置いてください）。"), ""]
     (assets_root / "README.md").write_text("\n".join(lines))
     write_catalog_stage(assets_root, entries)
 

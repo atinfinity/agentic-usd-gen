@@ -32,16 +32,16 @@ from pxr import (
 from .finish import apply_finishes
 from .grasp import PREFIX as GRASP_PREFIX
 from .grasp import write_grasp_lines
+from .joints import body_mass, build_links
+from .lighting import write_lighting
 from .nonvisual import write_nonvisual_materials
 from .openpbr import add_openpbr
 from .openpbr import connect_emission as connect_openpbr_emission
 from .openpbr import connect_maps as connect_openpbr_maps
 from .physics_material import contact_for, physics_key
-from .joints import body_mass, build_links
-from .lighting import write_lighting
+from .physics_runtimes import apply_runtime_schemas
 from .picture import write_picture_variant
 from .screen import write_screen_variant
-from .physics_runtimes import apply_runtime_schemas
 from .shapes.revolve import BuildResult
 from .spec import DEFAULT_COLLISION
 from .surface import surface_kind, write_maps

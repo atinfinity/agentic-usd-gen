@@ -6,13 +6,13 @@ products.py と同じく、実在の商品名・ブランド名・ロゴ・商�
 
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
 
 from ..spec import Colors, Dimensions
 from . import forms
-from .base import NOTICE, Product, label_canvas, revolve, top_canvas
+from .base import NOTICE, Product, label_canvas, revolve
 from .drug_fixtures import _capsule, _cross
 from .paint import Canvas, edge_shade, finish, mix, trim_safe
 from .products import INK, _face, seal_crimp

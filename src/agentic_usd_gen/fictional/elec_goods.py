@@ -285,7 +285,7 @@ def headphones_box() -> Product:
 
 def usb_charger_box() -> Product:
     W, D, H = 70.0, 45.0, 115.0
-    bg, accent = "#F4F6F8", "#1E88E5"
+    accent = "#1E88E5"
 
     def draw(c, x0, y0, x1, y1):
         cx, w = (x0 + x1) / 2, (x1 - x0) * 0.6
@@ -373,7 +373,7 @@ def earphones_blister() -> Product:
 
 def phone_case_blister() -> Product:
     CW, CH = 100.0, 200.0
-    bg, accent = "#F5EEE6", "#D1786A"
+    accent = "#D1786A"
     front, back = _blister_card(CW, CH, 9981, "#3A3F4A", accent, "スマートフォンケース", "SMARTPHONE CASE 6.1\"",
                                 "6.1 インチ用  耐衝撃・薄型", [("対応", "6.1 インチの機種（架空）"),
                                                               ("素材", "TPU・ポリカーボネート"),

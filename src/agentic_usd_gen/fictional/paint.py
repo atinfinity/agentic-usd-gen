@@ -8,8 +8,8 @@ from __future__ import annotations
 
 import json
 import math
-import re
 import random
+import re
 from contextlib import contextmanager
 from functools import lru_cache
 from pathlib import Path
@@ -283,7 +283,7 @@ class Canvas:
         bits = ean13_bits(digits)
         mod = w / len(bits)
         bar_h, guard_h = h * 0.78, h * 0.86
-        guards = set(range(0, 3)) | set(range(45, 50)) | set(range(92, 95))
+        guards = set(range(3)) | set(range(45, 50)) | set(range(92, 95))
         for i, b in enumerate(bits):
             if b == "1":
                 bh = guard_h if i in guards else bar_h

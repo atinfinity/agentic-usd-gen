@@ -53,3 +53,22 @@ docs = [
     "zensical>=0.1.1",
     "markdown-callouts>=0.4",
 ]
+
+# CI runs `uv run --with ruff==0.17.6 ruff check .`; keep the version there in step.
+[tool.ruff]
+line-length = 120
+
+[tool.ruff.lint]
+# Ruff's default rule selection, minus the rules that are a matter of style here.
+ignore = [
+    "C408",     # dict(a=1, b=2) instead of a literal: keyword calls read well for parameter sets
+    "PLW1510",  # subprocess.run without check=: the callers inspect returncode themselves
+    "RUF007",   # zip(a, a[1:]) instead of itertools.pairwise(): both are clear
+    "RUF046",   # int(round(x)): the explicit int() states the intent
+    "SIM905",   # """...""".split(): long word lists are easier to edit as one string
+    "UP031",    # printf-style "%02X" formatting: fine for hex colour strings
+]
+
+[tool.ruff.lint.flake8-bugbear]
+# Frozen dataclasses, safe as default arguments (B008).
+extend-immutable-calls = ["agentic_usd_gen.drop_test.Limits", "agentic_usd_gen.joint_test.Limits"]

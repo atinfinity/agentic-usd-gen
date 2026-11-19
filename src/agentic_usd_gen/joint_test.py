@@ -26,7 +26,7 @@ SIM_SCRIPT = Path(__file__).parent / "isaac" / "joint_sim.py"
 DIRECTIONS = ("X", "Y", "Z")
 
 
-@dataclass
+@dataclass(frozen=True)
 class Limits:
     reach_deg: float = 3.0  # 限界を狙って、これより手前で止まったら「届かない」（枠・本体にぶつかっている）
     reach_m: float = 0.02

@@ -68,6 +68,6 @@ def test_goods_fit_bottom_level(slug):
     """大きな商品は一番下の段に置くので、どの商品も並べる什器の一番下の段に入ること（1 kg のプロテインの袋など）。"""
     dims = GOODS[slug]().spec().dimensions
     depth = dims.depth if dims.depth is not None else dims.diameter
-    top, side, clear = _levels(drug_fixtures.PRODUCTS[HOME[slug]]().spec())[0]
+    _top, side, clear = _levels(drug_fixtures.PRODUCTS[HOME[slug]]().spec())[0]
     assert clear is None or dims.height + HEAD <= clear, f"{slug} {dims.height} m > 空き {clear} m（{HOME[slug]}）"
     assert min(dims.diameter, depth) <= side

@@ -34,7 +34,7 @@ def test_star_mesh_lobes_and_rings():
     assert len(m["faces"]) == 10  # 5 裂片 × 2 点の扇
     fine = star_mesh(0.04, 0.04, 0.004, [[5, 0.4, 1.0]], samples=4, rings=2)
     assert len(fine["faces"]) == 40
-    lo, hi = _bounds(fine)
+    _lo, hi = _bounds(fine)
     assert hi[0] == pytest.approx(0.02) and hi[2] == pytest.approx(0.004)
 
 

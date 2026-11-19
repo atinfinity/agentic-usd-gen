@@ -1,13 +1,13 @@
 import numpy as np
 import pytest
 
-from tests import synth
-from tests.conftest import D, H
 from agentic_usd_gen.label import label_circumference, label_size, make_label_texture
 from agentic_usd_gen.profile import build_profile, extract_silhouette, parametric_profile
 from agentic_usd_gen.shapes.revolve import _mass_properties, _rdp
 from agentic_usd_gen.spec import Dimensions
 from agentic_usd_gen.vision import Landmarks
+from tests import synth
+from tests.conftest import D, H
 
 DIMS = Dimensions(H, D)
 

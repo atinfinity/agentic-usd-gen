@@ -29,6 +29,7 @@ uv run --group docs zensical build    # site/ に書き出す
 ## pull requestを出す前に
 
 - `uv run pytest`が通ることを確かめてください。
+- `uv run --with ruff==0.17.6 ruff check .`で警告が出ないことを確かめてください（CIでも同じものを動かします）。
 - 変更の理由をpull requestの説明に書いてください。見た目が変わる変更には、前後の画像があると助かります。
 - 大きな変更は、先にissueで相談してください。
 

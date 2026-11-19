@@ -23,9 +23,9 @@ import numpy as np
 
 from ..spec import Colors, Dimensions, Part
 from .base import Product
-from .hc_tools import pliers_pack, place, screw_pack, screwdriver_pack, tape_measure_pack
-from .paint import Canvas, mix, trim_safe, finish
-from .products import INK, _box, _cyl, _face
+from .hc_tools import place, pliers_pack, screw_pack, screwdriver_pack, tape_measure_pack
+from .paint import Canvas, finish, mix, trim_safe
+from .products import _cyl, _face
 from .store_more import _rod
 from .super_fixtures import _pop, _sign
 

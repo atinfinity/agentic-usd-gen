@@ -357,7 +357,7 @@ BRICK_COLORS = ("#D32F2F", "#1976D2", "#FBC02D", "#388E3C", "#FFFFFF", "#F57C00"
 
 def building_blocks_tub() -> Product:
     """A clear tub of toy bricks with a coloured lid: the bricks show through the sides."""
-    W, D, H = 0.30, 0.20, 0.22
+    W, D = 0.30, 0.20
     T, LID = 0.19, 0.03
     rng = np.random.default_rng(7311)
     lab = Canvas(180.0, 70.0, 8, WHITE, 7312)

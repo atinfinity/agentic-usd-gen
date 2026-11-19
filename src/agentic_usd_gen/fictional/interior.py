@@ -95,7 +95,7 @@ def _tatami(w_mm: float, h_mm: float, seed: int, heri: str | None = "#2E3B2F", h
 
 def office_partition_panel() -> Product:
     """事務所のローパーティション（幅 1.2 m・高さ 1.6 m）。布張りのパネルをアルミの枠で囲み、足 2 本で立つ。"""
-    W, H, D = 1.2, 1.6, 0.05
+    W, H = 1.2, 1.6
     fabric, frame = "#7D8790", "#C4C8CC"
     fw, foot_h = 0.025, 0.03
     img = _fabric(1150, 1520, fabric, 7001)

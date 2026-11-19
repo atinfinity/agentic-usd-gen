@@ -12,7 +12,7 @@ import numpy as np
 
 from ..spec import Colors, Dimensions, Part
 from .base import NOTICE, Product
-from .conv_deli import _nori, _rice
+from .conv_deli import _rice
 from .paint import Canvas, edge_shade, finish, mix, trim_safe
 from .products import INK, _box, _face, _food, _food_photo, back_info, seal_crimp
 

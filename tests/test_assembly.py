@@ -7,8 +7,17 @@ import pytest
 from PIL import Image
 from pxr import Usd, UsdGeom, UsdPhysics, UsdShade
 
-from agentic_usd_gen.shapes.assembly import (AssemblyBuilder, cylinder_mesh, object_name, part_volume, prism_mesh,
-                                    prism_outline, revolve_mesh, rotation_matrix, torus_mesh)
+from agentic_usd_gen.shapes.assembly import (
+    AssemblyBuilder,
+    cylinder_mesh,
+    object_name,
+    part_volume,
+    prism_mesh,
+    prism_outline,
+    revolve_mesh,
+    rotation_matrix,
+    torus_mesh,
+)
 from agentic_usd_gen.shapes.revolve import BuildContext
 from agentic_usd_gen.spec import Dimensions, Joint, Part, ProductSpec
 from agentic_usd_gen.usd_post import _preview_shader, postprocess

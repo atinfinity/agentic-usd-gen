@@ -5,8 +5,8 @@ import numpy as np
 import pytest
 from PIL import Image
 
-from tests.synth import make_bottle
 from agentic_usd_gen.blender_runner import CANDIDATES
+from tests.synth import make_bottle
 
 H, D = 0.205, 0.065
 

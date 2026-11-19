@@ -66,7 +66,7 @@ def test_fictional_products(tmp_path):
     from agentic_usd_gen.fictional.registry import PRODUCTS
     from agentic_usd_gen.spec import ProductSpec
 
-    assert len(PRODUCTS) == 577
+    assert len(PRODUCTS) == 626
     for name in ("cup_noodle_tall", "potato_chips_bag"):
         d = write(PRODUCTS[name](), tmp_path)
         spec = ProductSpec.load(d / "spec.json")

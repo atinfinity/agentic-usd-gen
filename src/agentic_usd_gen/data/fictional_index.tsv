@@ -575,3 +575,52 @@ asian_noodle_bag	food	pouch	トムヤム麺（輸入の袋めん）
 jasmine_rice_bag	food	pouch	ジャスミンライス 5kg
 chili_oil_jar	food	revolve	食べるラー油（瓶）
 oyster_sauce_bottle	food	revolve	オイスターソース（瓶 510g）
+dispensing_drawer_cabinet	fixture	assembly	調剤棚 引き出し 9 杯・上棚付き 900mm
+medicine_refrigerator	fixture	assembly	薬用冷蔵庫 ガラス扉 1 枚
+dispensing_tray	household	assembly	調剤トレー 300×220 mm（番号札付き）
+blood_pressure_kiosk	fixture	assembly	自動血圧計 据え置き型（腕を入れる筒型）
+queue_number_display	environment	assembly	呼び出し番号の表示器（壁付け）
+hand_sanitizer_stand	fixture	assembly	足踏み式の手指消毒スタンド
+prescription_medicine_bag	household	box	薬袋（内服薬・紙）
+medication_notebook	household	box	お薬手帳（A6）
+pill_case_weekly	household	assembly	ピルケース 1 週間（7 日分）
+allergy_medicine_box	household	box	鼻炎薬 錠剤 24錠
+kampo_medicine_box	household	box	漢方薬 顆粒 12包
+ointment_box	household	box	皮ふ用 軟膏 15g
+digital_thermometer_box	household	box	電子体温計 わき専用
+sterile_gauze_box	household	box	滅菌ガーゼ 個包装 10枚
+elastic_bandage_box	household	box	伸縮包帯 7.5cm × 4.5m
+body_warmer_pack	household	box	使い捨てカイロ 貼らない レギュラー 10個
+gargle_bottle	household	revolve	うがい薬 200mL
+antiseptic_ethanol_bottle	household	revolve	消毒用エタノール 500mL
+contact_lens_solution_bottle	household	revolve	コンタクトレンズ 保存液 360mL
+tablet_packaging_machine	fixture	assembly	錠剤分包機 カセット 48 個
+powder_packaging_machine	fixture	assembly	散剤分包機（円盤式）
+powder_dispensing_table	fixture	assembly	散薬台 局所排気のフード付き 1200mm
+electronic_balance	household	assembly	電子天秤 風防付き（最小表示 1 mg）
+picking_shelf_rack	fixture	assembly	錠剤のピッキング棚 6 段 1200mm
+narcotics_safe	fixture	assembly	麻薬金庫（小型・ダイヤル錠）
+clean_bench	fixture	assembly	クリーンベンチ 無菌調剤用 1300mm（台付き）
+dispensing_sink	fixture	assembly	調剤用の流し台 900mm（投薬瓶の棚付き）
+medicine_cart	fixture	assembly	調剤カート 3 段（キャスター付き）
+audit_workstation	fixture	assembly	調剤監査台 1200mm（画面・バーコードの読み取り機付き）
+medicine_bag_printer	household	assembly	薬袋プリンター（卓上）
+counseling_counter	fixture	assembly	服薬指導のカウンター 1 席（仕切り付き・座り）
+acrylic_splash_guard	household	assembly	卓上の飛沫よけの板 600×600mm（受け渡しの口付き）
+number_ticket_machine	household	assembly	受付番号の発券機（卓上・タッチ画面）
+prescription_reception_tray	household	assembly	処方せんの受付トレー A4（案内の札付き）
+face_auth_card_reader	household	assembly	顔認証付きのカードリーダー（受付用）
+pamphlet_rack	fixture	assembly	パンフレットのラック 4 段（A5）
+waiting_sofa_2seat	fixture	assembly	待合いのソファ 2 人掛け（ひじ掛け付き）
+ptp_medicine_box	household	box	医療用医薬品の元箱 錠剤 PTP 100錠
+powder_stock_bottle	household	revolve	散剤の元瓶 500g（褐色）
+syrup_dosing_bottle	household	revolve	投薬瓶 60mL（シロップ入り）
+ointment_jar	household	revolve	軟膏つぼ 20g（混合軟膏入り）
+suppository_box	household	box	医療用 坐剤の元箱 50個
+inhaler_box	household	box	医療用 吸入薬（吸入器入り）の箱
+sachet_paper_roll	household	assembly	分包紙のロール 幅 80mm（グラシン・ラミネート）
+mortar_and_pestle	household	assembly	乳鉢と乳棒（磁器・外径 150mm）
+sharps_container	household	assembly	注射針の廃棄容器 3L
+alcohol_swab_box	household	box	酒精綿 個包装 200包
+disposable_gloves_box	household	box	ニトリルの使い捨て手袋 M 100枚
+compress_patch_bag	household	box	医療用 湿布（テープ剤）の袋 7枚

@@ -123,3 +123,20 @@ from . import specialty_shops  # noqa: E402
 _dup = PRODUCTS.keys() & specialty_shops.PRODUCTS.keys()
 assert not _dup, f"slug が重複しています: {sorted(_dup)}"
 PRODUCTS.update(specialty_shops.PRODUCTS)
+
+# Pharmacy: dispensing room fixtures, waiting-room kiosks, prescription goods and OTC / first-aid items.
+from . import pharmacy_fixtures, pharmacy_goods
+
+for _m in (pharmacy_fixtures, pharmacy_goods):
+    _dup = PRODUCTS.keys() & _m.PRODUCTS.keys()
+    assert not _dup, f"slug が重複しています: {sorted(_dup)}"
+    PRODUCTS.update(_m.PRODUCTS)
+
+# Dispensing pharmacy: dispensary machines and fixtures, reception / counseling / waiting-room items, prescription
+# drugs and dispensing supplies.
+from . import pharmacy_counter, pharmacy_dispensary, pharmacy_rx_goods
+
+for _m in (pharmacy_dispensary, pharmacy_counter, pharmacy_rx_goods):
+    _dup = PRODUCTS.keys() & _m.PRODUCTS.keys()
+    assert not _dup, f"slug が重複しています: {sorted(_dup)}"
+    PRODUCTS.update(_m.PRODUCTS)

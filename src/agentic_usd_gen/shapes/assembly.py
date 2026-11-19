@@ -326,7 +326,7 @@ def leaf_mesh(length: float, width: float, h: float, teeth: int = 0, columns: in
     ts.append(1.0)
     notch = {i for i in range(5, len(ts) - 1, 2)} if teeth else set()  # 歯と歯の間（内側へ切れ込む）
     fold = 0.22 * width / 2  # 縁の上がり
-    verts, faces, uvs = [], [], []
+    verts, faces = [], []
     rows = []
     for i, t in enumerate(ts):
         x = -length / 2 + length * t

@@ -33,7 +33,7 @@ def _stage(tmp_path, names):
 
 
 def _files(stage_path):
-    layers, assets, unresolved = UsdUtils.ComputeAllDependencies(str(stage_path))
+    _layers, assets, unresolved = UsdUtils.ComputeAllDependencies(str(stage_path))
     return sorted(a.rsplit("/", 1)[-1] for a in assets), unresolved
 
 

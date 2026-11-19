@@ -187,7 +187,7 @@ def meat_sauce_pasta() -> Product:
     写真: spaghetti（CC0。パスタの山に合成）
     """
     pl = (0.26, 0.26, 0.042)
-    plate, floor = _ware("Plate", DEEP, pl)
+    plate, _floor = _ware("Plate", DEEP, pl)
     images = [_food_photo("spaghetti", 175, 175, (0.22, 0.20, 0.70, 0.92), 7021), _meat_sauce_top(7022)]
     zb = _seat(DEEP, 0.175 / pl[0] * 1.02) * pl[2]  # パスタの山の裾が内側の壁に触れる高さ
     parts: list[Part] = [
@@ -222,7 +222,7 @@ def curry_rice() -> Product:
     写真: curry（CC0。ご飯とカレーの山に合成）
     """
     pl = (0.28, 0.22, 0.036)
-    plate, floor = _ware("Plate", DEEP, pl)
+    plate, _floor = _ware("Plate", DEEP, pl)
     images = [_curry_top(7031)]
     zb = _seat(DEEP, max(0.205 / pl[0], 0.165 / pl[1]) * 1.02) * pl[2]
     parts: list[Part] = [plate,

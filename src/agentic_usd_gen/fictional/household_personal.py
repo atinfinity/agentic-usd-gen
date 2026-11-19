@@ -7,7 +7,7 @@ from __future__ import annotations
 
 import numpy as np
 
-from ..spec import Colors, Dimensions, Part
+from ..spec import Colors, Dimensions
 from . import forms
 from .base import NOTICE, Product, label_canvas, revolve, top_canvas
 from .paint import Canvas, edge_shade, finish, mix, trim_safe

@@ -17,7 +17,7 @@ from .base import Product, label_canvas, revolve, top_canvas
 from .drinks_more import _hot_cup
 from .paint import Canvas, finish, mix
 from .products import INK, _box, _cyl, _face
-from .super_fixtures import _grain, _sign
+from .super_fixtures import _grain
 
 CAFE_PLACES = ["cafe", "restaurant"]  # カフェのメニュー・看板が合う場所
 WOOD, WOOD_DARK, WALNUT = "#B98A57", "#7A5533", "#5B3B26"

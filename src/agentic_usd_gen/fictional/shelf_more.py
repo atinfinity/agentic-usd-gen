@@ -244,7 +244,7 @@ def frozen_udon_5pack() -> Product:
 def frozen_takoyaki_bag() -> Product:
     """冷凍たこ焼き 20 個入り（立てたピロー袋）。舟皿に盛ったたこ焼きの絵（手続きで描く）。"""
     W, H = 210.0, 280.0
-    orange, dark, cream, green = "#E8661E", "#5A1E08", "#FFF3DC", "#3E7A28"
+    orange, dark, cream = "#E8661E", "#5A1E08", "#FFF3DC"
 
     def base(seed: int) -> Canvas:
         c = Canvas(W, H, 7, orange, seed=seed)
@@ -374,7 +374,7 @@ def frozen_pizza_box() -> Product:
 def frozen_edamame_bag() -> Product:
     """冷凍枝豆 400g（立てたピロー袋、中身の見える窓に枝豆の絵）。"""
     W, H = 190.0, 260.0
-    green, dark, cream, yellow = "#3E8E2F", "#1B4A14", "#F6FBEA", "#F5D33C"
+    green, dark, yellow = "#3E8E2F", "#1B4A14", "#F5D33C"
 
     def base(seed: int) -> Canvas:
         c = Canvas(W, H, 7, green, seed=seed)
@@ -519,7 +519,7 @@ def sake_isshobin_1800ml() -> Product:
     """日本酒の一升瓶 1.8L（茶色のガラス・樹脂のキャップ）。和紙風のラベルに縦書き。"""
     form = _shouldered_bottle(0.395, 0.104, sh_z=0.245, sh_top=0.318, neck_r=0.0145, cap_h=0.034, cap_r=0.0168,
                               label=(0.050, 0.225))
-    brown, washi, red, ink, gold = "#4A2A12", "#F5EEDC", "#A3241B", "#1A1A1A", "#B08A3E"
+    brown, washi, red, ink = "#4A2A12", "#F5EEDC", "#A3241B", "#1A1A1A"
     c = label_canvas(form, brown, seed=5871)
     W, H = c.w_mm, c.h_mm
     fx, bx = 0.75 * W, 0.25 * W

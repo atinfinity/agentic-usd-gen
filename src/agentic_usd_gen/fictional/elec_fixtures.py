@@ -11,7 +11,7 @@ the fixture, as in hc_fixtures.pegboard_wall_tools (a card resting on a thin rod
 
 from __future__ import annotations
 
-from ..spec import Colors, Dimensions, Part
+from ..spec import Colors, Dimensions
 from .base import Product
 from .drug_fixtures import _header, _perforated
 from .elec_goods import aa_battery_pack, led_bulb_pack

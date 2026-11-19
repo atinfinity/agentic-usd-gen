@@ -14,7 +14,7 @@ import numpy as np
 from ..spec import Colors, Dimensions, Part
 from .base import NOTICE, Product
 from .paint import Canvas, edge_shade, finish, mix, trim_safe
-from .products import INK, _box, _cyl, _face, back_info, seal_crimp
+from .products import INK, _face, back_info, seal_crimp
 from .store_more import _rod
 
 WHITE = "#FFFFFF"

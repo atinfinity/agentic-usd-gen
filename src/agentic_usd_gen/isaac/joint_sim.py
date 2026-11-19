@@ -106,7 +106,7 @@ def pose(path: str):
 
 def run(usd: str, jpath: Sdf.Path, target: float) -> dict:
     """関節 jpath にだけ位置ドライブを付けて target へ動かす。ほかの関節はドライブなし（自由）のまま。"""
-    stage, info = build(usd)
+    stage, _info = build(usd)
     prim = stage.GetPrimAtPath(jpath)
     j = joint_api(prim)
     revolute = prim.IsA(UsdPhysics.RevoluteJoint)

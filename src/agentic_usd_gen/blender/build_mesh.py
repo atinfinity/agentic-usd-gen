@@ -11,7 +11,7 @@ import sys
 from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent))
-from common import build_object, export_usd, materials_from_cfg, new_scene  # noqa: E402
+from common import build_object, export_usd, materials_from_cfg, new_scene
 
 
 def main():

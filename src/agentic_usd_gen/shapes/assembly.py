@@ -9,10 +9,10 @@ box 部品は faces に画像番号を書けば、その面に画像を貼る（
 from __future__ import annotations
 
 import json
-from dataclasses import asdict
 import logging
 import math
 import re
+from dataclasses import asdict
 from pathlib import Path
 
 import numpy as np
@@ -22,8 +22,18 @@ from ..blender_runner import run_script
 from ..semantics import part_labels
 from ..spec import FINISHES, PART_SHAPES, PROFILE_SHAPES, TRANSLUCENCY, Joint, Part
 from ..texres import record
-from .box import (FACES, PART_BEVEL, bevel_width, box_mesh, border_color, cell_size, cell_uv, face_layout, hex_to_rgb,
-                  make_texture)
+from .box import (
+    FACES,
+    PART_BEVEL,
+    bevel_width,
+    border_color,
+    box_mesh,
+    cell_size,
+    cell_uv,
+    face_layout,
+    hex_to_rgb,
+    make_texture,
+)
 from .pouch import trim_background
 from .revolve import BuildContext, BuildResult
 

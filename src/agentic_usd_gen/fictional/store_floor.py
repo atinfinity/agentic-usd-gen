@@ -13,7 +13,6 @@ from .base import NOTICE, Product
 from .paint import Canvas, finish, trim_safe
 from .products import COOL_WHITE, INK, _box, _cyl, _lamp
 
-
 # ---------------------------------------------------------------- リーチイン冷蔵ケース（ガラス扉 3 枚）
 
 # 看板（「冷たいお飲み物」）が合う店。清涼飲料を売る店だけ（酒屋・八百屋・花屋は Blank にする）

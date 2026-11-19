@@ -31,12 +31,12 @@ ap.add_argument("--over-deg", type=float, default=20.0, help="[度] 回転の関
 ap.add_argument("--over-m", type=float, default=0.2, help="[m] 直動の関節で、限界の外を狙う量")
 args = ap.parse_args()
 
-from isaacsim import SimulationApp  # noqa: E402
+from isaacsim import SimulationApp
 
 app = SimulationApp({"headless": True})
 
-import omni.physx  # noqa: E402
-from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdPhysics, UsdUtils  # noqa: E402
+import omni.physx
+from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdPhysics, UsdUtils
 
 SIM = omni.physx.get_physx_simulation_interface()
 PX = omni.physx.get_physx_interface()

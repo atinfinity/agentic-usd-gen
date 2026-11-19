@@ -7,7 +7,7 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdPhysics, UsdShade
 
 pytest.importorskip("simready.validate")
 
-from agentic_usd_gen.simready import check, find_assets, main  # noqa: E402
+from agentic_usd_gen.simready import check, find_assets, main
 
 
 def _make_usd(path, mdl: bool):

@@ -244,7 +244,7 @@ def _berry(prefix: str, attach, stage: str, s: float, rng, d: dict, show=None, c
     fl = BERRY_LEN[stage] * s * rng.uniform(0.9, 1.1)
     fw = fl * rng.uniform(0.8, 0.9)
     rot = (rng.uniform(-14, 14), rng.uniform(-14, 14), rng.uniform(0, 360))
-    from ..shapes.assembly import rotation_matrix  # noqa: PLC0415 (geometry helper, not needed at import)
+    from ..shapes.assembly import rotation_matrix  # geometry helper, not needed at import
     R = rotation_matrix(list(rot))
     attach = np.asarray(attach, float)
     parts = [_p(f"{prefix}Fruit", "fruit", (fw, fw, fl), tuple(attach - R @ [0, 0, fl / 2]), BERRY_COLOR[stage],

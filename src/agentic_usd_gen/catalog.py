@@ -37,7 +37,7 @@ import logging
 import re
 import shutil
 import sys
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 
 from PIL import Image
@@ -46,19 +46,19 @@ from pxr import Gf, Sdf, Usd, UsdGeom, UsdPhysics, UsdSemantics, Vt
 from .blender_runner import find_blender, run_script
 from .isaac_layout import split_layers
 from .lighting import DEFAULT_VARIANT, VARIANT_SET, VARIANTS
+from .physics_material import CONTACTS, DEFAULT
+from .physics_material import SOURCE as PHYSICS_SOURCE
 from .picture import BLANK_SUFFIX as PICTURE_BLANK_SUFFIX
 from .picture import DEFAULT_VARIANT as PICTURE_DEFAULT
 from .picture import VARIANT_SET as PICTURE_VARIANT_SET
 from .picture import VARIANTS as PICTURE_VARIANTS
+from .qcode import lookup as lookup_qcode
 from .screen import DEFAULT_VARIANT as SCREEN_DEFAULT
 from .screen import OFF_SUFFIX as SCREEN_OFF_SUFFIX
 from .screen import VARIANT_SET as SCREEN_VARIANT_SET
 from .screen import VARIANTS as SCREEN_VARIANTS
-from .texdedupe import dedupe_textures, referenced_names
-from .qcode import lookup as lookup_qcode
 from .spec import CATEGORIES
-from .physics_material import CONTACTS, DEFAULT
-from .physics_material import SOURCE as PHYSICS_SOURCE
+from .texdedupe import dedupe_textures, referenced_names
 
 log = logging.getLogger("agentic_usd_gen.export")
 
@@ -452,7 +452,7 @@ def build_asset_json(meta: dict, slug: str, category: str, usd_mtime: float) -> 
         "image_credits": spec.get("image_credits", []),
         "notes": spec.get("notes"),
         "warnings": meta.get("warnings", []),
-        "generated_at": datetime.fromtimestamp(usd_mtime, timezone.utc).isoformat(timespec="seconds"),
+        "generated_at": datetime.fromtimestamp(usd_mtime, UTC).isoformat(timespec="seconds"),
         "generator": {"tool": f"agentic-usd-gen {package_version()}", "model": meta.get("model")},
     }
 

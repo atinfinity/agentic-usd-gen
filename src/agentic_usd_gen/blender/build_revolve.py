@@ -14,8 +14,7 @@ import bpy
 from mathutils import Matrix, Vector
 
 sys.path.insert(0, str(Path(__file__).parent))
-from common import (build_object, export_usd, finish_mesh, material, materials_from_cfg, new_scene,  # noqa: E402
-                    srgb_to_linear)
+from common import build_object, export_usd, finish_mesh, material, materials_from_cfg, new_scene, srgb_to_linear
 
 
 def _squircle(n, segments):

@@ -8,14 +8,21 @@ import pytest
 from PIL import Image
 from pxr import Usd, UsdGeom, UsdPhysics, UsdShade
 
-from tests.conftest import D, H
-from agentic_usd_gen.shapes.revolve import (LIQUID_INSET, TURBID_ANISOTROPY, TURBID_TAU, WALL, BuildContext,
-                                  RevolveBuilder, make_lid_texture)
 from agentic_usd_gen.physics_runtimes import applied_schemas
+from agentic_usd_gen.shapes.revolve import (
+    LIQUID_INSET,
+    TURBID_ANISOTROPY,
+    TURBID_TAU,
+    WALL,
+    BuildContext,
+    RevolveBuilder,
+    make_lid_texture,
+)
 from agentic_usd_gen.spec import Dimensions, ProductSpec
 from agentic_usd_gen.usd_post import TURBID_CLARITY_K, export_usda, export_usdz, postprocess
 from agentic_usd_gen.validate import check_usdz, validate
 from agentic_usd_gen.vision import Landmarks
+from tests.conftest import D, H
 
 
 @pytest.fixture(scope="module")

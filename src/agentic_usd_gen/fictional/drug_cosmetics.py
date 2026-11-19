@@ -18,7 +18,7 @@ WHITE = "#FFFFFF"
 
 
 def _cosme_label(form, bg: str, accent: str, seed: int, en: str, title: str, sub: str, size: str, back: str,
-                 photo: str | None = None) -> "np.ndarray":
+                 photo: str | None = None) -> np.ndarray:
     c = label_canvas(form, bg, seed=seed)
     W, H = c.w_mm, c.h_mm
     fx = 0.75 * W
@@ -87,7 +87,7 @@ def foundation_compact() -> Product:
                    colors=Colors(cap=dark, label_base=dark), **revolve(form, label=label, top=top, body_fill=dark))
 
 
-def _stick_label(form, base: str, accent: str, seed: int, en: str, ja: str, sub: str) -> "np.ndarray":
+def _stick_label(form, base: str, accent: str, seed: int, en: str, ja: str, sub: str) -> np.ndarray:
     c = label_canvas(form, base, seed=seed)
     W, H = c.w_mm, c.h_mm
     fx = 0.75 * W

@@ -6,7 +6,7 @@ products.py と同じく、実在の商品名・ブランド名・ロゴ・商�
 
 from __future__ import annotations
 
-from typing import Callable
+from collections.abc import Callable
 
 import numpy as np
 

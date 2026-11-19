@@ -15,8 +15,8 @@ import math
 import numpy as np
 
 from ..spec import Colors, Dimensions, Part
-from .base import NOTICE, Product, revolve, label_canvas, top_canvas
 from . import forms
+from .base import NOTICE, Product, label_canvas, revolve, top_canvas
 from .conv_goods import BOX_FACES, _faces, _hang_hole
 from .paint import Canvas, finish, mix
 from .products import INK, _box, _cyl, _face, seal_crimp

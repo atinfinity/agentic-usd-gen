@@ -2,7 +2,14 @@
 
 import pytest
 
-from agentic_usd_gen.fictional import apparel_fixtures, apparel_goods, book_fixtures, book_goods, elec_fixtures, elec_goods
+from agentic_usd_gen.fictional import (
+    apparel_fixtures,
+    apparel_goods,
+    book_fixtures,
+    book_goods,
+    elec_fixtures,
+    elec_goods,
+)
 
 from .test_super_fixtures import PLACES, _shelves
 

@@ -3,8 +3,14 @@
 import pytest
 from pxr import Usd, UsdGeom, UsdPhysics, UsdShade, Vt
 
-from agentic_usd_gen.nonvisual import (ATTRIBUTES_ATTR, BASE_ATTR, BASES, COATING_ATTR, nonvisual_material,
-                              write_nonvisual_materials)
+from agentic_usd_gen.nonvisual import (
+    ATTRIBUTES_ATTR,
+    BASE_ATTR,
+    BASES,
+    COATING_ATTR,
+    nonvisual_material,
+    write_nonvisual_materials,
+)
 
 
 @pytest.mark.parametrize("params, expected", [

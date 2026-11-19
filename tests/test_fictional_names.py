@@ -112,10 +112,10 @@ def test_fictional_doc_counts_match_the_registry():
     """docs/fictional.md の表（ファイルごとの点数）と合計が、定義と合っている。"""
     per_module = Counter(fn.__module__.rsplit(".", 1)[-1] for fn in registry.PRODUCTS.values())
     text = (ROOT / "docs/fictional.md").read_text(encoding="utf-8")
-    total = int(re.search(r"^(\d+) ?点を定義しています", text, re.M).group(1))
+    total = int(re.search(r"^(\d+) ?点を定義しています", text, re.MULTILINE).group(1))
     assert total == len(registry.PRODUCTS)
     seen = set()
-    for row in re.findall(r"^\|[^|]+\|([^|]+)\|\s*(\d+)\s*\|", text, re.M):
+    for row in re.findall(r"^\|[^|]+\|([^|]+)\|\s*(\d+)\s*\|", text, re.MULTILINE):
         modules = re.findall(r"`(\w+)\.py`", row[0])
         assert modules, row
         assert sum(per_module[m] for m in modules) == int(row[1]), row

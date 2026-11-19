@@ -32,12 +32,12 @@ ap.add_argument("--hz", type=float, default=60.0, help="物理の刻み [Hz]（�
 ap.add_argument("--ceiling", action="append", default=[], help="天井付けのアセット（上下を返して落とす。何度でも指定できる）")
 args = ap.parse_args()
 
-from isaacsim import SimulationApp  # noqa: E402
+from isaacsim import SimulationApp
 
 app = SimulationApp({"headless": True})
 
-import omni.physx  # noqa: E402
-from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdPhysics, UsdUtils  # noqa: E402
+import omni.physx
+from pxr import Gf, PhysxSchema, Sdf, Usd, UsdGeom, UsdPhysics, UsdUtils
 
 SIM = omni.physx.get_physx_simulation_interface()
 PX = omni.physx.get_physx_interface()

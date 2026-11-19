@@ -1,7 +1,7 @@
 # 架空の商品
 
 実在の商品名・ブランド名・ロゴ・商品写真を使わないアセットを作ります。公開リポジトリに置く用途を想定しています。
-577点を定義しています（`src/agentic_usd_gen/fictional/`の下。slugの一覧は`agentic-usd-gen-fictional --list`）。
+626点を定義しています（`src/agentic_usd_gen/fictional/`の下。slugの一覧は`agentic-usd-gen-fictional --list`）。
 
 ![架空の商品のプレビュー8点。上段は回転体の緑茶のペットボトル・カップ麺・いちごジャムの瓶と、袋のポテトチップス。下段は箱のバタークッキー・牛乳の紙パックと、什器のセルフレジ・買い物カート](images/fictional-preview.webp)
 
@@ -14,6 +14,8 @@
 | コンビニの什器・設備 | `store_equipment.py`・`store_floor.py`・`store_counter.py`・`store_more.py` | 23 | 監視カメラ・ATM・リーチイン冷蔵ケース・保温ケース・たばこ棚・吊り下げフック什器 |
 | スーパー | `super_produce.py`・`super_fresh.py`・`super_fixtures.py`・`super_checkout.py` | 41 | 青果・精肉や鮮魚のトレーパック・惣菜、売場の什器、レジ台・サッカー台 |
 | ドラッグストア | `drug_fixtures.py`・`drug_medicine.py`・`drug_cosmetics.py`・`drug_baby.py` | 27 | 医薬品・化粧品・ベビー用品、調剤カウンター・テスター什器 |
+| 薬局 | `pharmacy_fixtures.py`・`pharmacy_goods.py` | 19 | 調剤棚・薬用冷蔵庫・調剤トレー・自動血圧計・呼び出し番号の表示器、薬袋・お薬手帳・一般用医薬品・衛生用品 |
+| 調剤薬局 | `pharmacy_dispensary.py`・`pharmacy_counter.py`・`pharmacy_rx_goods.py` | 30 | 錠剤・散剤の分包機・散薬台・電子天秤・麻薬金庫・クリーンベンチ・調剤監査台、服薬指導のカウンター・発券機・待合いのソファ、医療用医薬品の元箱・投薬瓶・軟膏つぼ・乳鉢・調剤用品 |
 | ホームセンター・100円ショップ | `hc_tools.py`・`hc_garden.py`・`hc_daily.py`・`hc_fixtures.py` | 39 | 工具・金物・園芸用品・収納・長尺物、高層ラック・パレット・有孔ボードのゴンドラ |
 | 書店 | `book_fixtures.py`・`book_goods.py` | 10 | 本棚・平台、単行本・文庫・新書 |
 | 家電量販店 | `elec_fixtures.py`・`elec_goods.py` | 16 | 展示台・ショーケース、家電の箱・ブリスターパック |
@@ -42,6 +44,8 @@
 | ![窓の架空のアセット: 引き違い窓・すべり出し窓・FIX窓・カーテン付きの窓など](images/window_assets.jpg) | ![植物工場の架空のアセット: イチゴの栽培ラックを並べた通路](images/strawberry_farm_aisle.jpg) |
 | **食品・日用品（棚の追加分）** | **専門店・そのほかの店** |
 | ![食品・日用品の架空のアセット: 缶詰・調味料の瓶・袋の粉物・酒の瓶・洗剤のボトルなど22点](images/more_products.jpg) | ![専門店の架空のアセット: 自転車・ヘルメット・和菓子・レコード・ボール・家具・化粧品の什器・アジア食材の袋や瓶など](images/specialty_shops_preview.jpg) |
+| **薬局** | **調剤薬局** |
+| ![薬局の架空のアセット: 調剤棚・薬用冷蔵庫・自動血圧計・消毒スタンド・呼び出し番号の表示器・調剤トレー・薬袋・お薬手帳・鼻炎薬や漢方薬の箱・うがい薬や消毒用エタノールのボトルなど](images/pharmacy_assets.jpg) | ![調剤薬局の架空のアセット: 錠剤・散剤の分包機・散薬台・クリーンベンチ・ピッキング棚・麻薬金庫・調剤監査台・電子天秤・乳鉢・服薬指導のカウンター・発券機・待合いのソファ・医療用医薬品の元箱・散剤の元瓶・投薬瓶・軟膏つぼ・注射針の廃棄容器など](images/dispensing_pharmacy_assets.jpg) |
 
 ### 教室・オフィス・住宅の内装
 

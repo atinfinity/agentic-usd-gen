@@ -14,6 +14,7 @@ from agentic_usd_gen.spec import Dimensions, ProductSpec
     ("label", "紙", "paper"),  # 紙箱
     ("container", "アルミ", "aluminum"),
     ("glass", "ガラス", "glass"),
+    ("container", "磁器", "ceramic"),  # 乳鉢・食器・衛生陶器（前は plastic だった）
     (None, None, "plastic"),  # マテリアルが分からない部品
 ])
 def test_physics_key(role, material, key):

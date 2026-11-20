@@ -242,19 +242,16 @@ def sachet_paper_roll() -> Product:
 def mortar_and_pestle() -> Product:
     D, H = 0.15, 0.075  # 乳鉢の外径・高さ
     white = "#F2F1EC"
-    t = 0.008
-    parts = [Part("Foot", "cylinder", [0.08, 0.08, 0.012], [0, 0, 0.006], color=white, finish="glossy",
-                  material="ceramic")]
-    n = 4  # 鉢の壁を下から上へ広がる 4 段の輪で近似（内側は空洞）
-    for k in range(n):
-        z0 = 0.012 + k * (H - 0.012) / n
-        h = (H - 0.012) / n
-        d = 0.09 + (D - 0.09) * (k + 1) / n
-        parts.append(Part(f"Wall{k}", "cylinder", [d, d, h], [0, 0, z0 + h / 2], color=white, finish="glossy",
-                          material="ceramic", thin_walled=True))
-    parts += [
-        Part("Bowl", "cylinder", [D - 2 * t, D - 2 * t, 0.002], [0, 0, H - 0.001], color="#E7E5DD", finish="matte",
-             collision=False, bevel=0),
+    R = D / 2
+    # 鉢は中の空いた回転体 1 つ：外側は高台（直径 80 mm・高さ 12 mm）から縁へ広がり、内側は縁から丸い底（高さ 22 mm）へ。
+    # 当たり判定は凸分解（convexDecomposition）で、凸包のように上を平らにふさがず、くぼみに物が入る
+    outer = [(0.040, 0.0), (0.040, 0.012), (0.046, 0.014), (R * 0.82, H * 0.45), (R * 0.97, H * 0.88), (R, H * 0.97),
+             (R - 0.002, H)]
+    inner = [(R - 0.008, H), (R * 0.80, H * 0.72), (R * 0.55, H * 0.46), (R * 0.27, H * 0.33), (0.0, H * 0.30)]
+    prof = [[round(r / R, 4), round(z / H, 4)] for r, z in [(0.0, 0.0), *outer, *inner]]
+    parts = [
+        Part("Bowl", "revolve", [D, D, H], [0, 0, H / 2], color=white, finish="glossy", material="ceramic",
+             profile=prof, collision_approximation="convexDecomposition"),
         Part("Pestle", "cylinder", [0.03, 0.03, 0.15], [0.045, 0.0, H + 0.005], color=white, finish="glossy",
              rotation=[0.0, 60.0, 0.0], material="ceramic"),
     ]
@@ -262,7 +259,8 @@ def mortar_and_pestle() -> Product:
                    category="household", dims=Dimensions(0.1305, 0.1925, depth=D), mass_kg=0.9,
                    static=False, material="ceramic",
                    description="形は調剤薬局で錠剤を砕いたり散剤を混ぜたりする一般的な白い磁器の乳鉢（外径 150 mm・高さ 75 mm）"
-                               "と、立てかけた乳棒（長さ 150 mm）で、寸法・質量は代表値。乳鉢の内側は段の付いた輪で近似。",
+                               "と、立てかけた乳棒（長さ 150 mm）で、寸法・質量は代表値。乳鉢の内側はくぼんでいて、当たり判定も"
+                               "凸分解でくぼみを持つ（錠剤などを中に入れられる）。",
                    tags=["乳鉢", "乳棒", "すり鉢", "調剤器具", *SUPPLY_TAGS, "mortar and pestle", "pharmacy mortar"],
                    photos=[], colors=Colors(label_base=white), images=[], parts=parts)
 

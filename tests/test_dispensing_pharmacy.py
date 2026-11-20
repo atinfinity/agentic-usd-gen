@@ -65,3 +65,15 @@ def test_rx_names_are_generic():
               pharmacy_rx_goods.compress_patch_bag, pharmacy_rx_goods.powder_stock_bottle):
         p = f()
         assert "処方箋医薬品" in p.tags and "架空" in p.description
+
+
+def test_mortar_is_hollow_for_collision():
+    """乳鉢の鉢は中の空いた回転体で、当たり判定は凸分解。凸包だと上が平らにふさがり、錠剤が中に入らない。"""
+    spec = pharmacy_rx_goods.mortar_and_pestle().spec()
+    bowl = next(p for p in spec.parts if p.name == "Bowl")
+    assert bowl.shape == "revolve" and bowl.collision and bowl.material == "ceramic"
+    assert spec.collision_approximations()["Bowl"] == "convexDecomposition"
+    H = bowl.size[2]
+    inner_bottom = bowl.profile[-1]  # 断面の最後は内側の底の中心
+    assert inner_bottom[0] == 0 and (1 - inner_bottom[1]) * H > 0.045  # 縁から 45 mm より深くくぼむ
+    assert all(p.material == "ceramic" for p in spec.parts if p.collision)

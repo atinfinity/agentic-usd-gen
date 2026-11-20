@@ -31,6 +31,7 @@ CONTACTS: dict[str, Contact] = {
     "film": Contact(0.40, 0.32, 0.05),  # 袋のフィルム（やわらかく、ほとんど跳ねない）
     "paper": Contact(0.50, 0.40, 0.05),
     "glass": Contact(0.30, 0.24, 0.15),
+    "ceramic": Contact(0.30, 0.24, 0.15),  # 釉薬のかかった陶磁器（食器・乳鉢・衛生陶器）。表面は釉薬のガラスなので glass と同じ
     "wood": Contact(0.45, 0.36, 0.10),
     "food": Contact(0.50, 0.40, 0.05),
 }
@@ -42,6 +43,8 @@ SOURCE = ("素材ごとの概算値（参考: Engineering ToolBox「Friction and
 
 def physics_key(role: str | None, labels: list[str] | None) -> str:
     """見た目のマテリアルのロールと意味ラベルから、物理の素材名を決める。"""
+    if "ceramic" in (labels or []):  # 見た目の表（finish）には陶磁器の区分がなく plastic になるので、ここで分ける
+        return "ceramic"
     key = material_key(role or "container", labels)
     if key == "pp":
         return "plastic"

@@ -165,3 +165,11 @@ for _m in (pharmacy_dispensary, pharmacy_counter, pharmacy_rx_goods):
     _dup = PRODUCTS.keys() & _m.PRODUCTS.keys()
     assert not _dup, f"slug が重複しています: {sorted(_dup)}"
     PRODUCTS.update(_m.PRODUCTS)
+
+# Room furniture: round / oval tables, stacking chairs, a sofa, a TV on a cart, storage, a floor lamp and a
+# paper towel dispenser for homes and offices. A separate block keeps merges simple.
+from . import room_furniture
+
+_dup = PRODUCTS.keys() & room_furniture.PRODUCTS.keys()
+assert not _dup, f"slug が重複しています: {sorted(_dup)}"
+PRODUCTS.update(room_furniture.PRODUCTS)

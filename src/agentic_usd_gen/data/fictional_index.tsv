@@ -624,3 +624,16 @@ sharps_container	household	assembly	注射針の廃棄容器 3L
 alcohol_swab_box	household	box	酒精綿 個包装 200包
 disposable_gloves_box	household	box	ニトリルの使い捨て手袋 M 100枚
 compress_patch_bag	household	box	医療用 湿布（テープ剤）の袋 7枚
+meeting_table_round	fixture	assembly	丸いミーティングテーブル 直径 1000（一本脚）
+meeting_table_oval	fixture	assembly	楕円のミーティングテーブル 1800×900（一本脚 2 本）
+coffee_table_oval	fixture	assembly	楕円のローテーブル 1200×600
+side_table_round	household	assembly	丸いサイドテーブル 直径 450（一本脚）
+stacking_chair	fixture	assembly	スタッキングチェア（樹脂の座面・スチールの脚）
+stacking_chair_stack	fixture	assembly	積み重ねたスタッキングチェア 6 脚
+lounge_sofa_3seat	fixture	assembly	布張りの 3 人掛けソファ（ひじ掛け付き）
+pouf_round	household	assembly	丸い布張りのスツール（プフ）直径 450
+tv_cart	fixture	assembly	キャスター付きスタンドのテレビ 65 型
+wardrobe_sliding	fixture	assembly	引き戸のワードローブ 幅 1800
+glass_display_cabinet	fixture	assembly	ガラス扉の飾り棚 幅 800
+floor_lamp	fixture	assembly	布のシェードのフロアランプ
+paper_towel_dispenser	fixture	assembly	壁掛けのペーパータオルホルダー

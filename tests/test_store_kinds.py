@@ -40,6 +40,14 @@ def test_toys_collide_with_a_few_parts(slug, colliders):
     assert {p.name for p in spec.parts if p.collision} == colliders
 
 
+def test_block_tub_description_gives_the_outer_size():
+    """説明の寸法はふた・取っ手まで含めた外形（dims）と同じ。棚の高さや間隔は外形で決めるので。"""
+    spec = store_kinds.building_blocks_tub().spec()
+    d = spec.dimensions
+    size = f"{round(d.diameter * 1000)} × {round(d.depth * 1000)} mm、取っ手まで高さ {round(d.height * 1000)} mm"
+    assert size in spec.notes
+
+
 def test_toy_tags_match_the_toy_store_stock():
     """toy_store の飾りを探す語で見つかる。"""
     tags = set().union(*(ALL[s]().spec().tags for s in ("toy_car_box", "building_blocks_tub", "plush_bear",

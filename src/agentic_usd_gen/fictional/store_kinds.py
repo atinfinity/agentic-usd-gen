@@ -395,7 +395,7 @@ def building_blocks_tub() -> Product:
     return Product(slug="building_blocks_tub", name="ブロックのケース（120 ピース）", shape_class="assembly",
                    category="household", dims=Dimensions(T + LID + 0.012, W + 0.008, depth=D + 0.008), mass_kg=1.1,
                    material="plastic",
-                   description="形は一般的な子ども向けの組み立てブロックを入れた透明の収納ケース（300 × 200 mm、高さ 220 mm、"
+                   description="形は一般的な子ども向けの組み立てブロックを入れた透明の収納ケース（ふたまで 308 × 208 mm、取っ手まで高さ 232 mm、"
                                "赤いふたと取っ手）で、寸法・質量は代表値。側面から 6 色のブロックが見える。当たり判定は"
                                "ケースとふただけで、ブロックは見た目だけ。印刷・メーカー名はすべて架空。",
                    tags=["ブロック", "積み木", "組み立てブロック", "知育玩具", "building blocks", "toy blocks",

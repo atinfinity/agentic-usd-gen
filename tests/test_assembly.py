@@ -10,6 +10,7 @@ from pxr import Usd, UsdGeom, UsdPhysics, UsdShade
 from agentic_usd_gen.shapes.assembly import (
     AssemblyBuilder,
     cylinder_mesh,
+    described_size_warnings,
     object_name,
     part_volume,
     prism_mesh,
@@ -330,3 +331,13 @@ def test_part_variants(tmp_path, blender):
             "product_name": spec.product_name, "mass_kg": 12.0, "center_of_mass": [0, 0, 0.3]}
     asset = build_asset_json(meta, "test_kiosk", "fixture", 0.0)
     assert asset["variants"] == {"Model": {"variants": ["Screen", "Plain"], "default": "Screen"}}
+
+
+def test_described_size_warnings():
+    dims = Dimensions(0.72, 1.06, depth=0.80)
+    assert described_size_warnings("（幅 1060 mm・奥行き 800 mm・高さ 720 mm、天板の奥行き 600 mm）", dims) == []
+    got = described_size_warnings("（幅 1060 mm・奥行き 600 mm・高さ 720 mm）", dims)
+    assert got == ["説明の奥行き 600 mm が寸法 0.800 m と 5% 以上ずれています（説明には外形を書く）"]
+    assert described_size_warnings("（幅 1060 mm・奥行き 800 mm、仕切り付き）", dims) == []  # 高さは書かなくてよい
+    assert described_size_warnings("外径 220 mm・幅 80 mm", dims) == []  # 外形の並びが無ければ確かめない
+    assert described_size_warnings(None, dims) == []

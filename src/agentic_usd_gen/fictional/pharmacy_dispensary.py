@@ -92,8 +92,8 @@ def tablet_packaging_machine() -> Product:
     return Product(slug="tablet_packaging_machine", name="錠剤分包機 カセット 48 個", shape_class="assembly",
                    category="fixture", dims=Dimensions(H, W, depth=D + 0.18), mass_kg=260.0, static=True,
                    material="steel",
-                   description="形は調剤薬局の調剤室に置く一般的な全自動の錠剤分包機（幅 800 mm・奥行き 750 mm・高さ 1750 mm、"
-                               "前に錠剤のカセット 48 個の窓・操作の画面・分包した薬の出口の受け皿、下に分包紙の扉）で、"
+                   description="形は調剤薬局の調剤室に置く一般的な全自動の錠剤分包機（幅 800 mm・奥行き 930 mm・高さ 1750 mm、"
+                               "本体の奥行き 750 mm に出口の受け皿が前へ 180 mm 出る、前に錠剤のカセット 48 個の窓・操作の画面・分包した薬の出口の受け皿、下に分包紙の扉）で、"
                                "寸法・質量は代表値。扉は開かない。表示の文字と型番は架空。",
                    tags=["錠剤分包機", "分包機", "一包化", "調剤機器", *ROOM, "tablet packaging machine",
                          "unit dose packaging machine"], photos=[],
@@ -336,8 +336,8 @@ def narcotics_safe() -> Product:
     return Product(slug="narcotics_safe", name="麻薬金庫（小型・ダイヤル錠）", shape_class="assembly",
                    category="fixture", dims=Dimensions(H, W, depth=D + 0.02), mass_kg=70.0, static=True,
                    material="steel", joints=[Joint(link="DoorLink", anchor=[dw / 2, -D / 2, zc], limits=[0.0, 100.0])],
-                   description="形は調剤薬局で麻薬を保管する一般的な小型の金庫（幅 400 mm・奥行き 400 mm・高さ 500 mm、"
-                               "ダイヤル錠と取っ手の付いた扉 1 枚、中に棚 1 段）で、寸法・質量は代表値。"
+                   description="形は調剤薬局で麻薬を保管する一般的な小型の金庫（幅 400 mm・奥行き 420 mm・高さ 500 mm、"
+                               "本体の奥行き 400 mm にダイヤルと取っ手が前へ 20 mm 出る、ダイヤル錠と取っ手の付いた扉 1 枚、中に棚 1 段）で、寸法・質量は代表値。"
                                "扉（DoorLink）は右端の蝶番で手前に 100° まで開く。床や棚に固定して使う。",
                    tags=["麻薬金庫", "金庫", "保管庫", "麻薬", *ROOM, "narcotics safe", "drug safe"], photos=[],
                    colors=Colors(label_base=body), images=[img], parts=parts)
@@ -484,8 +484,8 @@ def medicine_cart() -> Product:
     return Product(slug="medicine_cart", name="調剤カート 3 段（キャスター付き）", shape_class="assembly",
                    category="fixture", dims=Dimensions(H, W, depth=D + 0.05), mass_kg=18.0, static=True,
                    material="steel",
-                   description="形は調剤薬局で一包化した薬や施設に届ける薬を運ぶ一般的な調剤カート（幅 600 mm・奥行き 450 mm・"
-                               "高さ 950 mm、縁の立った棚 3 段・奥に押し手・キャスター 4 個）で、寸法・質量は代表値。"
+                   description="形は調剤薬局で一包化した薬や施設に届ける薬を運ぶ一般的な調剤カート（幅 600 mm・奥行き 500 mm・"
+                               "高さ 950 mm、棚の奥行き 450 mm に押し手が奥へ 50 mm 出る、縁の立った棚 3 段・奥に押し手・キャスター 4 個）で、寸法・質量は代表値。"
                                "什器として床に固定した扱い（キャスターは回らない）。番号札の文字は架空。",
                    tags=["調剤カート", "カート", "ワゴン", "配薬カート", *ROOM, "medicine cart", "pharmacy trolley"],
                    photos=[], colors=Colors(label_base=tray), images=[tag], parts=parts)
@@ -578,8 +578,8 @@ def medicine_bag_printer() -> Product:
     return Product(slug="medicine_bag_printer", name="薬袋プリンター（卓上）", shape_class="assembly",
                    category="household", dims=Dimensions(H, W, depth=D + 0.14), mass_kg=13.0, static=False,
                    material="plastic",
-                   description="形は調剤薬局で患者名と用法を薬袋に印刷する一般的な卓上のプリンター（幅 400 mm・奥行き 450 mm・"
-                               "高さ 260 mm、前に表示とランプ・出口・受け皿と印刷した薬袋）で、寸法・質量は代表値。"
+                   description="形は調剤薬局で患者名と用法を薬袋に印刷する一般的な卓上のプリンター（幅 400 mm・奥行き 590 mm・"
+                               "高さ 260 mm、本体の奥行き 450 mm に受け皿が前へ 140 mm 出る、前に表示とランプ・出口・受け皿と印刷した薬袋）で、寸法・質量は代表値。"
                                "表示の文字は架空。",
                    tags=["プリンター", "薬袋プリンター", "薬袋", "印刷", *ROOM, "medicine bag printer",
                          "label printer"], photos=[],

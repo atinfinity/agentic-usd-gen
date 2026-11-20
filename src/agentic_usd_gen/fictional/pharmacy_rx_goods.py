@@ -222,15 +222,15 @@ def sachet_paper_roll() -> Product:
     wr.text(110, 188, "80mm", 9, WHITE, 800)
     wr.rect(0, 214, 220, 220, fill="#C9D3CD")
     wrap = _face(wr.array(), "paper", 13691, 0.8, 6)
-    parts = [
-        Part("Roll", "cylinder", [D, D, W], [0, 0, D / 2], color="#F4F7F5", finish="matte", rotation=[0.0, 90.0, 0.0],
+    parts = [  # 軸を奥行きの向きに寝かせる：幅（x）と高さが外径、奥行きがロールの幅（紙管が両側に 2 mm 出る）
+        Part("Roll", "cylinder", [D, D, W - 0.004], [0, 0, D / 2], color="#F4F7F5", finish="matte", rotation=[90.0, 0.0, 0.0],
              material="paper", faces={"top": 0, "bottom": 0}),
-        Part("Core", "cylinder", [core_d, core_d, W + 0.004], [0, 0, D / 2], color="#B79A6E", finish="matte",
-             rotation=[0.0, 90.0, 0.0], material="paper", collision=False),
-        _box("Tail", (W, 0.06, 0.0015), (0, -0.03, 0.00075), "#F4F7F5", "matte", collision=False),
+        Part("Core", "cylinder", [core_d, core_d, W], [0, 0, D / 2], color="#B79A6E", finish="matte",
+             rotation=[90.0, 0.0, 0.0], material="paper", collision=False),
+        _box("Tail", (0.06, W, 0.0015), (-0.03, 0, 0.00075), "#F4F7F5", "matte", collision=False),
     ]
     return Product(slug="sachet_paper_roll", name="分包紙のロール 幅 80mm（グラシン・ラミネート）", shape_class="assembly",
-                   category="household", dims=Dimensions(D, W, depth=D), mass_kg=1.6, static=False,
+                   category="household", dims=Dimensions(D, D, depth=W), mass_kg=1.6, static=False,
                    material="paper",
                    description="形は錠剤分包機・散剤分包機に掛ける一般的な分包紙のロール（外径 220 mm・幅 80 mm・紙管の径 76 mm、"
                                "横にして置き、端を少し引き出す）で、寸法・質量は代表値。印刷の文字は架空。",

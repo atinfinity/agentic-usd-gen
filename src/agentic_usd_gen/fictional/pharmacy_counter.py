@@ -58,8 +58,8 @@ def counseling_counter() -> Product:
     return Product(slug="counseling_counter", name="服薬指導のカウンター 1 席（仕切り付き・座り）", shape_class="assembly",
                    category="fixture", dims=Dimensions(H, W + 0.06, depth=D + 0.20), mass_kg=55.0, static=True,
                    material="wood", picture_places=DRUG_PLACES,
-                   description="形は調剤薬局で薬剤師が座って薬の説明をする一般的な服薬指導のカウンター（幅 1000 mm・奥行き 600 mm・"
-                               "天板の高さ 720 mm、左右に高さ 1400 mm の仕切り、天板の中央に下の空いた透明の飛沫よけ、"
+                   description="形は調剤薬局で薬剤師が座って薬の説明をする一般的な服薬指導のカウンター（幅 1060 mm・奥行き 800 mm、天板は幅 1000 mm・"
+                               "奥行き 600 mm・高さ 720 mm、左右に高さ 1400 mm の仕切りが天板の前後に 100 mm ずつ出る、天板の中央に下の空いた透明の飛沫よけ、"
                                "前に案内の板）で、寸法・質量は代表値。いすは含まない。案内の文字は架空。",
                    tags=["服薬指導", "カウンター", "相談カウンター", "投薬台", *COUNTER, "counseling counter",
                          "pharmacy consultation desk"], photos=[],
@@ -302,13 +302,13 @@ def waiting_sofa_2seat() -> Product:
              finish="matte", collision=False, bevel=0),
     ]
     for side, x in (("L", -W / 2 + arm / 2), ("R", W / 2 - arm / 2)):
-        parts.append(Part(f"Arm{side}", "box", [arm, D - 0.04, 0.62 - 0.18], [x, 0, 0.18 + (0.62 - 0.18) / 2],
+        parts.append(Part(f"Arm{side}", "box", [arm, D, 0.62 - 0.18], [x, 0, 0.18 + (0.62 - 0.18) / 2],
                           color=vinyl, finish="plastic", material="vinyl", bevel=0.015))
     for k, (x, y) in enumerate(((-1, -1), (1, -1), (-1, 1), (1, 1))):
         parts.append(_box(f"Leg{k}", (0.04, 0.04, 0.18), (x * (W / 2 - 0.06), y * (D / 2 - 0.07), 0.09), frame,
                           "metal"))
     return Product(slug="waiting_sofa_2seat", name="待合いのソファ 2 人掛け（ひじ掛け付き）", shape_class="assembly",
-                   category="fixture", dims=Dimensions(H, W, depth=D - 0.04), mass_kg=32.0, static=True,
+                   category="fixture", dims=Dimensions(H, W, depth=D), mass_kg=32.0, static=True,
                    material="vinyl",
                    description="形は薬局・医院の待合いに置く一般的なビニールレザーの 2 人掛けソファ（幅 1200 mm・奥行き 650 mm・"
                                "高さ 800 mm・座面の高さ 420 mm、左右にひじ掛け、金属の脚 4 本）で、寸法・質量は代表値。",

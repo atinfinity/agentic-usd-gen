@@ -647,6 +647,25 @@ def attach_parts(ctx: BuildContext, body_lo, body_hi, used: set[str], warnings: 
             "size": tuple(float(x) for x in hi - lo), "colliders": [o["name"] for o in objects if o["collision"]]}
 
 
+# 説明（notes）の「幅 A mm・奥行き B mm・高さ C mm」は外形。寸法（dimensions）を外形の値で書いても、
+# 説明が本体の値のままだと、置き場所を説明から決めたときにぶつかる。そのずれを警告にする
+_DESCRIBED = re.compile(r"幅 ([\d.]+) mm・奥行き ([\d.]+) mm(?:・高さ ([\d.]+) mm)?")
+
+
+def described_size_warnings(notes: str | None, dims) -> list[str]:
+    m = _DESCRIBED.search(notes or "")
+    if not m:
+        return []
+    out = []
+    for label, text, got in zip(("幅", "奥行き", "高さ"), m.groups(), (dims.diameter, dims.depth, dims.height)):
+        if text is None or not got:
+            continue
+        want = float(text) / 1000
+        if abs(got - want) > 0.05 * want:
+            out.append(f"説明の{label} {float(text):g} mm が寸法 {got:.3f} m と 5% 以上ずれています（説明には外形を書く）")
+    return out
+
+
 class AssemblyBuilder:
     def build(self, ctx: BuildContext) -> BuildResult:
         spec = ctx.spec
@@ -676,6 +695,7 @@ class AssemblyBuilder:
         for label, got, want in zip(("幅", "奥行き", "高さ"), size, expected):
             if abs(got - want) > 0.05 * want:
                 warnings.append(f"部品を組み合わせた{label} {got:.3f} m が寸法 {want:.3f} m と 5% 以上ずれています")
+        warnings += described_size_warnings(spec.notes, dims)
 
         # 質量は体積比で部品に配り、重心はその加重平均とする（中空の筐体でも中身が詰まった扱い）
         vol = np.array(volumes)

@@ -6,8 +6,11 @@ import pytest
 from agentic_usd_gen.fictional import (
     pharmacy_counter,
     pharmacy_dispensary,
+    pharmacy_fixtures,
+    pharmacy_goods,
     pharmacy_rx_goods,
 )
+from agentic_usd_gen.shapes.assembly import described_size_warnings
 
 from .test_super_fixtures import PLACES, _shelves
 
@@ -77,3 +80,23 @@ def test_mortar_is_hollow_for_collision():
     inner_bottom = bowl.profile[-1]  # 断面の最後は内側の底の中心
     assert inner_bottom[0] == 0 and (1 - inner_bottom[1]) * H > 0.045  # 縁から 45 mm より深くくぼむ
     assert all(p.material == "ceramic" for p in spec.parts if p.collision)
+
+
+PHARMACY = {**ALL, **pharmacy_fixtures.PRODUCTS, **pharmacy_goods.PRODUCTS}  # 前回の薬局の 19 点も
+
+
+@pytest.mark.parametrize("slug", sorted(PHARMACY))
+def test_description_gives_the_outer_size(slug):
+    """説明の「幅・奥行き・高さ」は外形で、寸法と 5% 以内で合う（前に出た受け皿・仕切り・取っ手を含めた値）。"""
+    spec = PHARMACY[slug]().spec()
+    assert described_size_warnings(spec.notes, spec.dimensions) == []
+
+
+def test_sofa_and_sachet_roll_dimensions():
+    sofa = pharmacy_counter.waiting_sofa_2seat().spec()
+    assert sofa.dimensions.depth == pytest.approx(0.65)
+    assert all(p.size[1] == pytest.approx(0.65) for p in sofa.parts if p.name.startswith("Arm"))
+    roll = pharmacy_rx_goods.sachet_paper_roll().spec()
+    d = roll.dimensions
+    assert (d.diameter, d.depth, d.height) == pytest.approx((0.22, 0.08, 0.22))  # 外径・ロールの幅・外径
+    assert {p.name: p.size[2] for p in roll.parts if p.shape == "cylinder"} == pytest.approx({"Roll": 0.076, "Core": 0.08})

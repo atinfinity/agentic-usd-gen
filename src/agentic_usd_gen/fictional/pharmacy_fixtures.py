@@ -182,8 +182,8 @@ def medicine_refrigerator() -> Product:
     return Product(slug="medicine_refrigerator", name="薬用冷蔵庫 ガラス扉 1 枚", shape_class="assembly",
                    category="fixture", dims=Dimensions(H, W, depth=D + 0.03), mass_kg=75.0, static=True,
                    material="steel", joints=joints, lights=[lux],
-                   description="形は薬局の調剤室に置く一般的な薬用の冷蔵庫（幅 600 mm・奥行き 600 mm・高さ 1750 mm、"
-                               "ガラス扉 1 枚・庫内の網棚 4 段と照明・上に温度表示の操作部）で、寸法・質量は代表値。"
+                   description="形は薬局の調剤室に置く一般的な薬用の冷蔵庫（幅 600 mm・奥行き 630 mm・高さ 1750 mm、"
+                               "本体の奥行き 600 mm に扉の取っ手が前へ 30 mm 出る、ガラス扉 1 枚・庫内の網棚 4 段と照明・上に温度表示の操作部）で、寸法・質量は代表値。"
                                "扉（DoorLink）は右端の蝶番で手前に 100° まで開く。表示の文字は架空。",
                    tags=["薬用冷蔵庫", "冷蔵庫", "保冷庫", "ガラス扉", "調剤室", *PHARMACY_TAGS, "medical refrigerator",
                          "pharmacy refrigerator", "glass door fridge"], photos=[],

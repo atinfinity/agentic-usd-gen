@@ -1450,7 +1450,7 @@ def shopping_basket() -> Product:
     parts = _basket_parts()
     return Product(slug="shopping_basket", name="買い物かご", shape_class="assembly", category="fixture",
                    dims=Dimensions(0.24, 0.474, depth=0.36), mass_kg=0.75, material="plastic",
-                   description="形は店舗の一般的なプラスチック製の買い物かご（幅 474 mm・奥行き 330 mm・高さ 240 mm、取っ手を倒した状態）で、寸法・質量は代表値。側面の穴は絵で、形は板。",
+                   description="形は店舗の一般的なプラスチック製の買い物かご（幅 474 mm・奥行き 360 mm・高さ 240 mm、かごの奥行き 330 mm に倒した取っ手が前後へ 15 mm ずつ出る）で、寸法・質量は代表値。側面の穴は絵で、形は板。",
                    tags=["買い物かご", "かご", "バスケット", "店舗備品", "shopping basket", "basket"], photos=[],
                    colors=Colors(label_base=red), images=imgs, parts=parts)
 

@@ -151,7 +151,7 @@ def kitchen_fridge_2door() -> Product:
     dims = _fit(parts, joints)
     return Product(slug="kitchen_fridge_2door", name="業務用縦型冷蔵庫（2ドア・幅 750 mm）", shape_class="assembly",
                    category="fixture", dims=dims, mass_kg=110.0, static=True, material="steel",
-                   description="形は飲食店の厨房に置く一般的な業務用の縦型冷蔵庫（幅 750 mm・奥行き 800 mm・高さ 1950 mm、"
+                   description="形は飲食店の厨房に置く一般的な業務用の縦型冷蔵庫（幅 750 mm・奥行き 853 mm・高さ 1950 mm、本体の奥行き 800 mm に扉の取っ手が前へ 53 mm 出る、"
                                "上に高さ 150 mm の機械室と温度表示、庫内は上下 2 室で各 1 枚の網棚、扉は上下 2 枚）で、寸法・質量は代表値。"
                                "扉（UpperDoorLink・LowerDoorLink）は右端の蝶番で手前に 100° まで開く。",
                    tags=["業務用冷蔵庫", "縦型冷蔵庫", "冷蔵庫", "2ドア", *KITCHEN_TAGS, "commercial refrigerator",
@@ -213,7 +213,7 @@ def cold_table() -> Product:
     dims = _fit(parts, joints)
     return Product(slug="cold_table", name="コールドテーブル（台下冷蔵庫・幅 1500 mm）", shape_class="assembly",
                    category="fixture", dims=dims, mass_kg=85.0, static=True, material="steel",
-                   description="形は飲食店の厨房の一般的なコールドテーブル（台下冷蔵庫、幅 1500 mm・奥行き 600 mm・高さ 800 mm、"
+                   description="形は飲食店の厨房の一般的なコールドテーブル（台下冷蔵庫、幅 1500 mm・奥行き 630 mm・高さ 800 mm、本体の奥行き 600 mm に扉の取っ手が前へ 30 mm 出る、"
                                "天板は厚さ 40 mm のステンレスの作業台、左に幅 400 mm の機械室と温度表示、庫内に網棚 1 枚）で、"
                                "寸法・質量は代表値。扉（DoorLLink・DoorRLink）は外側の蝶番で手前に 100° まで開く。",
                    tags=["コールドテーブル", "台下冷蔵庫", "冷蔵庫", "作業台", *KITCHEN_TAGS,
@@ -305,7 +305,7 @@ def gas_range() -> Product:
     dims = _fit(parts, joints)
     return Product(slug="gas_range", name="業務用ガスレンジ（4口・オーブン付き 900 mm）", shape_class="assembly",
                    category="fixture", dims=dims, mass_kg=130.0, static=True, material="steel",
-                   description="形は飲食店の厨房の一般的な業務用ガスレンジ（幅 900 mm・奥行き 750 mm・天板の高さ 800 mm、"
+                   description="形は飲食店の厨房の一般的な業務用ガスレンジ（幅 900 mm・奥行き 824 mm・高さ 900 mm、本体の奥行き 750 mm にオーブンの扉の取っ手が前へ 74 mm 出る、天板の高さ 800 mm、"
                                "バーナー 4 口に鋳物の五徳、奥に高さ 100 mm のバックガード、下にオーブン）で、寸法・質量は代表値。"
                                "オーブンの扉（OvenDoorLink）は下端の蝶番で手前に 85° まで倒れる。",
                    tags=["ガスレンジ", "ガスコンロ", "コンロ", "オーブン", "五徳", *KITCHEN_TAGS, "gas range",
@@ -388,7 +388,7 @@ def floor_fryer() -> Product:
     dims = _fit(parts)
     return Product(slug="floor_fryer", name="業務用フライヤー（床置き・1槽 450 mm）", shape_class="assembly",
                    category="fixture", dims=dims, mass_kg=70.0, static=True, material="steel",
-                   description="形は飲食店の厨房の一般的な床置きのガスフライヤー（幅 450 mm・奥行き 600 mm・天板の高さ 800 mm、"
+                   description="形は飲食店の厨房の一般的な床置きのガスフライヤー（幅 450 mm・奥行き 649 mm・高さ 934 mm、本体の奥行き 600 mm にかごの取っ手が前へ 49 mm 出る、天板の高さ 800 mm、"
                                "油槽 1 つにかご 2 つ、奥に高さ 150 mm の排気筒、下は収納）で、寸法・質量は代表値。卓上の counter_fryer と別物。",
                    tags=["フライヤー", "揚げ物", "床置きフライヤー", *KITCHEN_TAGS, "deep fryer", "floor fryer",
                          "commercial fryer", "fryer"],
@@ -451,7 +451,7 @@ def sink_2bowl() -> Product:
     dims = _fit(parts)
     return Product(slug="sink_2bowl", name="業務用 2 槽シンク（バックガード付き 1200 mm）", shape_class="assembly",
                    category="fixture", dims=dims, mass_kg=28.0, static=True, material="steel",
-                   description="形は飲食店の厨房の一般的なステンレスの 2 槽シンク（幅 1200 mm・奥行き 600 mm・高さ 800 mm、"
+                   description="形は飲食店の厨房の一般的なステンレスの 2 槽シンク（幅 1200 mm・奥行き 600 mm・高さ 1090 mm、天板の高さ 800 mm に水栓が上へ 290 mm 出る、"
                                "槽は 500 × 450 mm・深さ 300 mm が 2 つ、奥に高さ 150 mm のバックガード、槽ごとに台付きの水栓、"
                                "丸パイプの脚に桟）で、寸法・質量は代表値。",
                    tags=["シンク", "2槽シンク", "流し台", "洗い場", "水栓", *KITCHEN_TAGS, "commercial sink",
@@ -548,7 +548,7 @@ def dishwasher_door() -> Product:
     dims = _fit(parts, joints)
     return Product(slug="dishwasher_door", name="業務用食器洗浄機（ドアタイプ）", shape_class="assembly",
                    category="fixture", dims=dims, mass_kg=85.0, static=True, material="steel",
-                   description="形は飲食店の洗い場の一般的なドアタイプの食器洗浄機の本体（幅 640 mm・奥行き 650 mm・高さ 1450 mm、"
+                   description="形は飲食店の洗い場の一般的なドアタイプの食器洗浄機の本体（幅 640 mm・奥行き 703 mm・高さ 1450 mm、本体の奥行き 650 mm にフードの取っ手が前へ 53 mm 出る、"
                                "ラックを載せる洗浄室の床の高さ 850 mm、洗浄室を前・左右・上から覆う高さ 450 mm のフード、"
                                "下の正面に操作盤）で、寸法・質量は代表値。両側の作業台・ラックは含まない。"
                                "フード（HoodLink）は 400 mm まで上にスライドして開く。",

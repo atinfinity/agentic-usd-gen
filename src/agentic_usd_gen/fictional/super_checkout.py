@@ -283,7 +283,7 @@ def sample_table() -> Product:
     return Product(slug="sample_table", name="試食台（クロス・前垂れ付き）", shape_class="assembly", category="fixture",
                    dims=Dimensions(H + 0.07, W + 0.018, depth=D + 0.012), mass_kg=9.0, static=True,
                    material="steel",
-                   description="形はスーパーの売場に出す一般的な折りたたみの試食台（幅 900 mm・奥行き 450 mm・高さ 720 mm）に"
+                   description="形はスーパーの売場に出す一般的な折りたたみの試食台（幅 918 mm・奥行き 462 mm・高さ 790 mm、台は幅 900 mm・奥行き 450 mm・天板の高さ 720 mm で、前垂れと横のクロスの分だけ外に広く、つまようじ立てが天板の上へ 70 mm 出る）に"
                                "クロスと前垂れを掛け、トレー・皿・つまようじ立て・ペーパーナプキンを載せたもので、寸法・質量は代表値。"
                                "台の上の物は台と一体の固定物。前垂れの案内は架空。",
                    tags=["試食台", "試食", "デモ販売", "テーブル", "スーパー", "店舗什器", "sampling table",

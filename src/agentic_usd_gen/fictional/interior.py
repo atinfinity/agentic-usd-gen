@@ -458,7 +458,7 @@ def wood_slat_wall_panel() -> Product:
     return Product(slug="wood_slat_wall_panel", name="木のルーバー壁パネル 幅1200×高さ2400", shape_class="assembly",
                    category=ENV, dims=Dimensions(H, W, depth=D), mass_kg=25.0, static=True, material="wood",
                    description="形はカフェ・店舗・事務所の受付の壁に貼る一般的な木のルーバーの化粧パネル（幅 1200 mm・"
-                               "高さ 2400 mm、黒い下地に幅 30 mm・奥行き 20 mm の木の桟を 50 mm ピッチ）で、寸法・質量は代表値。"
+                               "奥行き 32 mm・高さ 2400 mm、厚さ 12 mm の黒い下地に太さ 30 mm・厚さ 20 mm の木の桟を 50 mm ピッチ）で、寸法・質量は代表値。"
                                "背面を壁に付ける。横に並べて壁一面にする。",
                    tags=["壁パネル", "ルーバー", "木の壁", "アクセントウォール", "化粧パネル", "壁", "内装",
                          "wood slat wall", "slat wall panel", "wood wall panel", "accent wall", "acoustic panel"],

@@ -476,7 +476,7 @@ def chrome_wire_shelf() -> Product:
                      collision=False, material="steel", bevel=0)]
     return Product(slug="chrome_wire_shelf", name="キャスター付きのスチールラック（4 段）", shape_class="assembly",
                    category="fixture", dims=Dimensions(H, W, depth=D + 0.05), mass_kg=16.0, static=True, material="steel",
-                   description="形は一般的なクロムめっきのワイヤーシェルフ（幅 910 mm・奥行き 460 mm・高さ 1590 mm、棚 4 段、"
+                   description="形は一般的なクロムめっきのワイヤーシェルフ（幅 910 mm・奥行き 510 mm・高さ 1590 mm、棚の奥行き 460 mm にキャスターが前後へ 25 mm ずつ出る、棚 4 段、"
                                "直径 25 mm の支柱、75 mm のキャスター 4 個）で、寸法・質量は代表値。棚板は網の絵の薄い板で、"
                                "商品を並べる棚板に使える。転がらないよう床に固定して書き出す。",
                    tags=["スチールラック", "ワイヤーシェルフ", "メタルラック", "キャスター付き", "wire shelf",

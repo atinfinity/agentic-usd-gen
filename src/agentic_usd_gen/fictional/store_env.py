@@ -885,7 +885,7 @@ def hand_wash_basin() -> Product:
     H = 0.40  # 排水トラップの下端（鉢の上端の 300 mm 下）から水栓の上端まで
     return Product(slug="hand_wash_basin", name="壁付けの手洗い器（自動水栓）", shape_class="assembly", category=ENV,
                    dims=Dimensions(H, W, depth=D), mass_kg=14.0, static=True, material="ceramic",
-                   description="形は店舗のトイレの一般的な壁付けの陶器の手洗い器（幅 450 mm・奥行き 320 mm、鉢の上端は床から 760 mm が標準）"
+                   description="形は店舗のトイレの一般的な壁付けの陶器の手洗い器（幅 450 mm・奥行き 360 mm・高さ 400 mm、鉢の奥行き 320 mm の後ろに水栓の台が 40 mm、高さは排水トラップの下端から水栓の上端まで、鉢の上端は床から 760 mm が標準）"
                                "に、自動水栓と排水のトラップを付けたもので、寸法・質量は代表値。原点は排水トラップの下端で、背面を壁に付ける"
                                "（床から 460 mm に置くと鉢の上端が 760 mm になる）。"
                                "鉢はくぼみまで作る。",

@@ -974,7 +974,7 @@ def nightstand() -> Product:
                         mix(wood, "#000000", 0.3), "matte", material="wood"))
     return Product(slug="nightstand", name="ナイトテーブル（引き出し 2 段）", shape_class="assembly",
                    category="household", dims=_dims(parts), mass_kg=9.0, material="wood",
-                   description="形は一般的なベッドの横のナイトテーブル（幅 450 mm・奥行き 400 mm・高さ 500 mm、明るい木、"
+                   description="形は一般的なベッドの横のナイトテーブル（幅 460 mm・奥行き 422 mm・高さ 500 mm、本体は幅 450 mm・奥行き 400 mm で天板が左右と奥へ 5 mm 張り出し、引き出しの前板とつまみが前へ 17 mm 出る、明るい木、"
                                "引き出し 2 段と脚）で、寸法・質量は代表値。剛体。天板にランプや時計を置ける。",
                    tags=["ナイトテーブル", "サイドテーブル", "ベッドサイドテーブル", "nightstand", "bedside table",
                          "night table", "side table", *FURNITURE_TAGS, *HOME_TAGS], photos=[],
@@ -997,7 +997,7 @@ def wardrobe() -> Product:
                      collision=False, material="steel", bevel=0.003)]
     return Product(slug="wardrobe", name="ワードローブ（両開き・幅 1000）", shape_class="assembly", category="fixture",
                    dims=_dims(parts), mass_kg=70.0, static=True, material="wood",
-                   description="形は家具店・寝室の一般的な両開きのワードローブ（幅 1000 mm・奥行き 600 mm・高さ 1900 mm、生成りの"
+                   description="形は家具店・寝室の一般的な両開きのワードローブ（幅 1000 mm・奥行き 638 mm・高さ 1900 mm、本体の奥行き 600 mm に扉が 18 mm・取っ手がさらに 20 mm 前へ出る、生成りの"
                                "扉に黒い縦の取っ手、台輪）で、寸法・質量は代表値。扉は開かない。床に固定。名前・メーカー名はすべて架空。",
                    tags=["ワードローブ", "洋服タンス", "クローゼット", "衣装棚", "wardrobe", "closet", "armoire",
                          "clothes cabinet", *FURNITURE_TAGS, *HOME_TAGS], photos=[], colors=Colors(label_base=body),

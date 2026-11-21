@@ -84,7 +84,7 @@ def appliance_display_platform() -> Product:
                    category="fixture", dims=Dimensions(H, W, depth=D + 0.04), mass_kg=40.0, static=True,
                    material="steel",
                    description="形は家電量販店で冷蔵庫・洗濯機などの大型家電を並べる一般的な低い展示台（幅 1800 mm・奥行き "
-                               "900 mm・高さ 120 mm、後ろの支柱に売場の表示と価格の POP 2 枚）で、寸法・質量は代表値。"
+                               "940 mm・高さ 1400 mm、台は奥行き 900 mm・高さ 120 mm で、後ろへ 40 mm 出た 2 本の支柱の上に売場の表示と価格の POP 2 枚）で、寸法・質量は代表値。"
                                "家電は載せていない（SimReady などのアセットを台に置く）。表示・価格の文字は架空。",
                    tags=["展示台", "家電", "大型家電", "冷蔵庫", "洗濯機", "ステージ", "店舗什器", "家電量販店",
                          "appliance display", "display platform", "electronics store"], photos=[],

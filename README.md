@@ -133,8 +133,10 @@ uv run agentic-usd-gen-fictional soda_pet_500ml --out out/fictional --preview
 ## テスト
 
 ```sh
-uv run pytest
+uv run pytest -n auto --dist loadfile
 ```
+
+`-n auto`はCPUの数だけ並列に流します（pytest-xdist。1プロセスで順に流すと約7分半、8並列で約2分です）。`--dist loadfile`はファイルごとに1つのプロセスへ割り振るので、ファイルで共有するBlenderのビルド（`tests/test_pipeline.py`の`built`など）を作り直しません。1つのテストだけを流すときは要りません。
 
 テストはAPIを呼びません（見た目の検証は応答を差し替えて確かめます）。合成したボトル画像を使い、Blenderがある環境ではUSDの書き出しまで確認します。
 

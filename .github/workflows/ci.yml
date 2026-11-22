@@ -25,7 +25,7 @@ jobs:
       - run: uv sync --extra simready
       - name: Lint (ruff; keep the version in step with pyproject.toml)
         run: uv run --with ruff==0.17.6 ruff check --output-format github .
-      - run: uv run pytest
+      - run: uv run pytest -n auto --dist loadfile
 
   test-blender:
     name: test-blender (build, export, SimReady)
@@ -69,7 +69,7 @@ jobs:
           "$HOME/blender/blender" --version | head -1
       - run: uv sync --extra simready
       - name: Tests (the ones that need Blender run too)
-        run: uv run pytest
+        run: uv run pytest -n auto --dist loadfile
       - name: Build, export and validate seven fictional assets
         run: |
           uv run agentic-usd-gen-fictional soda_pet_500ml potato_chips_bag stick_snack_box self_checkout \

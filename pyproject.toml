@@ -15,6 +15,7 @@ dependencies = [
     "numpy>=2.5.4",
     "opencv-python-headless>=5.0.0.93",
     "pillow>=12.3.0",
+    "pyoxipng>=9.1.1 ; python_full_version < '3.14'",  # no cp314 wheel yet: surface falls back to Pillow
     "python-dotenv>=1.2.4",
     "requests>=2.34.2",
     "usd-core>=26.8",

@@ -450,6 +450,35 @@ def write_part_variants(root: Usd.Prim, sets: dict[str, list[str]], shows: dict[
     return out
 
 
+def sort_children(layer: Sdf.Layer) -> None:
+    """prim の子を名前順に並べ直す。Blender の USD 書き出しは子の順が毎回変わり、作り直すと中身が同じでも差分が出る。
+    Sdf に並べ替えの操作がないので、子を消して名前順に写し直した層を作り、新しいファイルに書いて置き換える
+    （crate はその場で保存すると、書き出したときの表の順が残ってバイト列がそろわない）。
+    variant の中の子は並べない（Blender の書き出しには variant が無い。variant は後で名前順に作る）。"""
+    dst = Sdf.Layer.CreateAnonymous(Path(layer.realPath).suffix)
+    dst.TransferContent(layer)
+    dst.rootPrimOrder.clear()
+
+    def rebuild(parent: Sdf.Path) -> None:
+        kids = sorted(s.name for s in layer.rootPrims) if parent == Sdf.Path.absoluteRootPath else \
+            sorted(layer.GetPrimAtPath(parent).nameChildren.keys())
+        if parent == Sdf.Path.absoluteRootPath:
+            dst.rootPrims.clear()
+        else:
+            dst.GetPrimAtPath(parent).nameChildren.clear()
+        for k in kids:  # 子ごと写して、その子の下を並べ直す（深さの分だけ写し直すが、部品の階層は浅い）
+            Sdf.CopySpec(layer, parent.AppendChild(k), dst, parent.AppendChild(k))
+            dst.GetPrimAtPath(parent.AppendChild(k)).nameChildrenOrder.clear()
+            rebuild(parent.AppendChild(k))
+
+    rebuild(Sdf.Path.absoluteRootPath)
+    path = Path(layer.realPath)
+    tmp = path.with_name(f".{path.stem}.sorted{path.suffix}")
+    dst.Export(str(tmp))
+    tmp.replace(path)
+    layer.Reload(force=True)
+
+
 def postprocess(result: BuildResult, product_name: str, physics: bool = True,
                 surfaces: dict[str, dict] | None = None, physics_materials: dict[str, dict] | None = None,
                 collision: dict[str, str] | None = None) -> None:
@@ -458,6 +487,7 @@ def postprocess(result: BuildResult, product_name: str, physics: bool = True,
     使った物理マテリアルは result.meta["physics_materials"] に残す。
     collision はコリジョンの部品名 → 近似方法（spec.collision_approximations()）。指定のない部品は convexHull。"""
     apply_finishes(result.materials, surfaces)
+    sort_children(Sdf.Layer.FindOrOpen(str(result.usd_path)))
     stage = Usd.Stage.Open(str(result.usd_path))
     UsdGeom.SetStageUpAxis(stage, UsdGeom.Tokens.z)
     UsdGeom.SetStageMetersPerUnit(stage, 1.0)

@@ -424,11 +424,14 @@ def finish(img: np.ndarray, kind: str, seed: int = 0, strength: float = 1.0) -> 
     h, w = a.shape[:2]
     rng = np.random.default_rng(seed)
     if kind == "paper":
-        grain = rng.normal(0, 3.0, (h, w, 1))
-        mottle = _noise((h, w), seed, max(h, w) / 12)[..., None] * 4.0
+        # 粒（grain）・むら（mottle）・繊維（fibers）を足し込む。同じ足し算をその場で行い、作業用の配列を減らす
+        s = rng.normal(0, 3.0, (h, w, 1))
+        s += _noise((h, w), seed, max(h, w) / 12)[..., None] * 4.0
         fibers = np.asarray(Image.fromarray((rng.random((h, w)) * 255).astype(np.uint8))
                             .filter(ImageFilter.BoxBlur(1)), np.float32)[..., None] / 255 - 0.5
-        a = a + (grain + mottle + fibers * 6.0) * strength
+        s += fibers * 6.0
+        s *= strength
+        a = s + a
     elif kind == "film":
         grain = rng.normal(0, 1.8, (h, w, 1))
         crinkle = _noise((h, max(2, w // 6)), seed, max(4, h / 30))
@@ -444,16 +447,30 @@ def finish(img: np.ndarray, kind: str, seed: int = 0, strength: float = 1.0) -> 
         yy, xx = np.mgrid[0:h, 0:w]
         glare = np.clip(1 - (xx / w + yy / h) * 0.9, 0, 1)[..., None] ** 3 * 18 * strength
         a = a + glare
-    return np.clip(a, 0, 255).astype(np.uint8)
+    return np.clip(a, 0, 255, out=a).astype(np.uint8)
 
 
 def edge_shade(img: np.ndarray, px: int, amount: float = 0.12) -> np.ndarray:
-    """面の縁を少し暗くする（折り目・シールの陰）。"""
+    """面の縁を少し暗くする（折り目・シールの陰）。縁から px 以上内側は変わらないので、縁の帯だけを計算する。"""
     h, w = img.shape[:2]
-    yy, xx = np.mgrid[0:h, 0:w]
-    d = np.minimum.reduce([xx, yy, w - 1 - xx, h - 1 - yy]).astype(np.float32)
-    k = 1 - amount * np.clip(1 - d / max(px, 1), 0, 1) ** 2
-    return np.clip(img.astype(np.float32) * k[..., None], 0, 255).astype(np.uint8)
+    n = max(px, 1)
+    x, y = np.arange(w), np.arange(h)
+    dx, dy = np.minimum(x, w - 1 - x), np.minimum(y, h - 1 - y)  # 左右・上下の近い方の縁までの画素数
+
+    def shade(ys: np.ndarray, xs: np.ndarray) -> np.ndarray:
+        d = np.minimum(dx[xs][None, :], dy[ys][:, None]).astype(np.float32)
+        k = 1 - amount * np.clip(1 - d / n, 0, 1) ** 2
+        if img.ndim == 3:  # 色の軸（グレースケールの 2 次元の画像には無い）
+            k = k[..., None]
+        return np.clip(img[np.ix_(ys, xs)].astype(np.float32) * k, 0, 255).astype(np.uint8)
+
+    out = np.clip(img, 0, 255).astype(np.uint8)  # 内側もいつも uint8（uint8 ならただの写し）
+    edge_rows, mid_rows, edge_cols = np.flatnonzero(dy < n), np.flatnonzero(dy >= n), np.flatnonzero(dx < n)
+    if edge_rows.size:  # 上下の帯（全幅）
+        out[edge_rows] = shade(edge_rows, x)
+    if mid_rows.size and edge_cols.size:  # 左右の帯（上下の帯の間）
+        out[np.ix_(mid_rows, edge_cols)] = shade(mid_rows, edge_cols)
+    return out
 
 
 def trim_safe(img: np.ndarray) -> np.ndarray:

@@ -84,6 +84,7 @@
 
 ```bash
 uv run agentic-usd-gen-fictional --all --out out/fictional --preview        # 全点
+uv run agentic-usd-gen-fictional --all --out out/fictional --jobs 8         # 8 点ずつ並べて作る（8 点で 85 秒 → 27 秒、16 コア）
 uv run agentic-usd-gen-fictional cup_noodle_tall soda_pet_500ml --no-build  # 画像と spec.json だけを cache/fictional/ に書き、USD は作らない（絵柄だけ確かめるとき）
 uv run agentic-usd-gen-export cup_noodle_tall --out out/fictional --assets <公開用リポジトリ>/assets -m "初版"
 ```

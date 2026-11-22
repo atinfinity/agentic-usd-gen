@@ -5,8 +5,6 @@ from __future__ import annotations
 import json
 import os
 
-import anthropic
-
 DEFAULT_MODEL = "claude-opus-5-5"
 FALLBACK_BETA = "server-side-fallback-2026-07-01"
 MAX_CONTINUATIONS = 5
@@ -34,6 +32,11 @@ def request_json(
     effort: str = "high",
 ) -> dict:
     """構造化出力（JSON Schema）で 1 回の応答を得る。サーバーツールの pause_turn は再開する。"""
+    try:  # 使うときに読む。import だけで 1.4 秒かかり、架空の商品の生成では使わない
+        import anthropic
+    except ImportError as e:
+        raise LLMError(f"anthropic を読み込めません: {e}") from e
+
     client = anthropic.Anthropic()
     messages: list[dict] = [{"role": "user", "content": content}]
     params = dict(
@@ -49,8 +52,11 @@ def request_json(
         params["tools"] = tools
 
     for _ in range(MAX_CONTINUATIONS + 1):
-        with client.beta.messages.stream(messages=messages, **params) as stream:
-            response = stream.get_final_message()
+        try:  # 通信・認証・レート制限の失敗も LLMError にする（呼び出し側はそれを受けて推定に切り替える）
+            with client.beta.messages.stream(messages=messages, **params) as stream:
+                response = stream.get_final_message()
+        except anthropic.APIError as e:
+            raise LLMError(f"Claude API: {e}") from e
 
         if response.stop_reason == "pause_turn":
             # サーバー側ループが上限に達しただけなので、そのまま送り返して再開させる

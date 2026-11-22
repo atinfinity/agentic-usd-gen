@@ -11,6 +11,7 @@
 
 from __future__ import annotations
 
+import io
 import zlib
 from dataclasses import dataclass
 from pathlib import Path
@@ -18,6 +19,11 @@ from pathlib import Path
 import cv2
 import numpy as np
 from PIL import Image
+
+try:
+    import oxipng
+except ImportError:  # no wheel for this Python (3.14): Pillow's optimize, slower
+    oxipng = None
 
 
 @dataclass(frozen=True)
@@ -151,6 +157,20 @@ def write_maps(texture: Path, kind: str, roughness: float | None = None) -> dict
     paths = {}
     for name, img in make_maps(rgb, kind, roughness).items():
         p = texture.with_name(f"{texture.stem}_{name}.png")
-        Image.fromarray(img).save(p, optimize=True)
+        _save_png(img, p)
         paths[name] = p
     return paths
+
+
+def _save_png(img: np.ndarray, path: Path) -> None:
+    """Pillow の最速の圧縮を oxipng で詰め直す。out/fictional のマップ 103 枚で、Pillow の optimize=True より
+    時間が 2 割ほど短く、合計 7 % 小さく、大きくなった枚数は 0（level 1 は 4 割短いが 9 枚が大きくなる）。
+    可逆で、色の形式（灰色・RGB・ビット深度）も変えない（変えると灰色の金属度がパレットになる）。"""
+    if oxipng is None:
+        Image.fromarray(img).save(path, optimize=True)
+        return
+    buf = io.BytesIO()
+    Image.fromarray(img).save(buf, format="PNG", compress_level=1)
+    path.write_bytes(oxipng.optimize_from_memory(
+        buf.getvalue(), level=2, bit_depth_reduction=False, color_type_reduction=False, palette_reduction=False,
+        grayscale_reduction=False))

@@ -1,6 +1,7 @@
 """架空のパッケージの商品を生成する（公開用のアセット）。
 
     agentic-usd-gen-fictional --all --out out/fictional --preview
+    agentic-usd-gen-fictional --all --jobs 8    # 商品ごとに別のプロセスで並べて作る
     agentic-usd-gen-fictional cup_noodle_tall potato_chips_bag --no-build
     agentic-usd-gen-fictional --list            # slug・分類・形状・品名の一覧（何も作らない）
     agentic-usd-gen-fictional --list pouch 茶   # 語で絞り込む
@@ -13,7 +14,9 @@ from __future__ import annotations
 
 import argparse
 import logging
+import multiprocessing
 import sys
+from concurrent.futures import ProcessPoolExecutor
 from pathlib import Path
 
 from .. import cli
@@ -34,6 +37,8 @@ def main(argv: list[str] | None = None) -> int:
                    help="slug・分類・形状・品名を 1 行ずつ出して終わる（何も作らない）。後ろに語を並べると、すべての語を含む行だけ")
     p.add_argument("--cache", type=Path, default=Path("cache/fictional"), help="キャッシュ（既定: cache/fictional）")
     p.add_argument("--no-build", action="store_true", help="キャッシュだけ書き、USD は作らない")
+    p.add_argument("--jobs", "-j", type=int, default=1,
+                   help="並べて作る商品の数（既定: 1）。商品ごとに出力・キャッシュのフォルダが別なので干渉しない")
     # 値を取る agentic-usd-gen のオプションはここで受けて渡す（位置引数の商品と取り違えないように）
     p.add_argument("--out", help="出力先（agentic-usd-gen に渡す）")
     p.add_argument("--blender", help="Blender の実行ファイル（agentic-usd-gen に渡す）")
@@ -50,17 +55,59 @@ def main(argv: list[str] | None = None) -> int:
     unknown = [n for n in names if n not in PRODUCTS]
     if not names or unknown:
         p.error(f"商品を指定してください（未知: {', '.join(unknown)}）" if unknown else "商品か --all を指定してください")
-    status = 0
-    for n in names:
-        with recording() as canvases:
-            product = PRODUCTS[n]()
-        write(product, args.cache, canvases)
-        log.info("架空の商品: %s（%s）", product.name, product.slug)
-        if listing.load().get(n) != listing.row_of(product):
-            log.warning("--list の一覧が定義と合っていません（%s）。作り直してください: %s", n, listing.REFRESH)
-        if not args.no_build:
-            status |= cli.main([product.name, "--cache", str(args.cache), *rest])
-    return status
+    if args.jobs < 1:
+        p.error("--jobs は 1 以上")
+    if args.jobs > 1 and len(names) > 1 and any(a.split("=")[0] in ("--slug", "--image") for a in rest):
+        p.error("--slug・--image はすべての商品で同じ出力・画像になるので、--jobs と一緒に使えない")
+    jobs = [(n, args.cache, args.no_build, rest) for n in names]
+    if args.jobs == 1 or len(names) == 1:
+        status = 0
+        for j in jobs:
+            status |= _build(*j)
+        return status
+    # spawn: 親の anthropic などのスレッドを引き継がない
+    ex = ProcessPoolExecutor(min(args.jobs, len(names)), mp_context=multiprocessing.get_context("spawn"),
+                             initializer=_init_logging)
+    try:
+        status = 0
+        for f in [ex.submit(_build, *j) for j in jobs]:
+            status |= f.result()
+        return status
+    except BaseException:  # Ctrl+C など: 待っている商品は始めない
+        ex.shutdown(wait=False, cancel_futures=True)
+        raise
+    finally:
+        ex.shutdown()
+
+
+def _init_logging() -> None:
+    logging.basicConfig(level=logging.INFO, format="%(levelname)s %(message)s")
+
+
+def _build(n: str, cache: Path, no_build: bool, rest: list[str]) -> int:
+    """1 点を作る。失敗しても（agentic-usd-gen の sys.exit も）ほかの商品を止めず、0 以外を返す。"""
+    try:
+        return _build_one(n, cache, no_build, rest)
+    except SystemExit as e:
+        if e.code in (None, 0):
+            return 0
+        log.error("失敗: %s: %s", n, e.code)
+        return e.code if isinstance(e.code, int) else 1
+    except Exception:
+        log.exception("失敗: %s", n)
+        return 1
+
+
+def _build_one(n: str, cache: Path, no_build: bool, rest: list[str]) -> int:
+    from . import listing
+
+    with recording() as canvases:
+        product = PRODUCTS[n]()
+    write(product, cache, canvases)
+    log.info("架空の商品: %s（%s）", product.name, product.slug)
+    if listing.load().get(n) != listing.row_of(product):
+        log.warning("--list の一覧が定義と合っていません（%s）。作り直してください: %s", n, listing.REFRESH)
+    return 0 if no_build else cli.main([product.name, "--cache", str(cache), *rest])
 
 
 if __name__ == "__main__":
